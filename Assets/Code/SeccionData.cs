@@ -13,7 +13,7 @@ public class SeccionData
     {
         _placesOfDolls = new Dictionary<int, int>();
         List<int> places = Enumerable.Range(1, NumberOfPlayers).ToList();
-        for (int i = 0; i < NumberOfPlayers; i++)
+        for (int i = 1; i <= NumberOfPlayers; i++)
         {
             int place = Random.Range(0, places.Count);
             _placesOfDolls.Add(places[place], i);

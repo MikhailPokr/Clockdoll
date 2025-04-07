@@ -15,13 +15,13 @@ internal class GameCore : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow))
             _tableRotation.StartRotate(false);
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow))
             _tableRotation.StartRotate(true);
         if (Input.GetKeyUp(KeyCode.LeftArrow))
-            _tableRotation.EndRotate();
+            _tableRotation.EndRotate(false);
         if (Input.GetKeyUp(KeyCode.RightArrow))
-            _tableRotation.EndRotate();
+            _tableRotation.EndRotate(true);
     }
 }

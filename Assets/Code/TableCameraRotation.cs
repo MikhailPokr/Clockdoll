@@ -5,12 +5,13 @@ internal class TableCameraRotation : MonoBehaviour
 {
     
     [SerializeField] private RotatableAxis[] _rotatableObjects;
+    [SerializeField] private float _duration;
 
     public void Initiate(PrefabPalette palette, SeccionData seccion)
     {
         foreach (var obj in _rotatableObjects)
         {
-            obj.Initiate(palette, seccion, 1);
+            obj.Initiate(palette, seccion, _duration, 1);
         }
     }
 
@@ -18,15 +19,15 @@ internal class TableCameraRotation : MonoBehaviour
     {
         foreach (var obj in _rotatableObjects)
         {
-            obj.StartRotation(clockwise);
+            obj.QueueRotation(clockwise ? 1 : -1);
         }
     }
 
-    public void EndRotate()
+    public void EndRotate(bool clockwise)
     {
         foreach (var obj in _rotatableObjects)
         {
-            obj.StopRotation();
+            obj.QueueRotation(0);
         }
     }
 }
