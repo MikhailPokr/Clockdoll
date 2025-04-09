@@ -1,6 +1,6 @@
 using UnityEngine;
 
-internal class DollAxis : RotatableAxis
+internal class DollAxis : BaseRotatableAxis
 {
     //исключительно для теста, потом удалить
     Color[] rainbowPalette = new[]
@@ -21,7 +21,7 @@ internal class DollAxis : RotatableAxis
 
     protected override GameObject Generate(int place)
     {
-        Doll doll = Instantiate(_palette.DollPrefab, transform);
+        DollModel doll = Instantiate(_palette.DollPrefab, transform);
         doll.ChangeNumber(_seccionData.GetDollIndex(place), rainbowPalette[place - 1]);
         doll.name = $"Doll {doll.Number} in place: {place}";
         return doll.gameObject;

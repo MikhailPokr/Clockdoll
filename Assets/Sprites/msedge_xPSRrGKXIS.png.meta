@@ -1,25 +1,10 @@
 fileFormatVersion: 2
-guid: aab83a7a3f8362a42bfc5e51026875b4
+guid: 539181b67b6b29c43b2cea9b0be00738
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8576495600576065435
-    second: Graybox_0
-  - first:
-      213: 8826581860500144061
-    second: Graybox_1
-  - first:
-      213: 1284076948692182902
-    second: Graybox_2
-  - first:
-      213: 7336097204163273151
-    second: Graybox_3
-  - first:
-      213: 3483014168815553788
-    second: Graybox_4
-  - first:
-      213: -4649630577764919968
-    second: Graybox_5
+      213: 5896541345935387878
+    second: msedge_xPSRrGKXIS_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -141,133 +126,47 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Heart
+      name: msedge_xPSRrGKXIS_0
       rect:
         serializedVersion: 2
-        x: 259
-        y: 1466
-        width: 705
-        height: 616
+        x: 8
+        y: 0
+        width: 162
+        height: 176
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: 80, y: -87}
+        - {x: 35, y: -35.5}
+        - {x: 50, y: -9.5}
+        - {x: 54, y: 26.5}
+        - {x: 33, y: 46.5}
+        - {x: -22, y: 85}
+        - {x: -59, y: 87}
+        - {x: -95, y: 65.5}
+        - {x: -100, y: 39.5}
+        - {x: -81, y: 33.5}
+        - {x: -68, y: 33.5}
+        - {x: -47, y: 11.5}
+        - {x: -40, y: -16.5}
+        - {x: -7, y: -40}
+        - {x: -14, y: -61}
+        - {x: -28, y: -88}
+      - - {x: -41, y: -19}
+        - {x: -33, y: -19}
+        - {x: -33, y: -18}
+        - {x: -41, y: -18}
+      physicsShape:
+      - - {x: 61, y: 69}
+        - {x: -81, y: 88}
+        - {x: -30, y: -25}
+        - {x: 81, y: -88}
       tessellationDetail: 0
       bones: []
-      spriteID: fe26c0c21126bf7468db2fffb4863189
-      internalID: -1542714281
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Star
-      rect:
-        serializedVersion: 2
-        x: 1133
-        y: 1424
-        width: 703
-        height: 669
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9cacbcaff45b6ed4f8978ceaedf368b8
-      internalID: 1217393479
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Triangle
-      rect:
-        serializedVersion: 2
-        x: 247
-        y: 743
-        width: 738
-        height: 638
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 41885705ac3dabf40a3746cf2669d374
-      internalID: 164588988
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Circle
-      rect:
-        serializedVersion: 2
-        x: 1195
-        y: 753
-        width: 609
-        height: 609
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0b0424550ea8dac42b997501d363d318
-      internalID: 1579227335
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Square
-      rect:
-        serializedVersion: 2
-        x: 313
-        y: 10
-        width: 624
-        height: 624
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 19, y: 20, z: 21, w: 21}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1a7f87001235fbd418b48151f91633a3
-      internalID: -989603866
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rhomb
-      rect:
-        serializedVersion: 2
-        x: 1231
-        y: 7
-        width: 555
-        height: 696
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9bb91ed2577e2b145b26d8627c2939b4
-      internalID: 761596134
+      spriteID: 6ece1e7ec19b4d150800000000000000
+      internalID: 5896541345935387878
       vertices: []
       indices: 
       edges: []
@@ -276,7 +175,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 774683cee6cbeb541b9971cce099e214
+    spriteID: ed6ef5d327ce7fe429e3be665fcbd409
     internalID: 0
     vertices: []
     indices: 
@@ -286,12 +185,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Circle: 1579227335
-      Heart: -1542714281
-      Rhomb: 761596134
-      Square: -989603866
-      Star: 1217393479
-      Triangle: 164588988
+      msedge_xPSRrGKXIS_0: 5896541345935387878
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

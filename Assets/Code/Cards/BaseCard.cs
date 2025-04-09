@@ -1,0 +1,3 @@
+﻿internal abstract class BaseCard
+{
+}

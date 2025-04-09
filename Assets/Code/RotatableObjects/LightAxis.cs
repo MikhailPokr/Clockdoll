@@ -1,6 +1,6 @@
 using UnityEngine;
 
-internal class LightAxis : RotatableAxis
+internal class LightAxis : BaseRotatableAxis
 {
     protected override GameObject Generate(int place)
     {
