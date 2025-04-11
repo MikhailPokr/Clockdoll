@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DollPrefab: {fileID: 3140281212397763023, guid: 45772bd6782d7dc4e8fdd5735d6d1b39, type: 3}
   Light: {fileID: 8154537325747379201, guid: 9bb4d98755001d9448217352f32a346b, type: 3}
+  CardPrefab: {fileID: 7656108220431678180, guid: 910cf5b865602c043a6fa326bee05402, type: 3}

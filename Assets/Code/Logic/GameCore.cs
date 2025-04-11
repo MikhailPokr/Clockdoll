@@ -1,29 +1,38 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 internal class GameCore : MonoBehaviour
 {
     [SerializeField] private PrefabPalette _prefabPalette;
-
     [SerializeField] private MonoBehaviour[] _initializable;
+    [Space]
+    [SerializeField] private Animator _canvasAnimator;
 
     private InputManager _inputManager;
 
     private void Awake()
     {
         ServiceLocator.Register(_prefabPalette);
+
         TableData tableData = new();
         tableData.GeneratePlacement();
         ServiceLocator.Register(tableData);
-        ServiceLocator.Register<GameProcess>(new());
+
+        GameProcess gameProcess = ServiceLocator.Register<GameProcess>(new());
+
         _inputManager = ServiceLocator.Register<InputManager>(new());
+
+        ServiceLocator.Register(new ViewManager(_canvasAnimator));
+
+        ServiceLocator.Register(new HandData(tableData, gameProcess));
+
 
         for (int i = 0; i < _initializable.Length; i++)
         {
             if (_initializable[i] is IInitializable)
                 (_initializable[i] as IInitializable).Initialize();
             else
-                throw new Exception("ћассив _initializable нужно заполн€ть только классами, реализующие IInitializable");
+                throw new System.Exception("ћассив _initializable нужно заполн€ть только классами, реализующие IInitializable");
         }
     }
 
@@ -31,9 +40,28 @@ internal class GameCore : MonoBehaviour
     {
         _inputManager.Update();
 
+        //далее тестовые проверки нажатий, они будут убраны
         if (Input.GetKeyDown(KeyCode.Space))
         {
             ServiceLocator.Resolve<GameProcess>().OnTurnEnd();
+        }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            ServiceLocator.Resolve<HandData>().TakeCard(false, 2);
+        }
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            ServiceLocator.Resolve<HandData>().TakeCard(true, 8);
+            print("ѕедро получает 8 карт");
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ServiceLocator.Resolve<HandData>().SwitchHand();
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            List<BaseCard> hand = ServiceLocator.Resolve<HandData>().GetHand(true);
+            ServiceLocator.Resolve<HandData>().PlayCard(hand[Random.Range(0, hand.Count)]);
         }
     }
 }

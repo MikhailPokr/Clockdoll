@@ -18,16 +18,18 @@ internal abstract class BaseRotatableAxis : MonoBehaviour
     protected bool _isCompletingMove = false;
 
     protected PrefabPalette _palette;
-    protected TableData _seccionData;
+    protected TableData _tableData;
 
-    public void Initiate(PrefabPalette palette, TableData seccion, float duration, int firstPosition)
+    public void Initiate(PrefabPalette palette, TableData seccion, float duration)
     {
         _palette = palette;
-        _seccionData = seccion;
-        _currentIndex = firstPosition;
+        _tableData = seccion;
         _duration = duration;
+        _currentIndex = _tableData.CurrentPlace;
 
-        InitializeObjects(firstPosition);
+        _tableData.TableStartRotated += QueueRotation;
+
+        InitializeObjects();
     }
 
     public void QueueRotation(int direction)
@@ -48,11 +50,11 @@ internal abstract class BaseRotatableAxis : MonoBehaviour
         }
     }
 
-    private void InitializeObjects(int firstPosition)
+    private void InitializeObjects()
     {
         for (int i = -2; i <= 2; i++)
         {
-            int place = ConvertPlaceForCircle(i + firstPosition, 12, false);
+            int place = ConvertPlaceForCircle(i + _currentIndex, 12, false);
             SetNewObject(place);
         }
     }
@@ -260,6 +262,7 @@ internal abstract class BaseRotatableAxis : MonoBehaviour
     {
         int direction = _clockwise ? -1 : 1;
         _currentIndex = ConvertPlaceForCircle(_currentIndex - direction, 12, false);
+        _tableData.SetCurrentDoll(_currentIndex);
     }
 
     private void CreateNewObject()

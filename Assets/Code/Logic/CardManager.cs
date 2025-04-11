@@ -1,38 +1,72 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-internal class CardManager : IService
+internal class CardManager : MonoBehaviour, IInitializable
 {
-    private List<BaseCard> _pedroLibrary = new();
-    private List<BaseCard> _anokLibrary = new();
+    [SerializeField] CardModel _showedCard;
+    [SerializeField] Animator _animator;
 
-    private List<BaseCard> _pedroHand = new();
-    private List<BaseCard> _anokHand = new();
+    private HandData _handData;
+    private CardModel _cardPrefab;
 
-
-    public void TakeCard(bool toPedro, int count)
+    public void Initialize()
     {
-        for (int i = 0; i < count; i++)
+        _cardPrefab = ServiceLocator.Resolve<PrefabPalette>().CardPrefab;
+        _handData = ServiceLocator.Resolve<HandData>();
+        _handData.HandUpdated += Animate;
+        Animate();
+    }
+
+    public void TakeCard(bool toPedro, int count) => _handData.TakeCard(toPedro, count);
+
+    public bool TryPlayCard(BaseCard card)
+    {
+        if (!card.Check())
+            return false;
+        card.Play();
+        ShowCard(false);
+        _handData.PlayCard(card);
+        return true;
+    }
+
+    public void GenerateHand()
+    {
+        foreach (Transform child in transform)
         {
-            if (toPedro)
-                _pedroHand.Add(GenerateDollCard());
-            else
-                _anokHand.Add(GenerateGuestCard());
+            Destroy(child.gameObject);
+        }
+        List<CardModel> cards = new();
+        List<BaseCard> hand = _handData.GetCurrentHand();
+        for (int i = 0; i < hand.Count; i++)
+        {
+            CardModel card = Instantiate(_cardPrefab, transform);
+            card.Initialize(hand[i], this);
+            cards.Add(card);
+        }
+
+        if (cards.Count == 0) 
+            return;
+        float degrees = -90 / hand.Count;
+        degrees = Mathf.Clamp(degrees, -30, 0);
+        for (int i = 0; i < cards.Count; i++)
+        {
+            cards[i].transform.localEulerAngles = new Vector3(0, 0, i * degrees); 
         }
     }
 
-    public bool PlayCard()
+    public void ShowCard(bool show, BaseCard card = null)
     {
-        //поверить условие и при нессотвествии выдать false
-        throw new System.NotImplementedException();
+        _showedCard.gameObject.SetActive(show);
+        if (!show)
+            return;
+        _showedCard.Initialize(card, this);
+
     }
 
-    private BaseCard GenerateDollCard()
+    private void Animate()
     {
-        throw new System.NotImplementedException();
-    }
-    private BaseCard GenerateGuestCard()
-    {
-        throw new System.NotImplementedException();
+        //переписать на 2 анимации
+        _animator.SetTrigger("Update");
     }
 }

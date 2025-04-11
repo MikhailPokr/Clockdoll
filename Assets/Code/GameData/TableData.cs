@@ -9,6 +9,24 @@ public class TableData : IService
     private Dictionary<int, int> _placesOfDolls;
     public int GetDollIndex(int place) => _placesOfDolls[place];
 
+    private int _currentPlace;
+    public int CurrentPlace => _currentPlace;
+
+    public System.Action<int> TableStartRotated;
+    public System.Action<int> TargetPlaceChanged;
+
+    public TableData()
+    {
+        _currentPlace = 1;
+    }
+
+    public void RotateTable(int direction) => TableStartRotated?.Invoke(direction);
+
+    public void SetCurrentDoll(int index)
+    {
+        _currentPlace = index;
+        TargetPlaceChanged?.Invoke(index);
+    }
     public void GeneratePlacement()
     {
         _placesOfDolls = new Dictionary<int, int>();

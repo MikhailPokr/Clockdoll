@@ -22,7 +22,7 @@ internal class DollAxis : BaseRotatableAxis
     protected override GameObject Generate(int place)
     {
         DollModel doll = Instantiate(_palette.DollPrefab, transform);
-        doll.ChangeNumber(_seccionData.GetDollIndex(place), rainbowPalette[place - 1]);
+        doll.ChangeNumber(_tableData.GetDollIndex(place), rainbowPalette[place - 1]);
         doll.name = $"Doll {doll.Number} in place: {place}";
         return doll.gameObject;
     }

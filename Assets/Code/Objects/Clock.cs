@@ -13,14 +13,22 @@ internal class Clock : MonoBehaviour, IInitializable
 
     [SerializeField] private GameObject _mArrow;
     [SerializeField] private GameObject _hArrow;
+    [Space]
+    [SerializeField] private bool _isTableClock;
  
     private GameProcess _gameProcess;
+    private ViewManager _viewManager;
+
+    public Action<bool> ButtomPressed;
 
 
     public void Initialize()
     {
         _gameProcess = ServiceLocator.Resolve<GameProcess>();
         _gameProcess.TurnChanged += OnTurnChanged;
+
+        _viewManager = ServiceLocator.Resolve<ViewManager>();
+        ButtomPressed += _viewManager.OnClockClick;
 
         OnTurnChanged(_gameProcess.ItsPedroTurn, _gameProcess.CurrentPlaceNumber);
     }
@@ -38,7 +46,7 @@ internal class Clock : MonoBehaviour, IInitializable
 
     public void Click()
     {
-        GetComponentInParent<Animator>().SetTrigger("Click");
+        ButtomPressed?.Invoke(_isTableClock);
     }
 
     private void OnDestroy()

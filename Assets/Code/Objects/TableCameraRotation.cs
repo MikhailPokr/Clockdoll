@@ -3,11 +3,14 @@ using UnityEngine;
 
 internal class TableCameraRotation : MonoBehaviour, IInitializable
 {
-    
+
+    //очень плохое взаимодействие с BaseRotatableAxis. Вычисление позиции должно производится тут.
+
     [SerializeField] private BaseRotatableAxis[] _rotatableObjects;
     [SerializeField] private float _duration;
 
     private InputManager _inputManager;
+    private TableData _tableData;
 
     public void Initialize()
     {
@@ -15,9 +18,10 @@ internal class TableCameraRotation : MonoBehaviour, IInitializable
         TableData seccion = ServiceLocator.Resolve<TableData>();
         _inputManager = ServiceLocator.Resolve<InputManager>();
         _inputManager.ButtonPresed += OnButtonPressed;
+        _tableData= ServiceLocator.Resolve<TableData>();
         foreach (var obj in _rotatableObjects)
         {
-            obj.Initiate(palette, seccion, _duration, 1);
+            obj.Initiate(palette, seccion, _duration);
         }
     }
 
@@ -33,10 +37,7 @@ internal class TableCameraRotation : MonoBehaviour, IInitializable
 
     public void Rotate(int direction)
     {
-        foreach (var obj in _rotatableObjects)
-        {
-            obj.QueueRotation(direction);
-        }
+        _tableData.RotateTable(direction);
     }
 
     private void OnDestroy()
