@@ -14,10 +14,11 @@ internal class HandData : IService
     private bool _showingPedroHand;
     private TableData _tableData;
     private GameProcess _gameProcess;
+    private Palette _palette;
 
     public Action HandUpdated;
 
-    public HandData(TableData tableData, GameProcess gameProcess)
+    public HandData(TableData tableData, GameProcess gameProcess, Palette palette)
     {
         _anokDiscard = new List<AnokCard>();
         _pedroDiscard = new List<PedroCard>[13];
@@ -32,6 +33,8 @@ internal class HandData : IService
         _tableData.TargetPlaceChanged += (_) => HandUpdated?.Invoke();
 
         _gameProcess = gameProcess;
+
+        _palette = palette;
 
         _showingPedroHand = false;
     }
@@ -89,8 +92,8 @@ internal class HandData : IService
     private BaseCard GenerateDollCard(bool pedroCard)
     {
         if (pedroCard)
-            return new PedroCard();
+            return new PedroCard(_palette);
         else
-            return new AnokCard();
+            return new AnokCard(_palette);
     }
 }

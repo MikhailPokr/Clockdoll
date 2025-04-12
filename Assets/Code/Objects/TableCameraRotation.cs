@@ -14,7 +14,7 @@ internal class TableCameraRotation : MonoBehaviour, IInitializable
 
     public void Initialize()
     {
-        PrefabPalette palette = ServiceLocator.Resolve<PrefabPalette>(); 
+        Palette palette = ServiceLocator.Resolve<Palette>(); 
         TableData seccion = ServiceLocator.Resolve<TableData>();
         _inputManager = ServiceLocator.Resolve<InputManager>();
         _inputManager.ButtonPresed += OnButtonPressed;

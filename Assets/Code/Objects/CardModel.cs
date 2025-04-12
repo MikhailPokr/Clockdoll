@@ -5,8 +5,9 @@ using TMPro;
 internal class CardModel : MonoBehaviour
 {
     [SerializeField] private Image _image;
-    [SerializeField] private TextMeshProUGUI _title;
-    [SerializeField] private TextMeshProUGUI _description;
+    [SerializeField] private Image _suit;
+    [SerializeField] private TextMeshProUGUI _condition;
+    [SerializeField] private TextMeshProUGUI _effect;
 
     private CardManager _cardManager;
     private BaseCard _card;
@@ -15,9 +16,10 @@ internal class CardModel : MonoBehaviour
     {
         _card = card;
         var data = card.GetData();
-        _title.text = data.name;
-        _description.text = data.description;
-        _image.color = data.color;
+        _condition.text = data.condition;
+        _effect.text = data.effect;
+        _suit.sprite = data.suit;
+        _suit.color = data.color;
         _cardManager = cardManager;
     }
 

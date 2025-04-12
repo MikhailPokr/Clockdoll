@@ -3,7 +3,7 @@ using UnityEngine;
 
 internal class GameCore : MonoBehaviour
 {
-    [SerializeField] private PrefabPalette _prefabPalette;
+    [SerializeField] private Palette _palette;
     [SerializeField] private MonoBehaviour[] _initializable;
     [Space]
     [SerializeField] private Animator _canvasAnimator;
@@ -12,7 +12,7 @@ internal class GameCore : MonoBehaviour
 
     private void Awake()
     {
-        ServiceLocator.Register(_prefabPalette);
+        ServiceLocator.Register(_palette);
 
         TableData tableData = new();
         tableData.GeneratePlacement();
@@ -24,7 +24,9 @@ internal class GameCore : MonoBehaviour
 
         ServiceLocator.Register(new ViewManager(_canvasAnimator));
 
-        ServiceLocator.Register(new HandData(tableData, gameProcess));
+        ServiceLocator.Register(new HandData(tableData, gameProcess, _palette));
+
+        ServiceLocator.Register(new DiceManager(_palette));
 
 
         for (int i = 0; i < _initializable.Length; i++)
@@ -62,6 +64,10 @@ internal class GameCore : MonoBehaviour
         {
             List<BaseCard> hand = ServiceLocator.Resolve<HandData>().GetHand(true);
             ServiceLocator.Resolve<HandData>().PlayCard(hand[Random.Range(0, hand.Count)]);
+        }
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            ServiceLocator.Resolve<DiceManager>().RollDice(8, 10, 16);
         }
     }
 }

@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5d0fec375df8b24f871f266792c4272, type: 3}
+  m_Name: Palette
+  m_EditorClassIdentifier: 
+  DollPrefab: {fileID: 3140281212397763023, guid: 45772bd6782d7dc4e8fdd5735d6d1b39, type: 3}
+  Light: {fileID: 8154537325747379201, guid: 9bb4d98755001d9448217352f32a346b, type: 3}
+  CardPrefab: {fileID: 7656108220431678180, guid: 910cf5b865602c043a6fa326bee05402, type: 3}
+  DicePrefabs:
+    D4: {fileID: -1438760499106956079, guid: 472c6e78550286c44b6d57352a82ecf5, type: 3}
+    D6: {fileID: -1438760499106956079, guid: 19cbdffee840e0944b3cbc3d5a19fc72, type: 3}
+    D8: {fileID: -1438760499106956079, guid: 3ac98e1ca22490c45a5dac2cb4204122, type: 3}
+    D10: {fileID: -1438760499106956079, guid: 40830d21189778c40a1a14de53a22c1d, type: 3}
+    D12: {fileID: -1438760499106956079, guid: 28fd7681d044834489ff1cdab30f0baa, type: 3}
+    D16: {fileID: -1438760499106956079, guid: b3d74c7fe2db265468f428d3bb3d2387, type: 3}
+    D20: {fileID: -1438760499106956079, guid: 8a552d05b7a842a479eec6233d650b60, type: 3}
+  _diceNumbers:
+  - {fileID: 5236770673159910730, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: -2981270999002693241, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: 861478275146721001, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: -270911279241810150, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: 3068438335149212612, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: 4485239542410069674, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: 1014876491452776403, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: -7046778910070863098, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: -6436398087190634495, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: -3420877811542161326, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: -7295046141531874013, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: 8221087669106797136, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: -2388890658719200141, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: -1997387848637834612, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: -5547530621423098036, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: 4843721469061936405, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: 6319549356006141134, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: -1369039140496826433, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: -2196088424701324565, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: 5347100683629386908, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  SuitsSprites:
+    Diamonds: {fileID: -2721155104166945252, guid: 265ee2ce9b961234bade2f91092e12d0, type: 3}
+    Spades: {fileID: 1893148381734069071, guid: 265ee2ce9b961234bade2f91092e12d0, type: 3}
+    Hearts: {fileID: -3963835453307888894, guid: 265ee2ce9b961234bade2f91092e12d0, type: 3}
+    Crosses: {fileID: -5811324989801958716, guid: 265ee2ce9b961234bade2f91092e12d0, type: 3}

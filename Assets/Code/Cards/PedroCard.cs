@@ -2,30 +2,23 @@ using UnityEngine;
 
 internal class PedroCard : BaseCard
 {
-    public PedroCard()
+    public PedroCard(Palette palette)
     {
-        float randomValue = Random.value;
-        float weightedValue = Mathf.Pow(randomValue, 2);
-        int result = (int)(weightedValue * 99) + 1;
+        int index = Random.Range(1, 5);
 
-        float lowerBound = Mathf.Pow((result - 1) / 99, 2);
-        float upperBound = Mathf.Pow(result / 99, 2);
-
-        float probability = upperBound - lowerBound;
-        int oneInXChance = (int)Mathf.Round(1 / probability);
-
-        _title = $"Карта Педро {result}";
-        _description = $"Карточка, шанс на выпадение которой 1 к {oneInXChance}";
-        _color = Color.Lerp(new Color(1, 1, 1), new Color(1, 0.84f, 0), result / 100);
+        _suit = palette.SuitsSprites.GetSuit(index);
+        _condition = $"Карточка {System.Guid.NewGuid().ToString().Replace('-', ' ')}";
+        _effect = $"Делает ужасные вещи с Аноком";
+        _color = index % 2 == 1 ? Color.red : Color.gray;
     }
 
     public override bool Check()
     {
-        return true;
+        return false;
     }
 
     public override void Play()
     {
-        Debug.Log($"Сыграна карта {_title}");
+        Debug.Log($"Сыграна карта {_condition}");
     }
 }

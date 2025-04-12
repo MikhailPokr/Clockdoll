@@ -17,10 +17,10 @@ internal abstract class BaseRotatableAxis : MonoBehaviour
     protected int _queuedDirection = 0;
     protected bool _isCompletingMove = false;
 
-    protected PrefabPalette _palette;
+    protected Palette _palette;
     protected TableData _tableData;
 
-    public void Initiate(PrefabPalette palette, TableData seccion, float duration)
+    public void Initiate(Palette palette, TableData seccion, float duration)
     {
         _palette = palette;
         _tableData = seccion;

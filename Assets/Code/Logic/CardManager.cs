@@ -12,7 +12,7 @@ internal class CardManager : MonoBehaviour, IInitializable
 
     public void Initialize()
     {
-        _cardPrefab = ServiceLocator.Resolve<PrefabPalette>().CardPrefab;
+        _cardPrefab = ServiceLocator.Resolve<Palette>().CardPrefab;
         _handData = ServiceLocator.Resolve<HandData>();
         _handData.HandUpdated += Animate;
         Animate();
