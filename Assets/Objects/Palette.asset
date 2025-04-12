@@ -23,6 +23,7 @@ MonoBehaviour:
     D12: {fileID: -1438760499106956079, guid: 28fd7681d044834489ff1cdab30f0baa, type: 3}
     D16: {fileID: -1438760499106956079, guid: b3d74c7fe2db265468f428d3bb3d2387, type: 3}
     D20: {fileID: -1438760499106956079, guid: 8a552d05b7a842a479eec6233d650b60, type: 3}
+  NotePrefab: {fileID: 472943617646622243, guid: c4d76b1810eb0ca439e1e7d79f7ce7b7, type: 3}
   _diceNumbers:
   - {fileID: 5236770673159910730, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
   - {fileID: -2981270999002693241, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
@@ -49,3 +50,7 @@ MonoBehaviour:
     Spades: {fileID: 1893148381734069071, guid: 265ee2ce9b961234bade2f91092e12d0, type: 3}
     Hearts: {fileID: -3963835453307888894, guid: 265ee2ce9b961234bade2f91092e12d0, type: 3}
     Crosses: {fileID: -5811324989801958716, guid: 265ee2ce9b961234bade2f91092e12d0, type: 3}
+  MarkerSprites:
+    Cross: {fileID: 1857751568, guid: 265ee2ce9b961234bade2f91092e12d0, type: 3}
+    Circle: {fileID: -436543692, guid: 265ee2ce9b961234bade2f91092e12d0, type: 3}
+    Triangle: {fileID: -1400150731, guid: 265ee2ce9b961234bade2f91092e12d0, type: 3}

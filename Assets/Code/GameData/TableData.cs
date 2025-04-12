@@ -8,6 +8,7 @@ public class TableData : IService
 
     private Dictionary<int, int> _placesOfDolls;
     public int GetDollIndex(int place) => _placesOfDolls[place];
+    public int GetCurrentDollIndex() => _placesOfDolls[_currentPlace];
 
     private int _currentPlace;
     public int CurrentPlace => _currentPlace;

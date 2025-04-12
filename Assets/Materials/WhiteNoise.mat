@@ -44,7 +44,7 @@ Material:
     - _EnableExternalAlpha: 0
     - _HissSpeed: 1
     - _NoiseIntensity: 1
-    - _NoiseScale: 83.3
+    - _NoiseScale: 22.32
     - _NoiseSoftness: 1.49
     - _ZWrite: 0
     m_Colors:

@@ -32,6 +32,8 @@ internal class GameCore : MonoBehaviour
 
         AnokCashData anokCashData = ServiceLocator.Register(new AnokCashData());
 
+        ServiceLocator.Register(new MarkerData());
+
         ServiceLocator.Register(new FortuneManager(_fortunePool, handData, gameProcess, anokCashData));
 
 

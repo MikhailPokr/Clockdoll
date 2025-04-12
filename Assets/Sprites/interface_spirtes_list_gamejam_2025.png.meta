@@ -919,6 +919,72 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: X
+      rect:
+        serializedVersion: 2
+        x: 1381
+        y: 697
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33152997bedb55c4f96646627ab8f4e9
+      internalID: 1857751568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: O
+      rect:
+        serializedVersion: 2
+        x: 1531
+        y: 699
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86519fbe81a06fc4e991f74820a9aa8c
+      internalID: -436543692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D
+      rect:
+        serializedVersion: 2
+        x: 1699
+        y: 689
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b2e3a07421eac24eb5eaa9b0a05927e
+      internalID: -1400150731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -935,12 +1001,15 @@ TextureImporter:
     nameFileIdTable:
       Card: -7200797342692199983
       Crosses: -5811324989801958716
+      D: -1400150731
       Diamonds: -2721155104166945252
       Dice Tray: -5826382540916769489
       Hearts: -3963835453307888894
+      O: -436543692
       Paper: -3581441594273788003
       Pin: 500977310
       Spades: 1893148381734069071
+      X: 1857751568
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

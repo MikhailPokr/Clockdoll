@@ -12,10 +12,21 @@ internal class Palette : ScriptableObject, IService
     public Light2D Light;
     public CardModel CardPrefab;
     public Dices DicePrefabs;
+    public NoteModel NotePrefab;
     [Header("Спрайты")]
     [SerializeField] private Sprite[] _diceNumbers;
     public Sprite[] DiceNumbers => _diceNumbers;
     public Suit SuitsSprites;
+    public Markers MarkerSprites;
+
+
+    [Serializable]
+    public struct Markers
+    {
+        public Sprite Cross;
+        public Sprite Circle;
+        public Sprite Triangle;
+    }
 
 
     [Serializable]
