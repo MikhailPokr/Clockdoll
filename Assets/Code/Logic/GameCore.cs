@@ -4,6 +4,8 @@ using UnityEngine;
 internal class GameCore : MonoBehaviour
 {
     [SerializeField] private Palette _palette;
+    [SerializeField] private FortunePool _fortunePool;
+    [Space]
     [SerializeField] private MonoBehaviour[] _initializable;
     [Space]
     [SerializeField] private Animator _canvasAnimator;
@@ -27,6 +29,8 @@ internal class GameCore : MonoBehaviour
         ServiceLocator.Register(new HandData(tableData, gameProcess, _palette));
 
         ServiceLocator.Register(new DiceManager(_palette));
+
+        ServiceLocator.Register(new FortuneManager(_fortunePool));
 
 
         for (int i = 0; i < _initializable.Length; i++)
@@ -68,6 +72,10 @@ internal class GameCore : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.V))
         {
             ServiceLocator.Resolve<DiceManager>().RollDice(8, 10, 16);
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            ServiceLocator.Resolve<FortuneManager>().GenerateNewList();
         }
     }
 }
