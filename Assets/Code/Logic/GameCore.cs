@@ -26,11 +26,13 @@ internal class GameCore : MonoBehaviour
 
         ServiceLocator.Register(new ViewManager(_canvasAnimator));
 
-        ServiceLocator.Register(new HandData(tableData, gameProcess, _palette));
+        HandData handData = ServiceLocator.Register(new HandData(tableData, gameProcess, _palette));
 
         ServiceLocator.Register(new DiceManager(_palette));
 
-        ServiceLocator.Register(new FortuneManager(_fortunePool));
+        AnokCashData anokCashData = ServiceLocator.Register(new AnokCashData());
+
+        ServiceLocator.Register(new FortuneManager(_fortunePool, handData, gameProcess, anokCashData));
 
 
         for (int i = 0; i < _initializable.Length; i++)
@@ -73,9 +75,13 @@ internal class GameCore : MonoBehaviour
         {
             ServiceLocator.Resolve<DiceManager>().RollDice(8, 10, 16);
         }
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.N))
         {
             ServiceLocator.Resolve<FortuneManager>().GenerateNewList();
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            ServiceLocator.Resolve<FortuneManager>().ApplyReward(Random.Range(1, 13));
         }
     }
 }

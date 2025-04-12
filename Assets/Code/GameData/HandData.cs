@@ -5,8 +5,8 @@ using UnityEngine;
 
 internal class HandData : IService
 {
-    private List<PedroCard>[] _pedroDiscard;
-    private List<AnokCard> _anokDiscard;
+    private List<PedroCard>[] _pedroPlayed;
+    private List<AnokCard> _anokPlayed;
 
     private List<PedroCard> _pedroHand;
     private List<AnokCard> _anokHand;
@@ -20,11 +20,11 @@ internal class HandData : IService
 
     public HandData(TableData tableData, GameProcess gameProcess, Palette palette)
     {
-        _anokDiscard = new List<AnokCard>();
-        _pedroDiscard = new List<PedroCard>[13];
+        _anokPlayed = new List<AnokCard>();
+        _pedroPlayed = new List<PedroCard>[13];
         for (int i = 1; i <= 12; i++)
         {
-            _pedroDiscard[i] = new();
+            _pedroPlayed[i] = new();
         }
         _anokHand = new List<AnokCard>();
         _pedroHand = new List<PedroCard>();
@@ -54,15 +54,15 @@ internal class HandData : IService
     public List<BaseCard> GetCurrentHand()
     {
         if ( _showingPedroHand )
-            return _pedroDiscard[_tableData.CurrentPlace].Cast<BaseCard>().ToList();
+            return _pedroPlayed[_tableData.CurrentPlace].Cast<BaseCard>().ToList();
         return _anokHand.Cast<BaseCard>().ToList();
     }
 
-    public void TakeCard(bool toPedro, int count)
+    public void TakeCard(bool toPedro, int count, bool spadesGuaranteed = false)
     {
         for (int i = 0; i < count; i++)
         {
-            AddCard(GenerateDollCard(toPedro));
+            AddCard(GenerateCard(toPedro, spadesGuaranteed));
         }
     }
 
@@ -79,20 +79,20 @@ internal class HandData : IService
         if (card is PedroCard)
         {
             _pedroHand.Remove((PedroCard)card);
-            _pedroDiscard[_gameProcess.CurrentPlaceNumber].Add((PedroCard)card);
+            _pedroPlayed[_gameProcess.CurrentPlaceNumber].Add((PedroCard)card);
         }
         else
         {
             _anokHand.Remove((AnokCard)card);
-            _anokDiscard.Add((AnokCard)card);
+            _anokPlayed.Add((AnokCard)card);
         }
         HandUpdated?.Invoke();
     }
 
-    private BaseCard GenerateDollCard(bool pedroCard)
+    private BaseCard GenerateCard(bool pedroCard, bool spades)
     {
         if (pedroCard)
-            return new PedroCard(_palette);
+            return new PedroCard(_palette, spades);
         else
             return new AnokCard(_palette);
     }

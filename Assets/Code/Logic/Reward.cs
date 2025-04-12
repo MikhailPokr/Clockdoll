@@ -5,12 +5,15 @@ internal class Reward
 {
     //потом заменить на ключ
     public string Description;
-    public FortuneManager.RewardType Line;
+    public FortuneManager.RewardType Type;
     public int Count;
     [Header("Рандом записывать через ~")]
     [SerializeField] private string _value;
     private bool _newValue = true;
-    private int _fixedValue;
+    private int _fixedValue = 0;
+
+    
+
     public int Value
     {
         get
@@ -37,6 +40,18 @@ internal class Reward
                 return 0;
             }
         }
+    }
+
+    public Reward Clone()
+    {
+        return new Reward
+        {
+            Description = Description,
+            Type = Type,
+            Count = Count,
+            _value = _value,
+            _newValue = true
+        };
     }
 
 }
