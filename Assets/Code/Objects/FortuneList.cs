@@ -21,9 +21,9 @@ internal class FortuneList : MonoBehaviour, IInitializable
         List<string> list = _manager.CurrentList.Select(x => string.Format(x.Description, x.Value)).ToList();
 
         string text = "";
-        for (int i = 0; i < list.Count; i++)
+        for (int i = 1; i < list.Count; i++)
         {
-            text += $"{i}\n{list[i]}\n";
+            text += $"{i+1}\n{list[i]}\n";
         }
         _text.text = text;
     }

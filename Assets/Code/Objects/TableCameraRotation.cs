@@ -17,7 +17,7 @@ internal class TableCameraRotation : MonoBehaviour, IInitializable
         Palette palette = ServiceLocator.Resolve<Palette>();
         _tableData = ServiceLocator.Resolve<TableData>();
         _inputManager = ServiceLocator.Resolve<InputManager>();
-        _inputManager.ButtonPresed += OnButtonPressed;
+        _inputManager.ButtonPressed += OnButtonPressed;
         _tableData.PlacementChanged += Initialize;
         foreach (var obj in _rotatableObjects)
         {
@@ -42,6 +42,6 @@ internal class TableCameraRotation : MonoBehaviour, IInitializable
 
     private void OnDestroy()
     {
-        _inputManager.ButtonPresed -= OnButtonPressed;
+        _inputManager.ButtonPressed -= OnButtonPressed;
     }
 }

@@ -5,6 +5,7 @@ public class DollModel : MonoBehaviour
 {
     public int Index;
     public int RealPlace;
+    public SpriteRenderer _dress;
 
     //исключительно для теста, потом удалить
     Color[] rainbowPalette = new[]
@@ -24,16 +25,10 @@ public class DollModel : MonoBehaviour
     };
 
     // для прототипа, нужно исправить на отдельные объекты
-    public void ChangeNumber(int realPlace, int colorIndex)
+    public void ChangeNumber(int colorIndex)
     {
-        RealPlace = realPlace;
         Index = colorIndex;
         Color color = rainbowPalette[colorIndex - 1];
-        SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
-        foreach (SpriteRenderer spriteRenderer in spriteRenderers)
-        {
-            spriteRenderer.color = color;
-        }
-        GetComponentInChildren<TextMeshPro>().text = realPlace.ToString();
+        _dress.color = color;
     }
 }

@@ -15,40 +15,40 @@ MonoBehaviour:
   DollsData:
   - Index: 1
     Symbol: {fileID: -1956216869415326869, guid: 1d3f66d04d677e84b8ffcd30ff435bd7, type: 3}
-    Prefab: {fileID: 3140281212397763023, guid: 45772bd6782d7dc4e8fdd5735d6d1b39, type: 3}
+    Prefab: {fileID: 3140281212397763023, guid: 09bec421af826284da8c64544ed40b02, type: 3}
   - Index: 2
     Symbol: {fileID: -1253796809, guid: 1d3f66d04d677e84b8ffcd30ff435bd7, type: 3}
-    Prefab: {fileID: 3140281212397763023, guid: 45772bd6782d7dc4e8fdd5735d6d1b39, type: 3}
+    Prefab: {fileID: 3140281212397763023, guid: 09bec421af826284da8c64544ed40b02, type: 3}
   - Index: 3
     Symbol: {fileID: -979332714, guid: 1d3f66d04d677e84b8ffcd30ff435bd7, type: 3}
-    Prefab: {fileID: 3140281212397763023, guid: 45772bd6782d7dc4e8fdd5735d6d1b39, type: 3}
+    Prefab: {fileID: 3140281212397763023, guid: 09bec421af826284da8c64544ed40b02, type: 3}
   - Index: 4
     Symbol: {fileID: -468077872, guid: 1d3f66d04d677e84b8ffcd30ff435bd7, type: 3}
-    Prefab: {fileID: 3140281212397763023, guid: 45772bd6782d7dc4e8fdd5735d6d1b39, type: 3}
+    Prefab: {fileID: 3140281212397763023, guid: 09bec421af826284da8c64544ed40b02, type: 3}
   - Index: 5
     Symbol: {fileID: -90583597, guid: 1d3f66d04d677e84b8ffcd30ff435bd7, type: 3}
-    Prefab: {fileID: 3140281212397763023, guid: 45772bd6782d7dc4e8fdd5735d6d1b39, type: 3}
+    Prefab: {fileID: 3140281212397763023, guid: 09bec421af826284da8c64544ed40b02, type: 3}
   - Index: 6
     Symbol: {fileID: 1377419222, guid: 1d3f66d04d677e84b8ffcd30ff435bd7, type: 3}
-    Prefab: {fileID: 3140281212397763023, guid: 45772bd6782d7dc4e8fdd5735d6d1b39, type: 3}
+    Prefab: {fileID: 3140281212397763023, guid: 09bec421af826284da8c64544ed40b02, type: 3}
   - Index: 7
     Symbol: {fileID: 775218208, guid: 1d3f66d04d677e84b8ffcd30ff435bd7, type: 3}
-    Prefab: {fileID: 3140281212397763023, guid: 45772bd6782d7dc4e8fdd5735d6d1b39, type: 3}
+    Prefab: {fileID: 3140281212397763023, guid: 09bec421af826284da8c64544ed40b02, type: 3}
   - Index: 8
     Symbol: {fileID: 326305495, guid: 1d3f66d04d677e84b8ffcd30ff435bd7, type: 3}
-    Prefab: {fileID: 3140281212397763023, guid: 45772bd6782d7dc4e8fdd5735d6d1b39, type: 3}
+    Prefab: {fileID: 3140281212397763023, guid: 09bec421af826284da8c64544ed40b02, type: 3}
   - Index: 9
     Symbol: {fileID: 1315263116, guid: 1d3f66d04d677e84b8ffcd30ff435bd7, type: 3}
-    Prefab: {fileID: 3140281212397763023, guid: 45772bd6782d7dc4e8fdd5735d6d1b39, type: 3}
+    Prefab: {fileID: 3140281212397763023, guid: 09bec421af826284da8c64544ed40b02, type: 3}
   - Index: 10
     Symbol: {fileID: 1790495951, guid: 1d3f66d04d677e84b8ffcd30ff435bd7, type: 3}
-    Prefab: {fileID: 3140281212397763023, guid: 45772bd6782d7dc4e8fdd5735d6d1b39, type: 3}
+    Prefab: {fileID: 3140281212397763023, guid: 09bec421af826284da8c64544ed40b02, type: 3}
   - Index: 11
     Symbol: {fileID: -1061825716, guid: 1d3f66d04d677e84b8ffcd30ff435bd7, type: 3}
-    Prefab: {fileID: 3140281212397763023, guid: 45772bd6782d7dc4e8fdd5735d6d1b39, type: 3}
+    Prefab: {fileID: 3140281212397763023, guid: 09bec421af826284da8c64544ed40b02, type: 3}
   - Index: 12
     Symbol: {fileID: 230579077, guid: 1d3f66d04d677e84b8ffcd30ff435bd7, type: 3}
-    Prefab: {fileID: 3140281212397763023, guid: 45772bd6782d7dc4e8fdd5735d6d1b39, type: 3}
+    Prefab: {fileID: 3140281212397763023, guid: 09bec421af826284da8c64544ed40b02, type: 3}
   Light: {fileID: 8154537325747379201, guid: 9bb4d98755001d9448217352f32a346b, type: 3}
   CardPrefab: {fileID: 7656108220431678180, guid: 910cf5b865602c043a6fa326bee05402, type: 3}
   DicePrefabs:
@@ -91,3 +91,18 @@ MonoBehaviour:
     Cross: {fileID: 1857751568, guid: 265ee2ce9b961234bade2f91092e12d0, type: 3}
     Circle: {fileID: -436543692, guid: 265ee2ce9b961234bade2f91092e12d0, type: 3}
     Triangle: {fileID: -1400150731, guid: 265ee2ce9b961234bade2f91092e12d0, type: 3}
+  Numbers:
+  - {fileID: 7824869159459668384, guid: 265ee2ce9b961234bade2f91092e12d0, type: 3}
+  - {fileID: 5236770673159910730, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: -2981270999002693241, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: 861478275146721001, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: -270911279241810150, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: 3068438335149212612, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: 4485239542410069674, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: 1014876491452776403, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: -7046778910070863098, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: -6436398087190634495, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: -3420877811542161326, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: -7295046141531874013, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: 8221087669106797136, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
+  - {fileID: -2388890658719200141, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}

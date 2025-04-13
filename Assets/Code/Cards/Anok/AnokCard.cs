@@ -2,12 +2,18 @@ using UnityEngine;
 
 internal abstract class AnokCard : BaseCard
 {
-    public AnokCard(Palette palette)
+    protected ReplaceManager _replaceManager;
+    protected Palette _palette;
+
+    public AnokCard()
     {
-        
+        _palette = ServiceLocator.Resolve<Palette>();
+        _replaceManager = ServiceLocator.Resolve<ReplaceManager>();
+        _color = Color.black;
     }
 
-    public abstract override bool CheckCondition();
+    public override bool CheckCondition()
+    {  return true; }
 
     public abstract override void PlayEffect();
 }

@@ -1,5 +1,6 @@
 ﻿using Assets.Code.Logic;
 using System;
+using UnityEngine;
 
 internal class Game : IService
 {
@@ -10,16 +11,18 @@ internal class Game : IService
     private AnokCashData _cashData;
     private TableData _tableData;
     private DiscardManager _discardManager;
+    private InputManager _inputManager;
 
     public Game
         (
-        GameProcess gameProcess, 
-        DiceManager diceManager, 
-        FortuneManager fortuneManager, 
-        HandData handData, 
-        AnokCashData cashData, 
+        GameProcess gameProcess,
+        DiceManager diceManager,
+        FortuneManager fortuneManager,
+        HandData handData,
+        AnokCashData cashData,
         TableData tableData,
-        DiscardManager discardManager
+        DiscardManager discardManager,
+        InputManager inputManager
         )
     {
         _gameProcess = gameProcess;
@@ -29,33 +32,56 @@ internal class Game : IService
         _cashData = cashData;
         _tableData = tableData;
         _discardManager = discardManager;
+        _inputManager = inputManager;
 
         _gameProcess.TurnChanged += OnTurnChanged;
         _cashData.CashOver += OnAnokBankrupt;
+        _inputManager.ButtonPressed += OnButtonPressed;
 
         _handData.TakeCard(true, 5);
         _handData.TakeCard(false, 5);
     }
+
+    private void OnButtonPressed(KeyCode key, int i)
+    {
+        if (key == KeyCode.Space)
+        {
+            if (!_gameProcess.ItsPedroTurn)
+            {
+                // Для хода игрока (Anok) пробел завершает ход
+                _gameProcess.OnTurnEnd();
+            }
+            else
+            {
+                // Для хода Pedro пробел запускает его ход
+                StartPedroTurn();
+            }
+        }
+    }
+
     private void OnTurnChanged(bool isPedroTurn, int currentPlace)
     {
+        _fortuneManager.GenerateNewList();
         if (isPedroTurn)
         {
-            StartPedroTurn();
+            // Ждем нажатия пробела для начала хода Pedro
+            // Сам ход теперь запускается в OnButtonPressed
         }
         else
         {
+            // Ход Anok начинается автоматически, но завершается по пробелу
             StartAnokTurn();
         }
     }
 
     private void StartAnokTurn()
     {
-        var diceResult = _diceManager.RollDice(12); 
-
+        var diceResult = _diceManager.RollDice(12);
         _fortuneManager.ApplyReward(diceResult[0].value);
 
-        PlayPedroCard();
+        // Не запускаем автоматически карты Pedro, ждем действий игрока
     }
+
     public void ClickAnokCard(BaseCard card)
     {
         if (_gameProcess.ItsPedroTurn) return;
@@ -66,22 +92,19 @@ internal class Game : IService
             return;
         }
 
-        if (card.CheckCondition())
+        if (_handData.TryPlayCard(card))
             return;
 
-        card.PlayEffect();
-        _handData.PlayCard(card);
-        _gameProcess.OnTurnEnd();
+        // Теперь завершение хода происходит по нажатию пробела
     }
 
     private void StartPedroTurn()
     {
-        var diceResult = _diceManager.RollDice(12); 
-
+        var diceResult = _diceManager.RollDice(12);
         _fortuneManager.ApplyReward(diceResult[0].value);
-
         PlayPedroCard();
     }
+
     private void PlayPedroCard()
     {
         var pedroHand = _handData.GetHand(true);
@@ -94,15 +117,12 @@ internal class Game : IService
                 continue;
             }
 
-            if (card.CheckCondition())
+            if (_handData.TryPlayCard(card))
             {
-                card.PlayEffect();
-                _handData.PlayCard(card);
-                break;
+                _gameProcess.OnTurnEnd();
             }
         }
     }
-
 
     private void OnAnokBankrupt()
     {
@@ -125,5 +145,12 @@ internal class Game : IService
         {
             //победа 
         }
+    }
+
+    public void Dispose()
+    {
+        _gameProcess.TurnChanged -= OnTurnChanged;
+        _cashData.CashOver -= OnAnokBankrupt;
+        _inputManager.ButtonPressed -= OnButtonPressed;
     }
 }

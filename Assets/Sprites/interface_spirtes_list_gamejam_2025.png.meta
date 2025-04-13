@@ -282,13 +282,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: interface_spirtes_list_gamejam_2025_3
+      name: "\u0410"
       rect:
         serializedVersion: 2
-        x: 831
-        y: 1880
-        width: 113
-        height: 150
+        x: 827
+        y: 1914
+        width: 123
+        height: 116
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1012,6 +1012,7 @@ TextureImporter:
       Window: -2801435566579794820
       Window2: 4089101421588211750
       X: 1857751568
+      "\u0410": 7824869159459668384
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -19,7 +19,7 @@ internal class Palette : ScriptableObject, IService
     public Sprite[] DiceNumbers => _diceNumbers;
     public Suit SuitsSprites;
     public Markers MarkerSprites;
-
+    public Sprite[] Numbers;
 
     [Serializable]
     public struct Doll

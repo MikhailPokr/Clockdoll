@@ -45,8 +45,13 @@ public class TableData : IService
             places.RemoveAt(place);
         }
 
+        GeneratePlaces();
+    }
+
+    public void GeneratePlaces()
+    {
         _dollsCurrentPlace = new Dictionary<int, int>();
-        places = Enumerable.Range(1, NumberOfPlayers).ToList();
+        List<int> places = Enumerable.Range(1, NumberOfPlayers).ToList();
         for (int i = 1; i <= NumberOfPlayers; i++)
         {
             int place = Random.Range(0, places.Count);

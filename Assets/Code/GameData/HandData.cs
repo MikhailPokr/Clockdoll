@@ -75,8 +75,10 @@ internal class HandData : IService
             _anokHand.Add((AnokCard)card);
         HandUpdated?.Invoke();
     }
-    public void PlayCard(BaseCard card)
+    public bool TryPlayCard(BaseCard card)
     {
+        if (!card.CheckCondition())
+            return false;
         if (card is PedroCard)
         {
             _pedroHand.Remove((PedroCard)card);
@@ -87,7 +89,9 @@ internal class HandData : IService
             _anokHand.Remove((AnokCard)card);
             _anokPlayed.Add((AnokCard)card);
         }
+        card.PlayEffect();
         HandUpdated?.Invoke();
+        return true;
     }
 
     public void DiscardCard(BaseCard card)
@@ -128,13 +132,14 @@ internal class HandData : IService
 
             Suit suit = condition.Suit;
 
-            value = Random.Range(0, 4);
+            value = Random.Range(0, 3);
             BaseEffect effect = value switch
             {
-                0 => new DamageEffect(),
-                1 => new DiceAddEffect(),
-                2 => new DrawCardEffect(),
-                3 => new DiscardEffect(),
+                0 => new DamageEffect(suit),
+                1 => new DrawCardEffect(suit),
+                2 => new DiscardEffect(suit),
+                //не реализованно
+                3 => new DiceAddEffect(suit),
                 _ => null
             };
 
@@ -142,19 +147,20 @@ internal class HandData : IService
         }   
         else
         {
-            value = Random.Range(0, 10);
+            value = Random.Range(0, 4);
             AnokCard card = value switch
             {
                 0 => new RotateCard(),
                 1 => new InsertDollCard(),
-                2 => new CountCard(),
-                3 => new ShuffleCard(),
-                4 => new BlockCard(),
+                2 => new ShuffleCard(),
+                3 => new DrawCardCard(),
+                //не реализованно
+                4 => new EatCard(),
                 5 => new DefendCard(),
-                6 => new RestoreCard(),
-                7 => new DrawCardCard(),
-                8 => new SkipCard(),
-                9 => new EatCard(),
+                6 => new CountCard(),
+                7 => new BlockCard(),
+                8 => new RestoreCard(),
+                9 => new SkipCard(),
                 _ => null,
             };
 

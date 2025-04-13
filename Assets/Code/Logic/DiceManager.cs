@@ -7,7 +7,10 @@ internal class DiceManager : IService
     private Palette _palette;
 
     public Action<List<(int sides, int value)>> DiceRolled;
-    
+
+    private List<(int sides, int value)> _lastRoll;
+    public List<(int sides, int value)> LastRoll => _lastRoll;
+
     public DiceManager(Palette palette)
     {
         _palette = palette;
@@ -20,6 +23,7 @@ internal class DiceManager : IService
         {
             results.Add((dice[i], UnityEngine.Random.Range(1, dice[i])));
         }
+        _lastRoll = results;
         DiceRolled?.Invoke(results);
         return results;
     }

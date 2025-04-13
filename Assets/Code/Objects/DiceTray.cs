@@ -16,6 +16,19 @@ internal class DiceTray : MonoBehaviour, IInitializable
         _diceManager.DiceRolled += OnDiceRolled;
     }
 
+    public void Click()
+    {
+        int count = Random.Range(1, 5);
+        List<int> list = new() { 4, 6, 8, 10, 12, 16, 20 };
+
+        List<int> dice = new();
+        for (int i = 0; i < count; i++)
+        {
+            dice.Add(list[Random.Range(0, list.Count)]);
+        }
+
+        _diceManager.RollDice(list.ToArray());
+    }
     private void OnDiceRolled(List<(int sides, int value)> list)
     {
         foreach (Transform child in transform)

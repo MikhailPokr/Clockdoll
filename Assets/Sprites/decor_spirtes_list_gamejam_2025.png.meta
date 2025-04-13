@@ -210,7 +210,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: decor_spirtes_list_gamejam_2025_0
+      name: Hair1
       rect:
         serializedVersion: 2
         x: 0
@@ -232,7 +232,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: decor_spirtes_list_gamejam_2025_1
+      name: hair2
       rect:
         serializedVersion: 2
         x: 423
@@ -254,13 +254,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: decor_spirtes_list_gamejam_2025_2
+      name: Face1
       rect:
         serializedVersion: 2
-        x: 695
-        y: 1935
-        width: 78
-        height: 58
+        x: 696
+        y: 1873
+        width: 200
+        height: 150
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -276,13 +276,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: decor_spirtes_list_gamejam_2025_3
+      name: Face5
       rect:
         serializedVersion: 2
-        x: 721
-        y: 1988
-        width: 56
-        height: 30
+        x: 1552
+        y: 1874
+        width: 224
+        height: 151
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -298,57 +298,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: decor_spirtes_list_gamejam_2025_4
+      name: Face2
       rect:
         serializedVersion: 2
-        x: 822
-        y: 1933
-        width: 76
-        height: 58
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 95c2b37337d92dd80800000000000000
-      internalID: -8227340451079050151
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: decor_spirtes_list_gamejam_2025_5
-      rect:
-        serializedVersion: 2
-        x: 825
-        y: 1985
-        width: 53
-        height: 30
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ff996439811af9a20800000000000000
-      internalID: 3071350597812132351
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: decor_spirtes_list_gamejam_2025_6
-      rect:
-        serializedVersion: 2
-        x: 920
-        y: 1936
-        width: 62
-        height: 64
+        x: 906
+        y: 1872
+        width: 200
+        height: 150
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -364,271 +320,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: decor_spirtes_list_gamejam_2025_7
-      rect:
-        serializedVersion: 2
-        x: 1033
-        y: 1936
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5f4909d1b2f035bb0800000000000000
-      internalID: -4948594887696018187
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: decor_spirtes_list_gamejam_2025_8
-      rect:
-        serializedVersion: 2
-        x: 1115
-        y: 1931
-        width: 68
-        height: 71
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 91f7b8a587297abb0800000000000000
-      internalID: -4924806621893525735
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: decor_spirtes_list_gamejam_2025_9
-      rect:
-        serializedVersion: 2
-        x: 1226
-        y: 1932
-        width: 66
-        height: 77
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1c1cd7a9254087630800000000000000
-      internalID: 3924891828079149505
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: decor_spirtes_list_gamejam_2025_10
-      rect:
-        serializedVersion: 2
-        x: 1447
-        y: 1942
-        width: 90
-        height: 47
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a278a4889fe750480800000000000000
-      internalID: -8933594675620968662
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: decor_spirtes_list_gamejam_2025_11
-      rect:
-        serializedVersion: 2
-        x: 1559
-        y: 1951
-        width: 84
-        height: 47
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0858cd518675c7b60800000000000000
-      internalID: 7745161563725399424
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: decor_spirtes_list_gamejam_2025_12
-      rect:
-        serializedVersion: 2
-        x: 1697
-        y: 1953
-        width: 68
-        height: 51
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5b296a3e2d69efc80800000000000000
-      internalID: -8287020431808490827
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: decor_spirtes_list_gamejam_2025_13
-      rect:
-        serializedVersion: 2
-        x: 1314
-        y: 1941
-        width: 91
-        height: 43
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6eb1a3bd449f3a6e0800000000000000
-      internalID: -1827342949651178522
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: decor_spirtes_list_gamejam_2025_14
-      rect:
-        serializedVersion: 2
-        x: 986
-        y: 1896
-        width: 49
-        height: 23
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b7e10a9e635bdd980800000000000000
-      internalID: -8512448473207923077
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: decor_spirtes_list_gamejam_2025_15
-      rect:
-        serializedVersion: 2
-        x: 1161
-        y: 1890
-        width: 82
-        height: 23
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: eb725a9b21bbfb900800000000000000
-      internalID: 702485755991500734
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: decor_spirtes_list_gamejam_2025_16
-      rect:
-        serializedVersion: 2
-        x: 1401
-        y: 1910
-        width: 51
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 993d1502bba98e590800000000000000
-      internalID: -7644690238969621607
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: decor_spirtes_list_gamejam_2025_17
-      rect:
-        serializedVersion: 2
-        x: 1639
-        y: 1890
-        width: 57
-        height: 42
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 514fd97e37ed19970800000000000000
-      internalID: 8760027339600819221
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: decor_spirtes_list_gamejam_2025_18
-      rect:
-        serializedVersion: 2
-        x: 766
-        y: 1882
-        width: 54
-        height: 21
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9ed7072b0a76e5060800000000000000
-      internalID: 6944101615338028521
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: decor_spirtes_list_gamejam_2025_19
+      name: Hair3
       rect:
         serializedVersion: 2
         x: 716
@@ -650,7 +342,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: decor_spirtes_list_gamejam_2025_20
+      name: Crone
       rect:
         serializedVersion: 2
         x: 1158
@@ -694,7 +386,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: decor_spirtes_list_gamejam_2025_22
+      name: Doll
       rect:
         serializedVersion: 2
         x: 0
@@ -716,7 +408,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: decor_spirtes_list_gamejam_2025_23
+      name: "\u0421hair"
       rect:
         serializedVersion: 2
         x: 603
@@ -760,7 +452,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: decor_spirtes_list_gamejam_2025_25
+      name: Dress
       rect:
         serializedVersion: 2
         x: 0
@@ -847,6 +539,50 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Face3
+      rect:
+        serializedVersion: 2
+        x: 1107
+        y: 1871
+        width: 200
+        height: 150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 722b9f03bb70a1346afaafb4e820406c
+      internalID: 1223467424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Face4
+      rect:
+        serializedVersion: 2
+        x: 1315
+        y: 1877
+        width: 227
+        height: 150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07ae390e70667e14b9f753f323cdc435
+      internalID: 1381065506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -861,9 +597,17 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      Crone: -1755183008971410507
+      Doll: -6631834134926738885
+      Dress: 8474820780260881418
+      Face1: -5487708272579560564
+      Face2: -1906185675119175827
+      Face3: 1223467424
+      Face4: 1381065506
+      Face5: 1496793343883348791
       Flat: -3394741310793829540
-      decor_spirtes_list_gamejam_2025_0: 2240465610458227068
-      decor_spirtes_list_gamejam_2025_1: 8690499487937503718
+      Hair1: 2240465610458227068
+      Hair3: 809476612312711543
       decor_spirtes_list_gamejam_2025_10: -8933594675620968662
       decor_spirtes_list_gamejam_2025_11: 7745161563725399424
       decor_spirtes_list_gamejam_2025_12: -8287020431808490827
@@ -873,23 +617,17 @@ TextureImporter:
       decor_spirtes_list_gamejam_2025_16: -7644690238969621607
       decor_spirtes_list_gamejam_2025_17: 8760027339600819221
       decor_spirtes_list_gamejam_2025_18: 6944101615338028521
-      decor_spirtes_list_gamejam_2025_19: 809476612312711543
-      decor_spirtes_list_gamejam_2025_2: -5487708272579560564
-      decor_spirtes_list_gamejam_2025_20: -1755183008971410507
-      decor_spirtes_list_gamejam_2025_22: -6631834134926738885
-      decor_spirtes_list_gamejam_2025_23: -626801372052261310
       decor_spirtes_list_gamejam_2025_24: 5865839154791067525
-      decor_spirtes_list_gamejam_2025_25: 8474820780260881418
       decor_spirtes_list_gamejam_2025_26: -24122169292142065
       decor_spirtes_list_gamejam_2025_27: 1019864830428065982
       decor_spirtes_list_gamejam_2025_28: 8818502617883764311
-      decor_spirtes_list_gamejam_2025_3: 1496793343883348791
       decor_spirtes_list_gamejam_2025_4: -8227340451079050151
       decor_spirtes_list_gamejam_2025_5: 3071350597812132351
-      decor_spirtes_list_gamejam_2025_6: -1906185675119175827
       decor_spirtes_list_gamejam_2025_7: -4948594887696018187
       decor_spirtes_list_gamejam_2025_8: -4924806621893525735
       decor_spirtes_list_gamejam_2025_9: 3924891828079149505
+      hair2: 8690499487937503718
+      "\u0421hair": -626801372052261310
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

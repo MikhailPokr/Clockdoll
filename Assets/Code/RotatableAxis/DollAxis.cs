@@ -10,7 +10,7 @@ internal class DollAxis : BaseRotatableAxis
         int index = _tableData.GetDollIndex(place);
         DollModel doll = Instantiate(_palette.DollsData.First(x => x.Index == index).Prefab, transform);
         int realPlace = _tableData.GetTrueDollPlace(index);
-        doll.ChangeNumber(realPlace, index);
+        doll.ChangeNumber(index);
         doll.name = $"Doll {doll.Index} in place: {place} (real place: {realPlace})";
         return doll.gameObject;
     }

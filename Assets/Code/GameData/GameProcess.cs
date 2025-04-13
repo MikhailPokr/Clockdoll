@@ -17,6 +17,8 @@ internal class GameProcess : IService
         _currentPlaceNumber = 1;
     }
 
+    public void Start() => TurnChanged?.Invoke(_itsPedroTurn, _currentPlaceNumber);
+
     public void OnTurnEnd()
     {
         _itsPedroTurn = !_itsPedroTurn;

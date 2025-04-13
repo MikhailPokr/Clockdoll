@@ -41,6 +41,8 @@ internal class GameCore : MonoBehaviour
 
         ServiceLocator.Register(new ReplaceManager(tableData));
 
+        Game game = ServiceLocator.Register(new Game(gameProcess, diceManager, fortuneManager, handData, anokCashData, tableData, discardManager, _inputManager));
+
         for (int i = 0; i < _initializable.Length; i++)
         {
             if (_initializable[i] is IInitializable)
@@ -49,7 +51,7 @@ internal class GameCore : MonoBehaviour
                 throw new System.Exception("Массив _initializable нужно заполнять только классами, реализующие IInitializable");
         }
 
-        ServiceLocator.Register(new Game(gameProcess, diceManager, fortuneManager, handData, anokCashData, tableData, discardManager));
+        gameProcess.Start();
     }
 
     private void Update()
