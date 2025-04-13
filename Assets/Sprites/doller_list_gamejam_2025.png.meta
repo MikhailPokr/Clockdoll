@@ -153,15 +153,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: doller_list_gamejam_2025_0
+      name: Symbol1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1646
-        width: 1202
-        height: 402
+        x: 2
+        y: 1849
+        width: 197
+        height: 197
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -175,7 +175,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: doller_list_gamejam_2025_1
+      name: X
       rect:
         serializedVersion: 2
         x: 1213
@@ -183,7 +183,7 @@ TextureImporter:
         width: 55
         height: 68
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -197,7 +197,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: doller_list_gamejam_2025_2
+      name: Eye
       rect:
         serializedVersion: 2
         x: 1293
@@ -205,7 +205,7 @@ TextureImporter:
         width: 95
         height: 71
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -219,7 +219,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: doller_list_gamejam_2025_3
+      name: Smile
       rect:
         serializedVersion: 2
         x: 1415
@@ -227,7 +227,7 @@ TextureImporter:
         width: 198
         height: 68
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -241,7 +241,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: doller_list_gamejam_2025_4
+      name: EyeClose
       rect:
         serializedVersion: 2
         x: 1638
@@ -249,7 +249,7 @@ TextureImporter:
         width: 74
         height: 37
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -263,7 +263,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: doller_list_gamejam_2025_5
+      name: Eye2
       rect:
         serializedVersion: 2
         x: 1747
@@ -271,7 +271,7 @@ TextureImporter:
         width: 88
         height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -285,7 +285,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: doller_list_gamejam_2025_6
+      name: Mouth
       rect:
         serializedVersion: 2
         x: 1875
@@ -293,7 +293,7 @@ TextureImporter:
         width: 106
         height: 43
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -307,7 +307,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: doller_list_gamejam_2025_7
+      name: Mouth3
       rect:
         serializedVersion: 2
         x: 1879
@@ -315,7 +315,7 @@ TextureImporter:
         width: 98
         height: 38
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -329,7 +329,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: doller_list_gamejam_2025_8
+      name: Mouth32
       rect:
         serializedVersion: 2
         x: 1878
@@ -337,7 +337,7 @@ TextureImporter:
         width: 99
         height: 39
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -351,7 +351,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: doller_list_gamejam_2025_9
+      name: Pedro
       rect:
         serializedVersion: 2
         x: 0
@@ -359,7 +359,7 @@ TextureImporter:
         width: 753
         height: 892
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -372,11 +372,253 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Symbol2
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 1849
+        width: 197
+        height: 197
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec961ef952636f34180ead40981f0397
+      internalID: -1253796809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbol3
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 1849
+        width: 197
+        height: 197
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ec325dfcffda4041bdfbb8d70c4b99e
+      internalID: -979332714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbol4
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 1849
+        width: 197
+        height: 197
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea312a49f7f4a254f91899b12d8a671c
+      internalID: -468077872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbol5
+      rect:
+        serializedVersion: 2
+        x: 802
+        y: 1849
+        width: 197
+        height: 197
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2011c07c2c50f8d409f72d14b9c36f12
+      internalID: -90583597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbol6
+      rect:
+        serializedVersion: 2
+        x: 1002
+        y: 1849
+        width: 197
+        height: 197
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d83091c228031fe4182724b108f8c6d3
+      internalID: 1377419222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbol7
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1649
+        width: 197
+        height: 197
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6538b899f4007fa46a20181cf1da0c58
+      internalID: 775218208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbol8
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 1649
+        width: 197
+        height: 197
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1d32c0a610df864b97527b7f0c96678
+      internalID: 326305495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbol9
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 1649
+        width: 197
+        height: 197
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41b412b25ea3e3049adab6148f0c88f3
+      internalID: 1315263116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbol10
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 1649
+        width: 197
+        height: 197
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fdfcd7d6357d6444ac0bb17d2fb8340
+      internalID: 1790495951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbol11
+      rect:
+        serializedVersion: 2
+        x: 802
+        y: 1649
+        width: 197
+        height: 197
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05b272e8645159f40b0cfc19a53b2d35
+      internalID: -1061825716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Symbol12
+      rect:
+        serializedVersion: 2
+        x: 1002
+        y: 1649
+        width: 197
+        height: 197
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 750f64e52a5fd8645b7132b45021d5e1
+      internalID: 230579077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 55840f4fafdc49c408533261aca07501
     internalID: 0
     vertices: []
     indices: 
@@ -385,7 +627,28 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Eye: 2788938301227405695
+      Eye2: 4719063220817547109
+      EyeClose: 5842181087011941138
+      Mouth: 945009061593867383
+      Mouth3: -6665412165544649638
+      Mouth32: -8851210326595589298
+      Pedro: -2485778811055853995
+      Smile: 5636129278678325067
+      Symbol1: -1956216869415326869
+      Symbol10: 1790495951
+      Symbol11: -1061825716
+      Symbol12: 230579077
+      Symbol2: -1253796809
+      Symbol3: -979332714
+      Symbol4: -468077872
+      Symbol5: -90583597
+      Symbol6: 1377419222
+      Symbol7: 775218208
+      Symbol8: 326305495
+      Symbol9: 1315263116
+      X: -8441126740812974233
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

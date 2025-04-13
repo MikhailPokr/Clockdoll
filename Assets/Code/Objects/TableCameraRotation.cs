@@ -14,14 +14,14 @@ internal class TableCameraRotation : MonoBehaviour, IInitializable
 
     public void Initialize()
     {
-        Palette palette = ServiceLocator.Resolve<Palette>(); 
-        TableData seccion = ServiceLocator.Resolve<TableData>();
+        Palette palette = ServiceLocator.Resolve<Palette>();
+        _tableData = ServiceLocator.Resolve<TableData>();
         _inputManager = ServiceLocator.Resolve<InputManager>();
         _inputManager.ButtonPresed += OnButtonPressed;
-        _tableData= ServiceLocator.Resolve<TableData>();
+        _tableData.PlacementChanged += Initialize;
         foreach (var obj in _rotatableObjects)
         {
-            obj.Initiate(palette, seccion, _duration);
+            obj.Initiate(palette, _tableData, _duration);
         }
     }
 

@@ -30,7 +30,8 @@ internal class HandData : IService
         _pedroHand = new List<PedroCard>();
 
         _tableData = tableData;
-        _tableData.TargetPlaceChanged += (_) => HandUpdated?.Invoke();
+        _tableData.CurrentPlaceChanged += (_) => HandUpdated?.Invoke();
+        _tableData.PlacementChanged += () => HandUpdated?.Invoke();
 
         _gameProcess = gameProcess;
 

@@ -7,7 +7,8 @@ public class SpotLight : MonoBehaviour, IInitializable
     public void Initialize()
     {
         _tableData = ServiceLocator.Resolve<TableData>();
-        _tableData.TargetPlaceChanged += OnRotate;
+        _tableData.CurrentPlaceChanged += OnRotate;
+        _tableData.PlacementChanged += () => OnRotate(_tableData.CurrentPlace);
         transform.localEulerAngles = new(0, 0, _tableData.CurrentPlace * -30);
     }
 

@@ -8,17 +8,26 @@ using UnityEngine.Rendering.Universal;
 internal class Palette : ScriptableObject, IService
 {
     [Header("Префабы")]
-    public DollModel DollPrefab;
+    public Doll[] DollsData;
     public Light2D Light;
     public CardModel CardPrefab;
     public Dices DicePrefabs;
     public NoteModel NotePrefab;
+    public DollCard DollCardPrefab;
     [Header("Спрайты")]
     [SerializeField] private Sprite[] _diceNumbers;
     public Sprite[] DiceNumbers => _diceNumbers;
     public Suit SuitsSprites;
     public Markers MarkerSprites;
 
+
+    [Serializable]
+    public struct Doll
+    {
+        public int Index;
+        public Sprite Symbol;
+        public DollModel Prefab;
+    }
 
     [Serializable]
     public struct Markers

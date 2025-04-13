@@ -1,100 +1,94 @@
 fileFormatVersion: 2
-guid: 265ee2ce9b961234bade2f91092e12d0
+guid: 8e3f35707be13944d8460036278aa0f6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7200797342692199983
-    second: interface_spirtes_list_gamejam_2025_0
+      213: 2240465610458227068
+    second: decor_spirtes_list_gamejam_2025_0
   - first:
-      213: -2721155104166945252
-    second: interface_spirtes_list_gamejam_2025_1
+      213: 8690499487937503718
+    second: decor_spirtes_list_gamejam_2025_1
   - first:
-      213: -5811324989801958716
-    second: interface_spirtes_list_gamejam_2025_2
+      213: -5487708272579560564
+    second: decor_spirtes_list_gamejam_2025_2
   - first:
-      213: 7824869159459668384
-    second: interface_spirtes_list_gamejam_2025_3
+      213: 1496793343883348791
+    second: decor_spirtes_list_gamejam_2025_3
   - first:
-      213: 4046612197887491313
-    second: interface_spirtes_list_gamejam_2025_4
+      213: -8227340451079050151
+    second: decor_spirtes_list_gamejam_2025_4
   - first:
-      213: 8754421965189230198
-    second: interface_spirtes_list_gamejam_2025_5
+      213: 3071350597812132351
+    second: decor_spirtes_list_gamejam_2025_5
   - first:
-      213: -7954656701769636273
-    second: interface_spirtes_list_gamejam_2025_6
+      213: -1906185675119175827
+    second: decor_spirtes_list_gamejam_2025_6
   - first:
-      213: 2874564375181298741
-    second: interface_spirtes_list_gamejam_2025_7
+      213: -4948594887696018187
+    second: decor_spirtes_list_gamejam_2025_7
   - first:
-      213: 1211817406953805238
-    second: interface_spirtes_list_gamejam_2025_8
+      213: -4924806621893525735
+    second: decor_spirtes_list_gamejam_2025_8
   - first:
-      213: 2348091876672286486
-    second: interface_spirtes_list_gamejam_2025_9
+      213: 3924891828079149505
+    second: decor_spirtes_list_gamejam_2025_9
   - first:
-      213: 5908564201135045155
-    second: interface_spirtes_list_gamejam_2025_10
+      213: -8933594675620968662
+    second: decor_spirtes_list_gamejam_2025_10
   - first:
-      213: 4911015024867883905
-    second: interface_spirtes_list_gamejam_2025_11
+      213: 7745161563725399424
+    second: decor_spirtes_list_gamejam_2025_11
   - first:
-      213: 2714998277446457901
-    second: interface_spirtes_list_gamejam_2025_12
+      213: -8287020431808490827
+    second: decor_spirtes_list_gamejam_2025_12
   - first:
-      213: 8353173049330363347
-    second: interface_spirtes_list_gamejam_2025_13
+      213: -1827342949651178522
+    second: decor_spirtes_list_gamejam_2025_13
   - first:
-      213: 1893148381734069071
-    second: interface_spirtes_list_gamejam_2025_14
+      213: -8512448473207923077
+    second: decor_spirtes_list_gamejam_2025_14
   - first:
-      213: -3963835453307888894
-    second: interface_spirtes_list_gamejam_2025_15
+      213: 702485755991500734
+    second: decor_spirtes_list_gamejam_2025_15
   - first:
-      213: 8995254203801086343
-    second: interface_spirtes_list_gamejam_2025_16
+      213: -7644690238969621607
+    second: decor_spirtes_list_gamejam_2025_16
   - first:
-      213: 1679375880055180957
-    second: interface_spirtes_list_gamejam_2025_17
+      213: 8760027339600819221
+    second: decor_spirtes_list_gamejam_2025_17
   - first:
-      213: -2440413958693402326
-    second: interface_spirtes_list_gamejam_2025_18
+      213: 6944101615338028521
+    second: decor_spirtes_list_gamejam_2025_18
   - first:
-      213: 6986950613735552794
-    second: interface_spirtes_list_gamejam_2025_19
+      213: 809476612312711543
+    second: decor_spirtes_list_gamejam_2025_19
   - first:
-      213: 4089101421588211750
-    second: interface_spirtes_list_gamejam_2025_20
+      213: -1755183008971410507
+    second: decor_spirtes_list_gamejam_2025_20
   - first:
-      213: 850186098290524446
-    second: interface_spirtes_list_gamejam_2025_21
+      213: -3394741310793829540
+    second: decor_spirtes_list_gamejam_2025_21
   - first:
-      213: -5352068311023150587
-    second: interface_spirtes_list_gamejam_2025_22
+      213: -6631834134926738885
+    second: decor_spirtes_list_gamejam_2025_22
   - first:
-      213: -9118591073075793162
-    second: interface_spirtes_list_gamejam_2025_23
+      213: -626801372052261310
+    second: decor_spirtes_list_gamejam_2025_23
   - first:
-      213: 5267349004641682360
-    second: interface_spirtes_list_gamejam_2025_24
+      213: 5865839154791067525
+    second: decor_spirtes_list_gamejam_2025_24
   - first:
-      213: 2370748684478252255
-    second: interface_spirtes_list_gamejam_2025_25
+      213: 8474820780260881418
+    second: decor_spirtes_list_gamejam_2025_25
   - first:
-      213: -5826382540916769489
-    second: interface_spirtes_list_gamejam_2025_26
+      213: -24122169292142065
+    second: decor_spirtes_list_gamejam_2025_26
   - first:
-      213: -3581441594273788003
-    second: interface_spirtes_list_gamejam_2025_27
+      213: 1019864830428065982
+    second: decor_spirtes_list_gamejam_2025_27
   - first:
-      213: 6944013974652129677
-    second: interface_spirtes_list_gamejam_2025_28
-  - first:
-      213: -2801435566579794820
-    second: interface_spirtes_list_gamejam_2025_29
-  - first:
-      213: 3530290496997872290
-    second: interface_spirtes_list_gamejam_2025_30
+      213: 8818502617883764311
+    second: decor_spirtes_list_gamejam_2025_28
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -216,13 +210,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Card
+      name: decor_spirtes_list_gamejam_2025_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1249
-        width: 538
-        height: 799
+        y: 1576
+        width: 260
+        height: 472
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -231,20 +225,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1d13141e7f0a11c90800000000000000
-      internalID: -7200797342692199983
+      spriteID: c7167da2a9bb71f10800000000000000
+      internalID: 2240465610458227068
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Diamonds
+      name: decor_spirtes_list_gamejam_2025_1
       rect:
         serializedVersion: 2
-        x: 544
-        y: 1876
-        width: 128
-        height: 165
+        x: 423
+        y: 1578
+        width: 260
+        height: 469
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -253,20 +247,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c1e536d99d38c3ad0800000000000000
-      internalID: -2721155104166945252
+      spriteID: 6e1aa337d3bda9870800000000000000
+      internalID: 8690499487937503718
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Crosses
+      name: decor_spirtes_list_gamejam_2025_2
       rect:
         serializedVersion: 2
-        x: 681
-        y: 1887
-        width: 149
-        height: 148
+        x: 695
+        y: 1935
+        width: 78
+        height: 58
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -275,20 +269,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4c2f08426b60a5fa0800000000000000
-      internalID: -5811324989801958716
+      spriteID: c8b3ce5b66eb7d3b0800000000000000
+      internalID: -5487708272579560564
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: interface_spirtes_list_gamejam_2025_3
+      name: decor_spirtes_list_gamejam_2025_3
       rect:
         serializedVersion: 2
-        x: 831
-        y: 1880
-        width: 113
-        height: 150
+        x: 721
+        y: 1988
+        width: 56
+        height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -297,20 +291,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0a1c087ea05879c60800000000000000
-      internalID: 7824869159459668384
+      spriteID: 73b065cad9da5c410800000000000000
+      internalID: 1496793343883348791
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: interface_spirtes_list_gamejam_2025_4
+      name: decor_spirtes_list_gamejam_2025_4
       rect:
         serializedVersion: 2
-        x: 967
-        y: 1872
-        width: 86
-        height: 156
+        x: 822
+        y: 1933
+        width: 76
+        height: 58
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -319,20 +313,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1fcb8d6aa54782830800000000000000
-      internalID: 4046612197887491313
+      spriteID: 95c2b37337d92dd80800000000000000
+      internalID: -8227340451079050151
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: interface_spirtes_list_gamejam_2025_5
+      name: decor_spirtes_list_gamejam_2025_5
       rect:
         serializedVersion: 2
-        x: 1081
-        y: 1872
-        width: 100
-        height: 141
+        x: 825
+        y: 1985
+        width: 53
+        height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -341,20 +335,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 67e2bf8f464fd7970800000000000000
-      internalID: 8754421965189230198
+      spriteID: ff996439811af9a20800000000000000
+      internalID: 3071350597812132351
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: interface_spirtes_list_gamejam_2025_6
+      name: decor_spirtes_list_gamejam_2025_6
       rect:
         serializedVersion: 2
-        x: 1202
-        y: 1869
-        width: 108
-        height: 166
+        x: 920
+        y: 1936
+        width: 62
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -363,20 +357,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f4627d410e16b9190800000000000000
-      internalID: -7954656701769636273
+      spriteID: d6755965a3edb85e0800000000000000
+      internalID: -1906185675119175827
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: interface_spirtes_list_gamejam_2025_7
+      name: decor_spirtes_list_gamejam_2025_7
       rect:
         serializedVersion: 2
-        x: 1319
-        y: 1890
-        width: 18
-        height: 139
+        x: 1033
+        y: 1936
+        width: 60
+        height: 68
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -385,20 +379,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 53c8ca2b11184e720800000000000000
-      internalID: 2874564375181298741
+      spriteID: 5f4909d1b2f035bb0800000000000000
+      internalID: -4948594887696018187
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: interface_spirtes_list_gamejam_2025_8
+      name: decor_spirtes_list_gamejam_2025_8
       rect:
         serializedVersion: 2
-        x: 1350
-        y: 1901
-        width: 99
-        height: 127
+        x: 1115
+        y: 1931
+        width: 68
+        height: 71
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -407,20 +401,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6b5dd1ad28d31d010800000000000000
-      internalID: 1211817406953805238
+      spriteID: 91f7b8a587297abb0800000000000000
+      internalID: -4924806621893525735
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: interface_spirtes_list_gamejam_2025_9
+      name: decor_spirtes_list_gamejam_2025_9
       rect:
         serializedVersion: 2
-        x: 1450
-        y: 1890
-        width: 86
-        height: 140
+        x: 1226
+        y: 1932
+        width: 66
+        height: 77
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -429,20 +423,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 61f28010f19169020800000000000000
-      internalID: 2348091876672286486
+      spriteID: 1c1cd7a9254087630800000000000000
+      internalID: 3924891828079149505
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: interface_spirtes_list_gamejam_2025_10
+      name: decor_spirtes_list_gamejam_2025_10
       rect:
         serializedVersion: 2
-        x: 1542
-        y: 1882
+        x: 1447
+        y: 1942
         width: 90
-        height: 163
+        height: 47
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -451,20 +445,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 32a7e3506df6ff150800000000000000
-      internalID: 5908564201135045155
+      spriteID: a278a4889fe750480800000000000000
+      internalID: -8933594675620968662
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: interface_spirtes_list_gamejam_2025_11
+      name: decor_spirtes_list_gamejam_2025_11
       rect:
         serializedVersion: 2
-        x: 1638
-        y: 1878
-        width: 111
-        height: 160
+        x: 1559
+        y: 1951
+        width: 84
+        height: 47
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -473,20 +467,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 18b3bdb352e672440800000000000000
-      internalID: 4911015024867883905
+      spriteID: 0858cd518675c7b60800000000000000
+      internalID: 7745161563725399424
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: interface_spirtes_list_gamejam_2025_12
+      name: decor_spirtes_list_gamejam_2025_12
       rect:
         serializedVersion: 2
-        x: 1750
-        y: 1878
-        width: 93
-        height: 159
+        x: 1697
+        y: 1953
+        width: 68
+        height: 51
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -495,20 +489,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d2a5ef47c8c9da520800000000000000
-      internalID: 2714998277446457901
+      spriteID: 5b296a3e2d69efc80800000000000000
+      internalID: -8287020431808490827
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: interface_spirtes_list_gamejam_2025_13
+      name: decor_spirtes_list_gamejam_2025_13
       rect:
         serializedVersion: 2
-        x: 1844
-        y: 1878
-        width: 110
-        height: 154
+        x: 1314
+        y: 1941
+        width: 91
+        height: 43
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -517,20 +511,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3dbe3b0a1ae6ce370800000000000000
-      internalID: 8353173049330363347
+      spriteID: 6eb1a3bd449f3a6e0800000000000000
+      internalID: -1827342949651178522
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spades
+      name: decor_spirtes_list_gamejam_2025_14
       rect:
         serializedVersion: 2
-        x: 543
-        y: 1689
-        width: 134
-        height: 173
+        x: 986
+        y: 1896
+        width: 49
+        height: 23
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -539,20 +533,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f436d504c60d54a10800000000000000
-      internalID: 1893148381734069071
+      spriteID: b7e10a9e635bdd980800000000000000
+      internalID: -8512448473207923077
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hearts
+      name: decor_spirtes_list_gamejam_2025_15
       rect:
         serializedVersion: 2
-        x: 683
-        y: 1717
-        width: 126
-        height: 129
+        x: 1161
+        y: 1890
+        width: 82
+        height: 23
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -561,19 +555,107 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 20bdb7118a0adf8c0800000000000000
-      internalID: -3963835453307888894
+      spriteID: eb725a9b21bbfb900800000000000000
+      internalID: 702485755991500734
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: interface_spirtes_list_gamejam_2025_16
+      name: decor_spirtes_list_gamejam_2025_16
       rect:
         serializedVersion: 2
-        x: 828
-        y: 1689
-        width: 95
+        x: 1401
+        y: 1910
+        width: 51
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 993d1502bba98e590800000000000000
+      internalID: -7644690238969621607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: decor_spirtes_list_gamejam_2025_17
+      rect:
+        serializedVersion: 2
+        x: 1639
+        y: 1890
+        width: 57
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 514fd97e37ed19970800000000000000
+      internalID: 8760027339600819221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: decor_spirtes_list_gamejam_2025_18
+      rect:
+        serializedVersion: 2
+        x: 766
+        y: 1882
+        width: 54
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ed7072b0a76e5060800000000000000
+      internalID: 6944101615338028521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: decor_spirtes_list_gamejam_2025_19
+      rect:
+        serializedVersion: 2
+        x: 716
+        y: 1605
+        width: 401
+        height: 247
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 771c2eaa0b6db3b00800000000000000
+      internalID: 809476612312711543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: decor_spirtes_list_gamejam_2025_20
+      rect:
+        serializedVersion: 2
+        x: 1158
+        y: 1645
+        width: 144
         height: 168
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -583,20 +665,42 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 78927e91a0095dc70800000000000000
-      internalID: 8995254203801086343
+      spriteID: 5b3357a4a5654a7e0800000000000000
+      internalID: -1755183008971410507
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: interface_spirtes_list_gamejam_2025_17
+      name: Flat
       rect:
         serializedVersion: 2
-        x: 946
-        y: 1690
-        width: 87
-        height: 172
+        x: 1335
+        y: 1062
+        width: 527
+        height: 790
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 77, y: 80, z: 87, w: 85}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c533ac193c473e0d0800000000000000
+      internalID: -3394741310793829540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: decor_spirtes_list_gamejam_2025_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 723
+        width: 572
+        height: 833
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -605,20 +709,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d9e4c0717775e4710800000000000000
-      internalID: 1679375880055180957
+      spriteID: b3ab162cdfdf6f3a0800000000000000
+      internalID: -6631834134926738885
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: interface_spirtes_list_gamejam_2025_18
+      name: decor_spirtes_list_gamejam_2025_23
       rect:
         serializedVersion: 2
-        x: 1046
-        y: 1705
-        width: 16
-        height: 144
+        x: 603
+        y: 634
+        width: 514
+        height: 922
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -627,20 +731,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a29cc273f68e12ed0800000000000000
-      internalID: -2440413958693402326
+      spriteID: 246f81a19772d47f0800000000000000
+      internalID: -626801372052261310
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: interface_spirtes_list_gamejam_2025_19
+      name: decor_spirtes_list_gamejam_2025_24
       rect:
         serializedVersion: 2
-        x: 1089
-        y: 1702
-        width: 69
-        height: 146
+        x: 1735
+        y: 307
+        width: 227
+        height: 634
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -649,20 +753,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a17b7e29092a6f060800000000000000
-      internalID: 6986950613735552794
+      spriteID: 58f26eaf1a5a76150800000000000000
+      internalID: 5865839154791067525
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Window2
+      name: decor_spirtes_list_gamejam_2025_25
       rect:
         serializedVersion: 2
-        x: 1163
-        y: 1394
-        width: 836
-        height: 468
+        x: 0
+        y: 305
+        width: 366
+        height: 398
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -671,20 +775,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6286f44f3186fb830800000000000000
-      internalID: 4089101421588211750
+      spriteID: a047c8e199c9c9570800000000000000
+      internalID: 8474820780260881418
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: interface_spirtes_list_gamejam_2025_21
+      name: decor_spirtes_list_gamejam_2025_26
       rect:
         serializedVersion: 2
-        x: 544
-        y: 1579
-        width: 120
-        height: 104
+        x: 481
+        y: 321
+        width: 381
+        height: 247
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -693,20 +797,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e11059d70c77ccb00800000000000000
-      internalID: 850186098290524446
+      spriteID: f0a412cc30d4aaff0800000000000000
+      internalID: -24122169292142065
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: interface_spirtes_list_gamejam_2025_22
+      name: decor_spirtes_list_gamejam_2025_27
       rect:
         serializedVersion: 2
-        x: 670
-        y: 1569
-        width: 168
-        height: 112
+        x: 1158
+        y: 67
+        width: 607
+        height: 500
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -715,20 +819,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 50a17d34a32a9b5b0800000000000000
-      internalID: -5352068311023150587
+      spriteID: eb03498e8a9472e00800000000000000
+      internalID: 1019864830428065982
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: interface_spirtes_list_gamejam_2025_23
+      name: decor_spirtes_list_gamejam_2025_28
       rect:
         serializedVersion: 2
-        x: 848
-        y: 1568
-        width: 121
-        height: 113
+        x: 0
+        y: 0
+        width: 965
+        height: 183
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -737,250 +841,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6f2f44d3bb1447180800000000000000
-      internalID: -9118591073075793162
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: interface_spirtes_list_gamejam_2025_24
-      rect:
-        serializedVersion: 2
-        x: 979
-        y: 1592
-        width: 60
-        height: 78
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8b3cca91302691940800000000000000
-      internalID: 5267349004641682360
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: interface_spirtes_list_gamejam_2025_25
-      rect:
-        serializedVersion: 2
-        x: 557
-        y: 1523
-        width: 378
-        height: 31
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fd40d062e5796e020800000000000000
-      internalID: 2370748684478252255
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dice Tray
-      rect:
-        serializedVersion: 2
-        x: 6
-        y: 811
-        width: 432
-        height: 409
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 35, y: 157, z: 38, w: 162}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f2d3e13d2f7842fa0800000000000000
-      internalID: -5826382540916769489
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Paper
-      rect:
-        serializedVersion: 2
-        x: 551
-        y: 1083
-        width: 420
-        height: 434
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 81, y: 96, z: 82, w: 88}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d9f808568d92c4ec0800000000000000
-      internalID: -3581441594273788003
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: interface_spirtes_list_gamejam_2025_28
-      rect:
-        serializedVersion: 2
-        x: 994
-        y: 1136
-        width: 237
-        height: 244
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d811d724be71e5060800000000000000
-      internalID: 6944013974652129677
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Window
-      rect:
-        serializedVersion: 2
-        x: 1252
-        y: 990
-        width: 746
-        height: 397
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 40, y: 41, z: 38, w: 40}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c7cbdd0e13d4f19d0800000000000000
-      internalID: -2801435566579794820
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: interface_spirtes_list_gamejam_2025_30
-      rect:
-        serializedVersion: 2
-        x: 463
-        y: 619
-        width: 241
-        height: 437
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2a2de73b08c1ef030800000000000000
-      internalID: 3530290496997872290
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pin
-      rect:
-        serializedVersion: 2
-        x: 1069
-        y: 1597
-        width: 66
-        height: 69
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a0cbdec7e7526f542a70c5288071d266
-      internalID: 500977310
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: X
-      rect:
-        serializedVersion: 2
-        x: 1381
-        y: 697
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 33152997bedb55c4f96646627ab8f4e9
-      internalID: 1857751568
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: O
-      rect:
-        serializedVersion: 2
-        x: 1531
-        y: 699
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 86519fbe81a06fc4e991f74820a9aa8c
-      internalID: -436543692
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: D
-      rect:
-        serializedVersion: 2
-        x: 1699
-        y: 689
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3b2e3a07421eac24eb5eaa9b0a05927e
-      internalID: -1400150731
+      spriteID: 75660d5986d916a70800000000000000
+      internalID: 8818502617883764311
       vertices: []
       indices: 
       edges: []
@@ -989,7 +851,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: f40912413cafbef40b7e269f75c01d12
+    spriteID: d7a50d6b7cd35864398baaa4ed26aae4
     internalID: 0
     vertices: []
     indices: 
@@ -999,19 +861,35 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Card: -7200797342692199983
-      Crosses: -5811324989801958716
-      D: -1400150731
-      Diamonds: -2721155104166945252
-      Dice Tray: -5826382540916769489
-      Hearts: -3963835453307888894
-      O: -436543692
-      Paper: -3581441594273788003
-      Pin: 500977310
-      Spades: 1893148381734069071
-      Window: -2801435566579794820
-      Window2: 4089101421588211750
-      X: 1857751568
+      Flat: -3394741310793829540
+      decor_spirtes_list_gamejam_2025_0: 2240465610458227068
+      decor_spirtes_list_gamejam_2025_1: 8690499487937503718
+      decor_spirtes_list_gamejam_2025_10: -8933594675620968662
+      decor_spirtes_list_gamejam_2025_11: 7745161563725399424
+      decor_spirtes_list_gamejam_2025_12: -8287020431808490827
+      decor_spirtes_list_gamejam_2025_13: -1827342949651178522
+      decor_spirtes_list_gamejam_2025_14: -8512448473207923077
+      decor_spirtes_list_gamejam_2025_15: 702485755991500734
+      decor_spirtes_list_gamejam_2025_16: -7644690238969621607
+      decor_spirtes_list_gamejam_2025_17: 8760027339600819221
+      decor_spirtes_list_gamejam_2025_18: 6944101615338028521
+      decor_spirtes_list_gamejam_2025_19: 809476612312711543
+      decor_spirtes_list_gamejam_2025_2: -5487708272579560564
+      decor_spirtes_list_gamejam_2025_20: -1755183008971410507
+      decor_spirtes_list_gamejam_2025_22: -6631834134926738885
+      decor_spirtes_list_gamejam_2025_23: -626801372052261310
+      decor_spirtes_list_gamejam_2025_24: 5865839154791067525
+      decor_spirtes_list_gamejam_2025_25: 8474820780260881418
+      decor_spirtes_list_gamejam_2025_26: -24122169292142065
+      decor_spirtes_list_gamejam_2025_27: 1019864830428065982
+      decor_spirtes_list_gamejam_2025_28: 8818502617883764311
+      decor_spirtes_list_gamejam_2025_3: 1496793343883348791
+      decor_spirtes_list_gamejam_2025_4: -8227340451079050151
+      decor_spirtes_list_gamejam_2025_5: 3071350597812132351
+      decor_spirtes_list_gamejam_2025_6: -1906185675119175827
+      decor_spirtes_list_gamejam_2025_7: -4948594887696018187
+      decor_spirtes_list_gamejam_2025_8: -4924806621893525735
+      decor_spirtes_list_gamejam_2025_9: 3924891828079149505
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

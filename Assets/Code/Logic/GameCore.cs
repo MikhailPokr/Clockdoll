@@ -36,6 +36,7 @@ internal class GameCore : MonoBehaviour
 
         ServiceLocator.Register(new FortuneManager(_fortunePool, handData, gameProcess, anokCashData));
 
+        ServiceLocator.Register(new ReplaceManager(tableData));
 
         for (int i = 0; i < _initializable.Length; i++)
         {
@@ -75,7 +76,7 @@ internal class GameCore : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.V))
         {
-            ServiceLocator.Resolve<DiceManager>().RollDice(8, 10, 16);
+            ServiceLocator.Resolve<ReplaceManager>().Replace(1, 2);
         }
         if (Input.GetKeyDown(KeyCode.N))
         {

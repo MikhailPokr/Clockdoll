@@ -22,7 +22,8 @@ public class NoteGroup : MonoBehaviour, IInitializable
     public void Initialize()
     {
         _tableData = ServiceLocator.Resolve<TableData>();
-        _tableData.TargetPlaceChanged += OnDataChanged;
+        _tableData.CurrentPlaceChanged += OnDataChanged;
+        _tableData.PlacementChanged += () => OnDataChanged(0);
         _palette = ServiceLocator.Resolve<Palette>();
         _markerData = ServiceLocator.Resolve<MarkerData>();
 
@@ -58,7 +59,7 @@ public class NoteGroup : MonoBehaviour, IInitializable
         _markerData.SetMark(num, _tableData.GetCurrentDollIndex());
     }
 
-    private void OnDataChanged(int newPlace)
+    private void OnDataChanged(int _)
     {
         int nextTopIndex = (_currentTopNoteIndex + 1) % _notes.Length;
         _notes[nextTopIndex].UpdateMark(_markerData.GetDollMarkers(_tableData.GetCurrentDollIndex()));

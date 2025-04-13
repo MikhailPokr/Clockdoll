@@ -20,14 +20,15 @@ internal abstract class BaseRotatableAxis : MonoBehaviour
     protected Palette _palette;
     protected TableData _tableData;
 
-    public void Initiate(Palette palette, TableData seccion, float duration)
+    public void Initiate(Palette palette, TableData tableData, float duration)
     {
         _palette = palette;
-        _tableData = seccion;
+        _tableData = tableData;
         _duration = duration;
         _currentIndex = _tableData.CurrentPlace;
 
         _tableData.TableStartRotated += QueueRotation;
+        _tableData.PlacementChanged += InitializeObjects;
 
         InitializeObjects();
     }
@@ -52,6 +53,15 @@ internal abstract class BaseRotatableAxis : MonoBehaviour
 
     private void InitializeObjects()
     {
+        for (int i = 0; i < _objects.Length; i++)
+        {
+            if (_objects[i] != null)
+            {
+                Destroy(_objects[i].gameObject);
+                _objects[i] = null;
+
+            }
+        }
         for (int i = -2; i <= 2; i++)
         {
             int place = ConvertPlaceForCircle(i + _currentIndex, 12, false);
