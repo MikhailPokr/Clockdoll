@@ -356,7 +356,7 @@ Transform:
   m_GameObject: {fileID: 59059753}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 4.55, y: 9.95, z: 0}
+  m_LocalPosition: {x: 4.55, y: 8.690001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1428,7 +1428,7 @@ Transform:
   m_GameObject: {fileID: 398554627}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: -8.8, y: 9.43, z: 0}
+  m_LocalPosition: {x: -8.8, y: 8.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2195,7 +2195,7 @@ MonoBehaviour:
   m_Intensity: 0.16
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 9fbe23c800000000
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -3144,7 +3144,7 @@ Transform:
   m_GameObject: {fileID: 1074812443}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 8.8, y: 9.43, z: 0}
+  m_LocalPosition: {x: 8.8, y: 8.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3648,7 +3648,7 @@ Transform:
   m_GameObject: {fileID: 1397744417}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 0, y: 10.160001, z: 0}
+  m_LocalPosition: {x: 0, y: 8.900002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3754,7 +3754,7 @@ Transform:
   m_GameObject: {fileID: 1436762658}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: -4.55, y: 9.95, z: 0}
+  m_LocalPosition: {x: -4.55, y: 8.690001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4070,8 +4070,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -937181537
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: -1820525419990397792, guid: 4811e0452511a944e9eed8c9794f075b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

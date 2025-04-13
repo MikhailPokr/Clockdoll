@@ -22,9 +22,9 @@ internal class CardManager : MonoBehaviour, IInitializable
 
     public bool TryPlayCard(BaseCard card)
     {
-        if (!card.Check())
+        if (!card.CheckCondition())
             return false;
-        card.Play();
+        card.PlayEffect();
         ShowCard(false);
         _handData.PlayCard(card);
         return true;

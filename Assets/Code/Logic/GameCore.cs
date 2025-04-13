@@ -28,13 +28,13 @@ internal class GameCore : MonoBehaviour
 
         HandData handData = ServiceLocator.Register(new HandData(tableData, gameProcess, _palette));
 
-        ServiceLocator.Register(new DiceManager(_palette));
+        DiceManager diceManager = ServiceLocator.Register(new DiceManager(_palette));
 
         AnokCashData anokCashData = ServiceLocator.Register(new AnokCashData());
 
         ServiceLocator.Register(new MarkerData());
 
-        ServiceLocator.Register(new FortuneManager(_fortunePool, handData, gameProcess, anokCashData));
+        FortuneManager fortuneManager = ServiceLocator.Register(new FortuneManager(_fortunePool, handData, gameProcess, anokCashData));
 
         ServiceLocator.Register(new ReplaceManager(tableData));
 
@@ -45,46 +45,12 @@ internal class GameCore : MonoBehaviour
             else
                 throw new System.Exception("ћассив _initializable нужно заполн€ть только классами, реализующие IInitializable");
         }
+
+        ServiceLocator.Register(new Game(gameProcess, diceManager, fortuneManager, handData, anokCashData, tableData));
     }
 
     private void Update()
     {
         _inputManager.Update();
-
-        //далее тестовые проверки нажатий, они будут убраны
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ServiceLocator.Resolve<GameProcess>().OnTurnEnd();
-        }
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            ServiceLocator.Resolve<HandData>().TakeCard(false, 2);
-        }
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            ServiceLocator.Resolve<HandData>().TakeCard(true, 8);
-            print("ѕедро получает 8 карт");
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            ServiceLocator.Resolve<HandData>().SwitchHand();
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            List<BaseCard> hand = ServiceLocator.Resolve<HandData>().GetHand(true);
-            ServiceLocator.Resolve<HandData>().PlayCard(hand[Random.Range(0, hand.Count)]);
-        }
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            ServiceLocator.Resolve<ReplaceManager>().Replace(1, 2);
-        }
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            ServiceLocator.Resolve<FortuneManager>().GenerateNewList();
-        }
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            ServiceLocator.Resolve<FortuneManager>().ApplyReward(Random.Range(1, 13));
-        }
     }
 }

@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 internal class HandData : IService
 {
@@ -16,7 +16,7 @@ internal class HandData : IService
     private GameProcess _gameProcess;
     private Palette _palette;
 
-    public Action HandUpdated;
+    public System.Action HandUpdated;
 
     public HandData(TableData tableData, GameProcess gameProcess, Palette palette)
     {
@@ -92,9 +92,59 @@ internal class HandData : IService
 
     private BaseCard GenerateCard(bool pedroCard, bool spades)
     {
+        int value;
         if (pedroCard)
-            return new PedroCard(_palette, spades);
+        {
+            value = Random.Range(spades ? 6 : 1, 9);
+            BaseCondition condition = value switch
+            {
+                0 => new CloserCondition(),
+                1 => new StepCondition(),
+                2 => new PowerCondition(),
+                3 => new PrimeCondition(),
+                4 => new DigitCondition(),
+                5 => new SideCondition(),
+                //пики
+                6 => new RouletteCondition(),
+                7 => new NeighborCondition(),
+                8 => new CloserCondition(),
+                _ => null
+            };
+
+            Suit suit = condition.Suit;
+
+            value = Random.Range(0, 4);
+            BaseEffect effect = value switch
+            {
+                0 => new DamageEffect(),
+                1 => new DiceAddEffect(),
+                2 => new DrawCardEffect(),
+                3 => new DiscardEffect(),
+                _ => null
+            };
+
+            return new PedroCard(condition, effect);
+        }   
         else
-            return new AnokCard(_palette);
+        {
+            value = Random.Range(0, 10);
+            AnokCard card = value switch
+            {
+                0 => new RotateCard(),
+                1 => new InsertDollCard(),
+                2 => new CountCard(),
+                3 => new ShuffleCard(),
+                4 => new BlockCard(),
+                5 => new DefendCard(),
+                6 => new RestoreCard(),
+                7 => new DrawCardCard(),
+                8 => new SkipCard(),
+                9 => new EatCard(),
+                _ => null,
+            };
+
+            return card;
+        }
+            
     }
 }

@@ -7,8 +7,8 @@ internal abstract class BaseCard
     protected Sprite _suit;
     protected Color _color;
 
-    public abstract void Play();
-    public abstract bool Check();
+    public abstract void PlayEffect();
+    public abstract bool CheckCondition();
 
     public virtual (string condition, string effect, Sprite suit, Color color) GetData()
         => (_condition, _effect, _suit, _color);
