@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Code.Logic;
+using System;
 
 internal class Game : IService
 {
@@ -8,6 +9,7 @@ internal class Game : IService
     private HandData _handData;
     private AnokCashData _cashData;
     private TableData _tableData;
+    private DiscardManager _discardManager;
 
     public Game
         (
@@ -16,7 +18,8 @@ internal class Game : IService
         FortuneManager fortuneManager, 
         HandData handData, 
         AnokCashData cashData, 
-        TableData tableData
+        TableData tableData,
+        DiscardManager discardManager
         )
     {
         _gameProcess = gameProcess;
@@ -25,6 +28,7 @@ internal class Game : IService
         _handData = handData;
         _cashData = cashData;
         _tableData = tableData;
+        _discardManager = discardManager;
 
         _gameProcess.TurnChanged += OnTurnChanged;
         _cashData.CashOver += OnAnokBankrupt;
@@ -52,40 +56,44 @@ internal class Game : IService
 
         PlayPedroCard();
     }
-
-    public void PlayAnokCard(BaseCard card)
+    public void ClickAnokCard(BaseCard card)
     {
         if (_gameProcess.ItsPedroTurn) return;
 
-        if (card.CheckCondition())
+        if (_discardManager.NeedDiscard(false))
         {
-            card.PlayEffect();
-            _handData.PlayCard(card);
-            _gameProcess.OnTurnEnd();
+            _discardManager.Discard(card);
+            return;
         }
+
+        if (card.CheckCondition())
+            return;
+
+        card.PlayEffect();
+        _handData.PlayCard(card);
+        _gameProcess.OnTurnEnd();
     }
 
+    private void StartPedroTurn()
+    {
+        var diceResult = _diceManager.RollDice(12); 
+
+        _fortuneManager.ApplyReward(diceResult[0].value);
+
+        PlayPedroCard();
+    }
     private void PlayPedroCard()
     {
         var pedroHand = _handData.GetHand(true);
 
         foreach (var card in pedroHand)
         {
-            if (card.CheckCondition())
+            if (_discardManager.NeedDiscard(false))
             {
-                card.PlayEffect();
-                _handData.PlayCard(card);
-                break;
+                _discardManager.Discard(card);
+                continue;
             }
-        }
-    }
 
-    private void StartPedroTurn()
-    {
-        var pedroHand = _handData.GetHand(true);
-
-        foreach (var card in pedroHand)
-        {
             if (card.CheckCondition())
             {
                 card.PlayEffect();

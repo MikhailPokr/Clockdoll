@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Assets.Code.Logic;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -14,14 +15,16 @@ internal class FortuneManager : IService
     private HandData _handData;
     private GameProcess _gameProcess;
     private AnokCashData _cashData;
+    private DiscardManager _discardManager;
 
 
-    public FortuneManager(FortunePool fortunePool, HandData handData, GameProcess gameProcess, AnokCashData anokCashData)
+    public FortuneManager(FortunePool fortunePool, HandData handData, GameProcess gameProcess, AnokCashData anokCashData, DiscardManager discardManager)
     {
         _fortunePool = fortunePool;
         _handData = handData;
         _gameProcess = gameProcess;
         _cashData = anokCashData;
+        _discardManager = discardManager;
     }
 
     public void GenerateNewList()
@@ -66,7 +69,7 @@ internal class FortuneManager : IService
                 else
                 {
                     Debug.Log($"{(_gameProcess.ItsPedroTurn ? "Педро" : "Анок")} должен сбросить {reward.Value} карт.");
-                    //сюда код этого
+                    _discardManager.AddDiscard(_gameProcess.ItsPedroTurn, reward.Value);
                 }
                
                 break;

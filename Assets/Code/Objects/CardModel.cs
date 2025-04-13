@@ -35,6 +35,6 @@ internal class CardModel : MonoBehaviour
 
     public void Click()
     {
-        _cardManager.TryPlayCard(_card);
+        _cardManager.ClickCard(_card);
     }
 }

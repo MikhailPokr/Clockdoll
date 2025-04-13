@@ -1,3 +1,4 @@
+using Assets.Code.Logic;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -34,7 +35,9 @@ internal class GameCore : MonoBehaviour
 
         ServiceLocator.Register(new MarkerData());
 
-        FortuneManager fortuneManager = ServiceLocator.Register(new FortuneManager(_fortunePool, handData, gameProcess, anokCashData));
+        DiscardManager discardManager = ServiceLocator.Register(new DiscardManager(handData));
+
+        FortuneManager fortuneManager = ServiceLocator.Register(new FortuneManager(_fortunePool, handData, gameProcess, anokCashData, discardManager));
 
         ServiceLocator.Register(new ReplaceManager(tableData));
 
@@ -46,7 +49,7 @@ internal class GameCore : MonoBehaviour
                 throw new System.Exception("Массив _initializable нужно заполнять только классами, реализующие IInitializable");
         }
 
-        ServiceLocator.Register(new Game(gameProcess, diceManager, fortuneManager, handData, anokCashData, tableData));
+        ServiceLocator.Register(new Game(gameProcess, diceManager, fortuneManager, handData, anokCashData, tableData, discardManager));
     }
 
     private void Update()

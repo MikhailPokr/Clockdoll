@@ -9,25 +9,22 @@ internal class CardManager : MonoBehaviour, IInitializable
 
     private HandData _handData;
     private CardModel _cardPrefab;
+    private Game _game;
 
     public void Initialize()
     {
         _cardPrefab = ServiceLocator.Resolve<Palette>().CardPrefab;
         _handData = ServiceLocator.Resolve<HandData>();
+        _game = ServiceLocator.Resolve<Game>();
         _handData.HandUpdated += Animate;
         Animate();
     }
 
     public void TakeCard(bool toPedro, int count) => _handData.TakeCard(toPedro, count);
 
-    public bool TryPlayCard(BaseCard card)
+    public void ClickCard(BaseCard card)
     {
-        if (!card.CheckCondition())
-            return false;
-        card.PlayEffect();
-        ShowCard(false);
-        _handData.PlayCard(card);
-        return true;
+        _game.ClickAnokCard(card);
     }
 
     public void GenerateHand()

@@ -90,6 +90,21 @@ internal class HandData : IService
         HandUpdated?.Invoke();
     }
 
+    public void DiscardCard(BaseCard card)
+    {
+        if (card is PedroCard)
+        {
+            _pedroHand.Remove((PedroCard)card);
+            _pedroPlayed[_gameProcess.CurrentPlaceNumber].Add((PedroCard)card);
+        }
+        else
+        {
+            _anokHand.Remove((AnokCard)card);
+            _anokPlayed.Add((AnokCard)card);
+        }
+    }
+
+
     private BaseCard GenerateCard(bool pedroCard, bool spades)
     {
         int value;
