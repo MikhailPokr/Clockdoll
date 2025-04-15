@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-internal class Game : IService
+internal class Game : IGame
 {
     private GameProcess _gameProcess;
     private DiceManager _diceManager;
@@ -13,6 +13,9 @@ internal class Game : IService
     private DiscardManager _discardManager;
     private InputManager _inputManager;
 
+
+
+    #region Старая логика
     public Game
         (
         GameProcess gameProcess,
@@ -34,12 +37,14 @@ internal class Game : IService
         _discardManager = discardManager;
         _inputManager = inputManager;
 
-        _gameProcess.TurnChanged += OnTurnChanged;
+        //чтобы не работало ничего
+
+        /*_gameProcess.TurnChanged += OnTurnChanged;
         _cashData.CashOver += OnAnokBankrupt;
         _inputManager.ButtonPressed += OnButtonPressed;
 
         _handData.TakeCard(true, 5);
-        _handData.TakeCard(false, 5);
+        _handData.TakeCard(false, 5);*/
     }
 
     private void OnButtonPressed(KeyCode key, int i)
@@ -153,4 +158,5 @@ internal class Game : IService
         _cashData.CashOver -= OnAnokBankrupt;
         _inputManager.ButtonPressed -= OnButtonPressed;
     }
+    #endregion
 }

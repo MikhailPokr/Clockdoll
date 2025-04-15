@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-internal class InputManager : IService
+internal class InputManager : IInputManager
 {
     public Action<KeyCode, int> ButtonPressed; // 0 - up, 1 - pressed 
     public void Update()
