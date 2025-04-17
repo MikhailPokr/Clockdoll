@@ -8,10 +8,10 @@ using UnityEngine;
 internal class FortuneListView : MonoBehaviour, IInitializable
 {
     [SerializeField] TextMeshProUGUI _text;
-    private FortuneManager _manager;
+    private FortuneSystem _manager;
     public void Initialize()
     {
-        _manager = ServiceLocator.Resolve<FortuneManager>();
+        _manager = ServiceLocator.Resolve<FortuneSystem>();
 
         _manager.ListGenerated += OnListGenerated;
     }

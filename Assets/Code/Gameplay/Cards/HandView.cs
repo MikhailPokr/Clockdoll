@@ -34,7 +34,7 @@ internal class HandView : MonoBehaviour, IInitializable
             Destroy(child.gameObject);
         }
         List<CardView> cards = new();
-        List<BaseCard> hand = _cardSystem.GetCurrentHand();
+        List<BaseCard> hand = _cardSystem.GetCurrentHandForView();
         for (int i = 0; i < hand.Count; i++)
         {
             CardView card = Instantiate(_cardPrefab, transform);

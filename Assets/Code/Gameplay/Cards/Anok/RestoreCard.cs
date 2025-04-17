@@ -3,7 +3,7 @@
 internal class RestoreCard : AnokCard
 {
     private AnokCashData _anokCashData;
-    private DiceManager _diceManager;
+    private DiceController _diceManager;
 
     public RestoreCard() : base()
     {

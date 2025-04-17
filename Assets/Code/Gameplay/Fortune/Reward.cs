@@ -5,14 +5,12 @@ internal class Reward
 {
     //потом заменить на ключ
     public string Description;
-    public FortuneManager.RewardType Type;
+    public RewardType Type;
     public int Count;
     [Header("Рандом записывать через ~")]
     [SerializeField] private string _value;
     private bool _newValue = true;
     private int _fixedValue = 0;
-
-    
 
     public int Value
     {
@@ -54,4 +52,8 @@ internal class Reward
         };
     }
 
+    public void Lock()
+    {
+        _ = Value; //получаем значение, тем самым его однозначно определяя
+    }
 }

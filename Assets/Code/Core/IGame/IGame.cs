@@ -1,3 +1,6 @@
-﻿internal interface IGame : IService
+﻿using System;
+
+internal interface IGame : IService
 {
+    void Start();
 }

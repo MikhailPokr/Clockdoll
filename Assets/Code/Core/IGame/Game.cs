@@ -4,95 +4,68 @@ using UnityEngine;
 
 internal class Game : IGame
 {
-    private DiceManager _diceManager;
-    private FortuneManager _fortuneManager;
-    private CardSystem _cardSystem;
-    private AnokCashData _cashData;
-    private DollPlacementController _placementController;
-    private DiscardManager _discardManager;
-    private InputHandler _inputManager;
+    private IInputHandler _inputHandler;
+    private IGameSubStateMachine _gameSubStateMachine;
+    private IDollPlacementController _placementController;
+    private IDiceController _diceManager;
+    private IAnokCashData _cashData;
+    private ICardSystem _cardSystem;
+    private IDiscardManager _discardManager;
+    private IFortuneSystem _fortuneSystem;
 
-    public GameSubState _currentState;
-    public GameSubState CurrentState => _currentState;
-
-    private ClockNum _currentPlaceNumber;
-    public ClockNum CurrentPlaceNumber => _currentPlaceNumber;
-
-    public Action CircleCompleted;
-
-    public Action<GameSubState, ClockNum> SubStateChanged;
+    
 
     public Game(
-        DiceManager diceManager,
-        FortuneManager fortuneManager,
-        CardSystem cardSystem,
-        AnokCashData cashData,
-        DollPlacementController placementController,
-        DiscardManager discardManager,
-        InputHandler inputManager
+        IInputHandler inputHandler,
+        IGameSubStateMachine gameSubStateMachine,
+        IDollPlacementController placementController,
+        IDiceController diceManager,
+        IAnokCashData cashData,
+        ICardSystem cardSystem,
+        IDiscardManager discardManager,
+        IFortuneSystem fortuneSystem
         )
     {
-        _diceManager = diceManager;
-        _fortuneManager = fortuneManager;
-        _cardSystem = cardSystem;
-        _cashData = cashData;
+        _inputHandler = inputHandler;
+        _gameSubStateMachine = gameSubStateMachine;
         _placementController = placementController;
+        _diceManager = diceManager;
+        _cashData = cashData;
+        _cardSystem = cardSystem;
         _discardManager = discardManager;
-        _inputManager = inputManager;
+        _fortuneSystem = fortuneSystem;
     }
 
-    public void Start()
-    {
-        _currentState = GameSubState.PedroStartTurn;
-        _currentPlaceNumber = ClockNum.MinValue;
+    public void Start() => _gameSubStateMachine.Start();
 
-        SubStateChanged?.Invoke(_currentState, CurrentPlaceNumber);
-    }
-
-    private void GoToNextState()
-    {
-        int stateIndex = (int)_currentState;
-
-        stateIndex = stateIndex == 12 ? 1 : stateIndex + 1;
-
-        _currentState = (GameSubState)stateIndex;
-
-        if (_currentState == GameSubState.PedroStartTurn) //Педро вновь ходит, круг замкнулся
-        {
-
-        }
-
-        _currentPlaceNumber++;
-
-        SubStateChanged?.Invoke(_currentState, stateIndex);
-    }
+    
 
     #region Старая логика
     /*public Game
         (
         GameProcess gameProcess,
         DiceManager diceManager,
-        FortuneManager fortuneManager,
+        fortuneSystem fortuneSystem,
         cardSystem cardSystem,
         AnokCashData cashData,
         placementController placementController,
         DiscardManager discardManager,
-        InputManager inputManager
+        inputHandler inputHandler
         )
     {
         _gameProcess = gameProcess;
         _diceManager = diceManager;
-        _fortuneManager = fortuneManager;
+        _fortuneSystem = fortuneSystem;
         _cardSystem = cardSystem;
         _cashData = cashData;
         _placementController = placementController;
         _discardManager = discardManager;
-        _inputManager = inputManager;
+        _inputHandler = inputHandler;
 
 
         _gameProcess.TurnChanged += OnTurnChanged;
         _cashData.CashOver += OnAnokBankrupt;
-        _inputManager.ButtonPressed += OnButtonPressed;
+        _inputHandler.ButtonPressed += OnButtonPressed;
 
         _cardSystem.TakeCard(true, 5);
         _cardSystem.TakeCard(false, 5);
@@ -117,7 +90,7 @@ internal class Game : IGame
 
     private void OnTurnChanged(bool isPedroTurn, int currentPlace)
     {
-        _fortuneManager.GenerateNewList();
+        _fortuneSystem.GenerateNewList();
         if (isPedroTurn)
         {
             // Ждем нажатия пробела для начала хода Pedro
@@ -133,7 +106,7 @@ internal class Game : IGame
     private void StartAnokTurn()
     {
         var diceResult = _diceManager.RollDice(12);
-        _fortuneManager.ApplyReward(diceResult[0].value);
+        _fortuneSystem.ApplyReward(diceResult[0].value);
 
         // Не запускаем автоматически карты Pedro, ждем действий игрока
     }
@@ -157,7 +130,7 @@ internal class Game : IGame
     private void StartPedroTurn()
     {
         var diceResult = _diceManager.RollDice(12);
-        _fortuneManager.ApplyReward(diceResult[0].value);
+        _fortuneSystem.ApplyReward(diceResult[0].value);
         PlayPedroCard();
     }
 
@@ -207,7 +180,7 @@ internal class Game : IGame
     {
         _gameProcess.TurnChanged -= OnTurnChanged;
         _cashData.CashOver -= OnAnokBankrupt;
-        _inputManager.ButtonPressed -= OnButtonPressed;
+        _inputHandler.ButtonPressed -= OnButtonPressed;
     }
     #endregion
 }

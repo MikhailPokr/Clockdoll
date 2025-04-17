@@ -1,27 +1,32 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-internal class NoteMarkerData : IService
+internal class NoteMarkerData : INoteMarkerData
 {
-    private int[][] _data;
+    private Dictionary<ClockNum, Dictionary<ClockNum, int>> _data;
 
-    public Action MarkChanged;
+    public event Action MarkChanged;
 
-    public int[] GetDollMarkers(int dollIndex) => _data[dollIndex-1];
+    public Dictionary<ClockNum, int> GetDollMarkers(ClockNum dollIndex) => _data[dollIndex];
 
     public NoteMarkerData()
     {
-        _data = new int[12][];
-        for (int i = 0; i < 12; i++)
+        _data = new();
+        for (int i = ClockNum.MinValue; i <= ClockNum.MaxValue; i++)
         {
-            _data[i] = new int[12];
+            _data[i] = new();
+            for(int j = ClockNum.MinValue; j <= ClockNum.MaxValue; j++)
+            {
+                _data[i][j] = 0;
+            }
         }
     }
 
 
-    public void SetMark(int num, int doll)
+    public void SetMark(ClockNum num, ClockNum doll)
     {
-        num--; doll--;
         if (_data[doll][num] == 3)
             _data[doll][num] = 0;
         else

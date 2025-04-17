@@ -19,7 +19,7 @@ internal class ClockView : MonoBehaviour, IInitializable
     private GameProcess _gameProcess;
     private ProjectionController _projectionController;
 
-    public Action<bool> ButtomPressed;
+    public event Action<bool> ButtomPressed;
 
 
     public void Initialize()

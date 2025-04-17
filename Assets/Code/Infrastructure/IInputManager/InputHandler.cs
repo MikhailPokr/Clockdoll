@@ -3,7 +3,7 @@ using UnityEngine;
 
 internal class InputHandler : IInputHandler
 {
-    public Action<KeyCode, int> ButtonPressed; // 0 - up, 1 - pressed 
+    public event Action<KeyCode, int> ButtonPressed; // 0 - up, 1 - pressed 
     public void Update()
     {
         if (Input.GetKey(KeyCode.LeftArrow))

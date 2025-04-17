@@ -1,0 +1,12 @@
+﻿using System;
+
+internal interface IGameSubStateMachine : IService
+{
+    ClockNum CurrentPlaceNumber { get; }
+    GameSubState CurrentState { get; }
+
+    event Action CircleCompleted;
+    event Action<GameSubState, ClockNum> SubStateChanged;
+
+    void Start();
+}

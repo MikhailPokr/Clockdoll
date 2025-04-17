@@ -9,10 +9,10 @@ internal class DiceAreaController : MonoBehaviour, IInitializable
     [SerializeField] private Vector2 _size;
     [SerializeField] private Vector2 _cell;
 
-    private DiceManager _diceManager;
+    private DiceController _diceManager;
     public void Initialize()
     {
-        _diceManager = ServiceLocator.Resolve<DiceManager>();
+        _diceManager = ServiceLocator.Resolve<DiceController>();
         _diceManager.DiceRolled += OnDiceRolled;
     }
 

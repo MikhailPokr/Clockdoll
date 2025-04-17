@@ -9,15 +9,15 @@ internal class TableCameraRotation : MonoBehaviour, IInitializable
     [SerializeField] private BaseRotatableAxis[] _rotatableObjects;
     [SerializeField] private float _duration;
 
-    private InputHandler _inputManager;
+    private InputHandler _inputHandler;
     private DollPlacementController _placementController;
 
     public void Initialize()
     {
         Palette palette = ServiceLocator.Resolve<Palette>();
         _placementController = ServiceLocator.Resolve<DollPlacementController>();
-        _inputManager = ServiceLocator.Resolve<InputHandler>();
-        _inputManager.ButtonPressed += OnButtonPressed;
+        _inputHandler = ServiceLocator.Resolve<InputHandler>();
+        _inputHandler.ButtonPressed += OnButtonPressed;
         _placementController.PlacementChanged += Initialize;
         foreach (var obj in _rotatableObjects)
         {
@@ -42,6 +42,6 @@ internal class TableCameraRotation : MonoBehaviour, IInitializable
 
     private void OnDestroy()
     {
-        _inputManager.ButtonPressed -= OnButtonPressed;
+        _inputHandler.ButtonPressed -= OnButtonPressed;
     }
 }

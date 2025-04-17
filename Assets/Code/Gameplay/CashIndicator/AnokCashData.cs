@@ -1,19 +1,20 @@
 using System;
 using UnityEngine;
 
-internal class AnokCashData : IService
+internal class AnokCashData : IAnokCashData
 {
-    public const int MaxCash = 100;
+    private readonly int _maxCash;
 
     private int _cashAmount;
     public float CashAmount => _cashAmount;
 
-    public Action CashChanged;
-    public Action CashOver;
+    public event Action CashChanged;
+    public event Action CashOver;
 
-    public AnokCashData()
+    public AnokCashData(int maxCash)
     {
-        _cashAmount = MaxCash;
+        _maxCash = maxCash;
+        _cashAmount = maxCash;
     }
 
     public void ChangeCash(int value)
@@ -21,7 +22,7 @@ internal class AnokCashData : IService
         _cashAmount += value;
         if (_cashAmount <= 0)
             CashOver?.Invoke();
-        _cashAmount = Math.Clamp(_cashAmount, 0, MaxCash);
+        _cashAmount = Math.Clamp(_cashAmount, 0, _maxCash);
         CashChanged?.Invoke();
     }
 }

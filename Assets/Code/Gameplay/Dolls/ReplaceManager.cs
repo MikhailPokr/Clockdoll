@@ -2,18 +2,18 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-internal class ReplaceManager : IService
+internal class ReplaceManager : IReplaceManager
 {
     private bool _replaceActive;
 
-    private DollPlacementController _placementController;
+    private IDollPlacementController _placementController;
 
-    private List<int> _places;
+    private List<ClockNum> _places;
 
-    public ReplaceManager(DollPlacementController placementController)
+    public ReplaceManager(IDollPlacementController placementController)
     {
         _placementController = placementController;
-        _places = new List<int>();
+        _places = new List<ClockNum>();
     }
 
     public void AddPlace(int place)
@@ -23,21 +23,19 @@ internal class ReplaceManager : IService
 
     public void Replace()
     {
-        Dictionary<int, int> result = new Dictionary<int, int>(_placementController.DollsCurrentPlace);
+        Dictionary<ClockNum, ClockNum> result = new Dictionary<ClockNum, ClockNum>(_placementController.DollsCurrentPlace);
 
-        (result[_places[0]], result[_places[1]]) = (result[_places[1]], result[_places[1]]);
+        (result[_places[0]], result[_places[1]]) = (result[_places[1]], result[_places[0]]);
 
         _placementController.SetNewPlacement(result);
     }
 
     public void RotateAll(bool clockwise)
     {
-        var newPlacement = new Dictionary<int, int>();
-        foreach (var pair in _placementController.DollsCurrentPlace)
+        var newPlacement = new Dictionary<ClockNum, ClockNum>();
+        foreach (KeyValuePair<ClockNum, ClockNum> pair in _placementController.DollsCurrentPlace)
         {
-            int newPos = clockwise
-                ? (pair.Value % 12) + 1
-                : (pair.Value + 10) % 12 + 1;
+            int newPos = pair.Value + (clockwise ? 1 : -1);
             newPlacement[pair.Key] = newPos;
         }
         _placementController.SetNewPlacement(newPlacement);
@@ -45,21 +43,22 @@ internal class ReplaceManager : IService
 
     public void InsertDoll()
     {
-        var currentPlace = _placementController.DollsCurrentPlace[_places[0]];
-        if (currentPlace == _places[1]) return;
-
-        bool moveClockwise = (_places[1] - currentPlace + 12) % 12 > 6;
-        var newPlacement = new Dictionary<int, int>(_placementController.DollsCurrentPlace);
-
-        int place = _places[1];
-        while (place != currentPlace)
+        ClockNum currentDoll = _placementController.DollsCurrentPlace[_places[0]];
+        if (_places[0] == _places[1])
         {
-            int nextPlace = moveClockwise
-                ? (place - 2 + 12) % 12 + 1
-                : place % 12 + 1;
+            _places.RemoveAt(1); //убираем, чтобы сразу можно было выбрать другой вариант
+            return;
+        }
 
-            var nextDoll = newPlacement.FirstOrDefault(x => x.Value == nextPlace).Key;
-            if (nextDoll != 0) newPlacement[nextDoll] = place;
+        bool moveClockwise = (_places[1] - _places[0]) > 6;
+        Dictionary<ClockNum, ClockNum> newPlacement = new Dictionary<ClockNum, ClockNum>(_placementController.DollsCurrentPlace);
+
+        ClockNum place = _places[1];
+        while (place != _places[0])
+        {
+            int nextPlace = place + (moveClockwise ? 1 : -1);
+            ClockNum nextDoll = newPlacement.FirstOrDefault(x => x.Key == nextPlace).Value;
+            newPlacement[place] = nextDoll;
 
             place = nextPlace;
         }

@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Assets.Code.Logic
 {
-    internal class DiscardManager : IService
+    internal class DiscardManager : IDiscardManager
     {
         private int _pedroDiscard;
         private int _anokDiscard;
 
-        private CardSystem _cardSystem;
+        private ICardSystem _cardSystem;
 
-        public DiscardManager(CardSystem cardSystem)
+        public DiscardManager(ICardSystem cardSystem)
         {
             _cardSystem = cardSystem;
         }
@@ -22,12 +22,12 @@ namespace Assets.Code.Logic
         public void AddDiscard(bool forPedro, int count)
         {
             if (forPedro)
-                _pedroDiscard  = count;
+                _pedroDiscard = count;
             else
                 _anokDiscard = count;
         }
 
-        public bool Discard(BaseCard card, ClockNum doll)
+        public bool Discard(BaseCard card)
         {
             if (card is AnokCard)
             {

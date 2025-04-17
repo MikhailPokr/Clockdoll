@@ -1,7 +1,7 @@
 ﻿internal class DrawCardCard : AnokCard
 {
     private CardSystem _cardSystem;
-    private DiceManager _diceManager;
+    private DiceController _diceManager;
 
     public DrawCardCard() : base()
     {

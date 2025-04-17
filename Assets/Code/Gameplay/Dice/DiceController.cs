@@ -2,23 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-internal class DiceManager : IService
+internal class DiceController : IDiceController
 {
     private Palette _palette;
-
-    public Action<List<(int sides, int value)>> DiceRolled;
 
     private List<(int sides, int value)> _lastRoll;
     public List<(int sides, int value)> LastRoll => _lastRoll;
 
-    public DiceManager(Palette palette)
+    public event Action<List<(int sides, int value)>> DiceRolled;
+
+    public DiceController(Palette palette)
     {
         _palette = palette;
     }
 
     public List<(int sides, int value)> RollDice(params int[] dice)
     {
-        List<(int, int)> results = new(); 
+        List<(int, int)> results = new();
         for (int i = 0; i < dice.Length; i++)
         {
             results.Add((dice[i], UnityEngine.Random.Range(1, dice[i])));
@@ -42,7 +42,7 @@ internal class DiceManager : IService
             _ => null,
         };
 
-        dice.Initialize(_palette.DiceNumbers[value - 1]);
+        dice.Initialize(_palette.DiceNumbers[value - 1]); //нумерация массива с 0, получать кубик удобнее по его реальному значению
         return dice;
     }
 

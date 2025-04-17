@@ -4,7 +4,7 @@ using UnityEngine;
 
 internal class CardSystem : ICardSystem
 {
-    private List<PedroCard>[] _pedroPlayed;
+    private Dictionary<ClockNum, List<PedroCard>> _pedroPlayed;
     private List<AnokCard> _anokPlayed;
 
     private List<PedroCard> _pedroHand;
@@ -12,15 +12,16 @@ internal class CardSystem : ICardSystem
 
     private bool _showingPedroHand;
     private IDollPlacementController _placementController;
+    private IGameSubStateMachine _gameSubStateMachine;
     private Palette _palette;
 
-    public System.Action HandUpdated;
+    public event System.Action HandUpdated;
 
-    public CardSystem(IDollPlacementController placementController, Palette palette)
+    public CardSystem(IDollPlacementController placementController, IGameSubStateMachine gameSubStateMachine, Palette palette)
     {
         _anokPlayed = new List<AnokCard>();
-        _pedroPlayed = new List<PedroCard>[12];
-        for (int i = 1; i <= 12; i++)
+        _pedroPlayed = new Dictionary<ClockNum, List<PedroCard>>();
+        for (int i = ClockNum.MinValue; i <= ClockNum.MaxValue; i++)
         {
             _pedroPlayed[i] = new();
         }
@@ -31,7 +32,7 @@ internal class CardSystem : ICardSystem
         _placementController.CurrentPlaceChanged += (_) => HandUpdated?.Invoke();
         _placementController.PlacementChanged += () => HandUpdated?.Invoke();
 
-        _gameProcess = gameProcess;
+        _gameSubStateMachine = gameSubStateMachine;
 
         _palette = palette;
 
@@ -50,7 +51,7 @@ internal class CardSystem : ICardSystem
             return _pedroHand.Cast<BaseCard>().ToList();
         return _anokHand.Cast<BaseCard>().ToList();
     }
-    public List<BaseCard> GetCurrentHand()
+    public List<BaseCard> GetCurrentHandForView()
     {
         if (_showingPedroHand)
             return _pedroPlayed[_placementController.CurrentPlace].Cast<BaseCard>().ToList();
@@ -73,14 +74,14 @@ internal class CardSystem : ICardSystem
             _anokHand.Add((AnokCard)card);
         HandUpdated?.Invoke();
     }
-    public bool TryPlayCard(BaseCard card, ClockNum doll)
+    public bool TryPlayCard(BaseCard card)
     {
         if (!card.CheckCondition())
             return false;
         if (card is PedroCard)
         {
             _pedroHand.Remove((PedroCard)card);
-            _pedroPlayed[doll].Add((PedroCard)card);
+            _pedroPlayed[_gameSubStateMachine.CurrentPlaceNumber].Add((PedroCard)card);
         }
         else
         {

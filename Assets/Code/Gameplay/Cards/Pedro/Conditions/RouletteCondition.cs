@@ -1,11 +1,11 @@
 ﻿internal class RouletteCondition : BaseCondition
 {
-    private DiceManager _diceManager;
+    private DiceController _diceManager;
     private DollPlacementController _placementController;
 
     public RouletteCondition()
     {
-        _diceManager = ServiceLocator.Resolve<DiceManager>();
+        _diceManager = ServiceLocator.Resolve<DiceController>();
         _placementController = ServiceLocator.Resolve<DollPlacementController>();
     }
 
