@@ -1,50 +1,37 @@
-﻿using System.Collections;
+﻿// BaseRotatableAxis.cs
+using System.Collections;
 using UnityEngine;
 
-internal abstract class BaseRotatableAxis : MonoBehaviour
+internal abstract class BaseRotatableAxis : BaseRotatableObject
 {
     [Header("0: outside left - 4: outside right")]
     [SerializeField] protected GameObject[] _places;
 
-
     protected GameObject[] _objects = new GameObject[5];
     protected Coroutine _rotationCoroutine;
     protected bool _isRotating = false;
-    protected bool _clockwise;
-    protected int _currentIndex;
+    public override bool IsRotating => _isRotating;
+    protected ClockNum _currentPlace;
     private float _duration;
-
-    protected int _queuedDirection = 0;
-    protected bool _isCompletingMove = false;
 
     protected Palette _palette;
     protected IDollPlacementController _placementController;
 
-    public void Initiate(Palette palette, IDollPlacementController placementController, float duration)
+    public override void Initiate(Palette palette, IDollPlacementController placementController, float duration)
     {
         _palette = palette;
         _placementController = placementController;
+        _currentPlace = _placementController.CurrentPlace;
         _duration = duration;
-        _currentIndex = _placementController.CurrentPlace;
-
         InitializeObjects();
     }
-
-    public void QueueRotation(int direction)
+    public override void StartRotation(bool clockwise)
     {
-        if (!_isRotating && direction != 0)
-        {
-            StartRotation(direction > 0);
-            return;
-        }
-
-        _queuedDirection = direction;
-
-        if (direction ==0)
-        {
-            _isCompletingMove = true;
-        }
+        if (_isRotating) return;
+        _isRotating = true;
+        _rotationCoroutine = StartCoroutine(RotationCoroutine(clockwise));
     }
+
 
     private void InitializeObjects()
     {
@@ -53,85 +40,26 @@ internal abstract class BaseRotatableAxis : MonoBehaviour
             if (_objects[i] != null)
             {
                 Destroy(_objects[i].gameObject);
-                _objects[i] = null;
-
             }
         }
+
         for (int i = -2; i <= 2; i++)
         {
-            int place = ConvertPlaceForCircle(i + _currentIndex, 12, false);
-            SetNewObject(place);
+            ClockNum tablePlace = _currentPlace + i;
+            SetNewObject(tablePlace, i + 2); // +2 для преобразования диапазона -2..2 в 0..4
         }
     }
 
-    private int ConvertPlaceForCircle(int place, int max, bool fromZero)
+    private IEnumerator RotationCoroutine(bool clockwise)
     {
-        if (fromZero)
-        {
-            place %= max;
-            return place < 0 ? place + max : place;
-        }
-        else
-        {
-            place = (place - 1) % max + 1;
-            return place <= 0 ? place + max : place;
-        }
-    }
-
-    private void SetNewObject(int number)
-    {
-        GameObject obj = Generate(number);
-        int place = ConvertPlaceForCircle(number - _currentIndex + 2, 12, true);
-        SetObjectTransform(obj, place);
-        _objects[place] = obj;
-    }
-
-    private void SetObjectTransform(GameObject obj, int place)
-    {
-        Transform placeTransform = _places[place].transform;
-        obj.transform.SetPositionAndRotation(placeTransform.position, placeTransform.rotation);
-        obj.transform.localScale = placeTransform.localScale;
-    }
-
-    protected abstract GameObject Generate(int place);
-
-    protected void StartRotation(bool clockwise)
-    {
-        if (_isRotating) return;
-
-        _clockwise = clockwise;
-        _isRotating = true;
-        _isCompletingMove = false;
-        _rotationCoroutine = StartCoroutine(RotationCoroutine());
-    }
-
-    private IEnumerator RotationCoroutine()
-    {
-        while (true)
-        {
-            if (!PrepareRotationStep(out var startTransforms, out var targetTransforms))
-                yield break;
-
-            yield return ExecuteRotationAnimation(startTransforms, targetTransforms);
-
-            if (!FinalizeRotationStep())
-                yield break;
-        }
-    }
-
-    private bool PrepareRotationStep(
-        out (Vector3 position, Quaternion rotation, Vector3 scale)[] startTransforms,
-        out (Vector3 position, Quaternion rotation, Vector3 scale)[] targetTransforms)
-    {
-        int direction = _clockwise ? -1 : 1;
-        int excessObjectIndex = _clockwise ? 0 : _objects.Length - 1;
-
-        startTransforms = new (Vector3, Quaternion, Vector3)[_objects.Length];
-        targetTransforms = new (Vector3, Quaternion, Vector3)[_objects.Length];
+        var startTransforms = new (Vector3 pos, Quaternion rot, Vector3 scale)[_objects.Length];
+        var targetTransforms = new (Vector3 pos, Quaternion rot, Vector3 scale)[_objects.Length];
+        int direction = clockwise ? -1 : 1;
+        int excessIndex = clockwise ? 0 : _objects.Length - 1;
 
         for (int i = 0; i < _objects.Length; i++)
         {
-            if (i == excessObjectIndex) continue;
+            if (i == excessIndex) continue;
 
             startTransforms[i] = (
                 _objects[i].transform.position,
@@ -140,139 +68,67 @@ internal abstract class BaseRotatableAxis : MonoBehaviour
             );
 
             int targetIndex = i + direction;
-            Transform targetTransform = _places[targetIndex].transform;
-            targetTransforms[i] = (
-                targetTransform.position,
-                targetTransform.rotation,
-                targetTransform.localScale
-            );
+            Transform target = _places[targetIndex].transform;
+            targetTransforms[i] = (target.position, target.rotation, target.localScale);
         }
 
-        return true;
-    }
-
-    private IEnumerator ExecuteRotationAnimation(
-        (Vector3 position, Quaternion rotation, Vector3 scale)[] startTransforms,
-        (Vector3 position, Quaternion rotation, Vector3 scale)[] targetTransforms)
-    {
         float elapsed = 0f;
-        int excessObjectIndex = _clockwise ? 0 : _objects.Length - 1;
-
         while (elapsed < _duration)
         {
             elapsed += Time.deltaTime;
-
             float t = Mathf.Clamp01(elapsed / _duration);
 
-            AnimateObjects(startTransforms, targetTransforms, excessObjectIndex, t);
+            for (int i = 0; i < _objects.Length; i++)
+            {
+                if (i == excessIndex) continue;
+
+                _objects[i].transform.position = Vector3.Lerp(
+                    startTransforms[i].pos, targetTransforms[i].pos, t);
+                _objects[i].transform.rotation = Quaternion.Lerp(
+                    startTransforms[i].rot, targetTransforms[i].rot, t);
+                _objects[i].transform.localScale = Vector3.Lerp(
+                    startTransforms[i].scale, targetTransforms[i].scale, t);
+            }
             yield return null;
         }
 
-        FinalizeObjectTransforms(targetTransforms, excessObjectIndex);
+        CompleteRotationStep(clockwise);
+        _isRotating = false;
     }
 
-    private void AnimateObjects(
-        (Vector3 position, Quaternion rotation, Vector3 scale)[] startTransforms,
-        (Vector3 position, Quaternion rotation, Vector3 scale)[] targetTransforms,
-        int excessObjectIndex, float t)
+    private void CompleteRotationStep(bool clockwise)
     {
-        for (int i = 0; i < _objects.Length; i++)
-        {
-            if (i == excessObjectIndex) continue;
+        int excessIndex = clockwise ? 0 : _objects.Length - 1;
+        Destroy(_objects[excessIndex]);
 
-            _objects[i].transform.position = Vector3.Lerp(
-                startTransforms[i].position, targetTransforms[i].position, t);
-            _objects[i].transform.rotation = Quaternion.Lerp(
-                startTransforms[i].rotation, targetTransforms[i].rotation, t);
-            _objects[i].transform.localScale = Vector3.Lerp(
-                startTransforms[i].scale, targetTransforms[i].scale, t);
-        }
-    }
-
-    private void FinalizeObjectTransforms(
-        (Vector3 position, Quaternion rotation, Vector3 scale)[] targetTransforms,
-        int excessObjectIndex)
-    {
-        for (int i = 0; i < _objects.Length; i++)
-        {
-            if (i == excessObjectIndex) continue;
-            _objects[i].transform.position = targetTransforms[i].position;
-            _objects[i].transform.rotation = targetTransforms[i].rotation;
-            _objects[i].transform.localScale = targetTransforms[i].scale;
-        }
-    }
-
-    private bool FinalizeRotationStep()
-    {
-        CompleteRotationStep();
-
-        if (_queuedDirection != 0)
-        {
-            bool newDirection = _queuedDirection > 0;
-            _queuedDirection = 0;
-
-            if (newDirection == _clockwise)
-            {
-                return true;
-            }
-            else
-            {
-                _isRotating = false;
-                StartRotation(newDirection);
-                return false;
-            }
-        }
-
-        if (_isCompletingMove)
-        {
-            _isRotating = false;
-            _isCompletingMove = false;
-            return false;
-        }
-
-        return true;
-    }
-
-    private void CompleteRotationStep()
-    {
-        RemoveExcessObject();
-        ReorganizeObjects();
-        UpdateCurrentIndex();
-        CreateNewObject();
-    }
-
-    private void RemoveExcessObject()
-    {
-        int excessObjectIndex = _clockwise ? 0 : _objects.Length - 1;
-        Destroy(_objects[excessObjectIndex]);
-        _objects[excessObjectIndex] = null;
-    }
-
-    private void ReorganizeObjects()
-    {
-        int direction = _clockwise ? -1 : 1;
-        int newObjectIndex = _clockwise ? _objects.Length - 1 : 0;
-        GameObject[] newObjects = new GameObject[_objects.Length];
+        int direction = clockwise ? -1 : 1;
+        var newObjects = new GameObject[_objects.Length];
 
         for (int i = 0; i < _objects.Length; i++)
         {
-            if (i == newObjectIndex) continue;
+            if (i == (direction > 0 ? 0 : _objects.Length - 1)) continue;
             newObjects[i] = _objects[i - direction];
         }
-
         _objects = newObjects;
+
+        _currentPlace -= direction;
+        ClockNum newPlace = _currentPlace + (clockwise ? 2 : -2);
+        SetNewObject(newPlace, clockwise ? 4 : 0);
     }
 
-    private void UpdateCurrentIndex()
+    private void SetNewObject(ClockNum tablePlace, int axisPlace)
     {
-        int direction = _clockwise ? -1 : 1;
-        _currentIndex = ConvertPlaceForCircle(_currentIndex - direction, 12, false);
-        _placementController.SetCurrentDoll(_currentIndex);
+        GameObject obj = Generate(tablePlace);
+        SetObjectTransform(obj, axisPlace);
+        _objects[axisPlace] = obj;
     }
 
-    private void CreateNewObject()
+    private void SetObjectTransform(GameObject obj, int placeIndex)
     {
-        int virtualPlaceIndex = _currentIndex + (_clockwise ? 2 : -2);
-        SetNewObject(ConvertPlaceForCircle(virtualPlaceIndex, 12, false));
+        Transform placeTransform = _places[placeIndex].transform;
+        obj.transform.SetPositionAndRotation(placeTransform.position, placeTransform.rotation);
+        obj.transform.localScale = placeTransform.localScale;
     }
+
+    protected abstract GameObject Generate(ClockNum place);
 }

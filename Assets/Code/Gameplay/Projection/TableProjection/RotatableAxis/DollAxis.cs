@@ -5,7 +5,7 @@ internal class DollAxis : BaseRotatableAxis
 {
     
 
-    protected override GameObject Generate(int place)
+    protected override GameObject Generate(ClockNum place)
     {
         int index = _placementController.GetDollIndex(place);
         DollView doll = Instantiate(_palette.DollsData.First(x => x.Index == index).Prefab, transform);

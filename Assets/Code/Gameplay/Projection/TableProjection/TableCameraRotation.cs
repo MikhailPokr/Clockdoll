@@ -1,18 +1,18 @@
+// TableCameraRotation.cs
 using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 internal class TableCameraRotation : MonoBehaviour, IInitializable
 {
-
-    //очень плохое взаимодействие с BaseRotatableAxis. Вычисление позиции должно производится тут.
-
-    [SerializeField] private BaseRotatableAxis[] _rotatableObjects;
+    [SerializeField] private BaseRotatableObject[] _rotatableObjects;
     [SerializeField] private float _duration;
 
     private Palette _palette;
     private IInputHandler _inputHandler;
     private IDollPlacementController _placementController;
+    private bool _isRotating;
 
     public void Initialize()
     {
@@ -21,7 +21,6 @@ internal class TableCameraRotation : MonoBehaviour, IInitializable
         _inputHandler = ServiceLocator.Resolve<InputHandler>();
 
         _inputHandler.ButtonPressed += OnButtonPressed;
-
         _placementController.PlacementChanged += InitiateAxes;
 
         InitiateAxes();
@@ -37,25 +36,36 @@ internal class TableCameraRotation : MonoBehaviour, IInitializable
 
     public void OnButtonPressed(KeyCode keyCode, int state)
     {
+        if (_isRotating) return;
+
         if (keyCode == KeyCode.LeftArrow && state == 1)
-            Rotate(-1);
-        if (keyCode == KeyCode.RightArrow && state == 1)
-            Rotate(1);
-        if ((keyCode == KeyCode.LeftArrow || keyCode == KeyCode.RightArrow) && state == 1)
-            Rotate(0);
+            StartCoroutine(RotateTable(-1));
+        else if (keyCode == KeyCode.RightArrow && state == 1)
+            StartCoroutine(RotateTable(1));
+
+
     }
 
-    public void Rotate(int direction)
+    private IEnumerator RotateTable(int direction)
     {
-        foreach (var  axis in _rotatableObjects)
+        _isRotating = true;
+        bool clockwise = direction > 0;
+
+        foreach (BaseRotatableAxis axis in _rotatableObjects)
         {
-            axis.QueueRotation(direction);
+            axis.StartRotation(clockwise);
         }
+
+        yield return new WaitWhile(() => _rotatableObjects.All(x => x.IsRotating));
+        ClockNum newPlace = _placementController.CurrentPlace + direction;
+        _placementController.SetCurrentDoll(newPlace);
+
+        _isRotating = false;
     }
 
     private void OnDestroy()
     {
         _inputHandler.ButtonPressed -= OnButtonPressed;
-        _placementController.PlacementChanged += Initialize;
+        _placementController.PlacementChanged -= InitiateAxes;
     }
 }
