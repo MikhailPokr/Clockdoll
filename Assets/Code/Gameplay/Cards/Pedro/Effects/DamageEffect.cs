@@ -16,7 +16,8 @@
             Suit.Diamonds => 16,
             Suit.Spades => 20,
             Suit.Hearts => 10,
-            Suit.Crosses => 6
+            Suit.Crosses => 6,
+            _ => 0
         };
         var damage = _diceManager.RollDice(side);
         _anokCashData.ChangeCash(-damage[0].value);

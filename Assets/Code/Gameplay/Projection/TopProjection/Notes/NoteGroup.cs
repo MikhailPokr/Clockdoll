@@ -59,7 +59,7 @@ public class NoteGroup : MonoBehaviour, IInitializable
         _markerData.SetMark(num, _placementController.GetCurrentDollIndex());
     }
 
-    private void OnDataChanged(int _)
+    private void OnDataChanged(ClockNum _)
     {
         int nextTopIndex = (_currentTopNoteIndex + 1) % _notes.Length;
         _notes[nextTopIndex].UpdateMark(_markerData.GetDollMarkers(_placementController.GetCurrentDollIndex()));

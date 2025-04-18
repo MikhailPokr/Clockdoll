@@ -24,7 +24,7 @@ internal class HandView : MonoBehaviour, IInitializable
 
     public void ClickCard(BaseCard card)
     {
-        _game.ClickAnokCard(card);
+        //_game.ClickAnokCard(card);
     }
 
     public void GenerateHand()

@@ -71,7 +71,7 @@ internal class Game : IGame
         _cardSystem.TakeCard(false, 5);
     }*/
 
-    private void OnButtonPressed(KeyCode key, int i)
+    /*private void OnButtonPressed(KeyCode key, int i)
     {
         if (key == KeyCode.Space)
         {
@@ -86,9 +86,9 @@ internal class Game : IGame
                 StartPedroTurn();
             }
         }
-    }
+    }*/
 
-    private void OnTurnChanged(bool isPedroTurn, int currentPlace)
+    /*private void OnTurnChanged(bool isPedroTurn, int currentPlace)
     {
         _fortuneSystem.GenerateNewList();
         if (isPedroTurn)
@@ -101,17 +101,17 @@ internal class Game : IGame
             // Ход Anok начинается автоматически, но завершается по пробелу
             StartAnokTurn();
         }
-    }
+    }*/
 
-    private void StartAnokTurn()
+    /*private void StartAnokTurn()
     {
         var diceResult = _diceManager.RollDice(12);
         _fortuneSystem.ApplyReward(diceResult[0].value);
 
         // Не запускаем автоматически карты Pedro, ждем действий игрока
-    }
+    }*/
 
-    public void ClickAnokCard(BaseCard card)
+    /*public void ClickAnokCard(BaseCard card)
     {
         if (_gameProcess.ItsPedroTurn) return;
 
@@ -125,16 +125,16 @@ internal class Game : IGame
             return;
 
         // Теперь завершение хода происходит по нажатию пробела
-    }
+    }*/
 
-    private void StartPedroTurn()
+    /*private void StartPedroTurn()
     {
         var diceResult = _diceManager.RollDice(12);
         _fortuneSystem.ApplyReward(diceResult[0].value);
         PlayPedroCard();
-    }
+    }*/
 
-    private void PlayPedroCard()
+    /*private void PlayPedroCard()
     {
         var pedroHand = _cardSystem.GetHand(true);
 
@@ -151,14 +151,14 @@ internal class Game : IGame
                 _gameProcess.OnTurnEnd();
             }
         }
-    }
+    }*/
 
-    private void OnAnokBankrupt()
+    /*private void OnAnokBankrupt()
     {
         //поражение
-    }
+    }*/
 
-    public void CheckWinCondition()
+    /*public void CheckWinCondition()
     {
         bool allDollsCorrect = true;
         for (int i = 1; i <= DollPlacementController.NumberOfPlayers; i++)
@@ -174,13 +174,13 @@ internal class Game : IGame
         {
             //победа 
         }
-    }
+    }*/
 
-    public void Dispose()
+    /*public void Dispose()
     {
         _gameProcess.TurnChanged -= OnTurnChanged;
         _cashData.CashOver -= OnAnokBankrupt;
         _inputHandler.ButtonPressed -= OnButtonPressed;
-    }
+    }*/
     #endregion
 }

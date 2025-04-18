@@ -13,8 +13,8 @@ internal struct ClockNum : IEquatable<ClockNum>, IComparable<ClockNum>
         set => _value = IntToCorrectNum(value);
     }
 
-    public static ClockNum MinValue = new(1);
-    public static ClockNum MaxValue = new(12);
+    public static int MinValue = 1;
+    public static int MaxValue = 12;
     public override string ToString() => _value.ToString();
     /// <summary>
     /// Преобразование для массивов, поскольку в них минимальное значение 0.
@@ -50,7 +50,7 @@ internal struct ClockNum : IEquatable<ClockNum>, IComparable<ClockNum>
             return IntToCorrectNum(other) == _value;
         }
     }
-    public bool Equals(ClockNum other) => this == other;
+    public bool Equals(ClockNum other) => this.Value == other.Value;
     public static bool operator ==(ClockNum a, ClockNum b) => a.Equals(b);
     public static bool operator !=(ClockNum a, ClockNum b) => !(a == b);
 

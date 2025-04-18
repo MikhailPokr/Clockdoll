@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,7 +21,7 @@ internal class NoteView : MonoBehaviour
         _noteGroup.Click(num);
     }
 
-    public void UpdateMark(int[] mode)
+    public void UpdateMark(Dictionary<ClockNum, int> mode)
     {
         for (int i = 0; i < _markPlace.Length; i++)
         {

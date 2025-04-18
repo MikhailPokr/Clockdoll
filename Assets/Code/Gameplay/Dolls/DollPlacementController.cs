@@ -19,7 +19,6 @@ internal class DollPlacementController : IDollPlacementController
     private ClockNum _currentPlace;
     public ClockNum CurrentPlace => _currentPlace;
 
-    public event System.Action<int> TableStartRotated;
     public event System.Action<ClockNum> CurrentPlaceChanged;
     public event System.Action PlacementChanged;
 
@@ -27,8 +26,6 @@ internal class DollPlacementController : IDollPlacementController
     {
         _currentPlace = ClockNum.MinValue;
     }
-
-    public void RotateTable(int direction) => TableStartRotated?.Invoke(direction);
 
     public void SetCurrentDoll(ClockNum index)
     {

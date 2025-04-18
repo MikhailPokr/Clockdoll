@@ -29,11 +29,9 @@ internal interface IDollPlacementController : IService
     void GenarateTruePositions();
     void GeneratePlaces();
 
-    void RotateTable(int direction);
     void SetCurrentDoll(ClockNum index);
     void SetNewPlacement(Dictionary<ClockNum, ClockNum> newPlacement);
 
-    event Action<int> TableStartRotated;
     event Action<ClockNum> CurrentPlaceChanged;
     event Action PlacementChanged;
 }

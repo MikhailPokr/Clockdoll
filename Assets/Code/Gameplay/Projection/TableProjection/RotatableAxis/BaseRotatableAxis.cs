@@ -18,25 +18,20 @@ internal abstract class BaseRotatableAxis : MonoBehaviour
     protected bool _isCompletingMove = false;
 
     protected Palette _palette;
-    protected DollPlacementController _placementController;
+    protected IDollPlacementController _placementController;
 
-    public void Initiate(Palette palette, DollPlacementController placementController, float duration)
+    public void Initiate(Palette palette, IDollPlacementController placementController, float duration)
     {
         _palette = palette;
         _placementController = placementController;
         _duration = duration;
         _currentIndex = _placementController.CurrentPlace;
 
-        _placementController.TableStartRotated += QueueRotation;
-        _placementController.PlacementChanged += InitializeObjects;
-
         InitializeObjects();
     }
 
     public void QueueRotation(int direction)
     {
-        direction = Mathf.Clamp(direction, -1, 1);
-
         if (!_isRotating && direction != 0)
         {
             StartRotation(direction > 0);

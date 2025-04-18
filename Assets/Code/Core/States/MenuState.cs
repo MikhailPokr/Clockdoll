@@ -30,13 +30,21 @@ internal class MenuState : IState
     private void OnLoadCompleted()
     {
         _inputHandler = ServiceLocator.Register(new InputHandler());
-        _dataLoader = ServiceLocator.Register(new ResourcesLoader());
-
         _initializer = ServiceLocator.Register(new Initializer());
+        _dataLoader = ServiceLocator.Register(new ResourcesLoader());
         _palette = ServiceLocator.Register((Palette)_dataLoader.LoadPrefab("Palette"));
         
         _initializer.InitializeObjects();
-        _stateMachine.ChangeState(new GameState());
+        _stateMachine.ChangeState(new GameState(
+            _coreTicker,
+            _stateMachine,
+            _buildData,
+            _sceneLoader,
+            _inputHandler,
+            _initializer,
+            _dataLoader,
+            _palette
+            ));
     }
     public void Update()
     {

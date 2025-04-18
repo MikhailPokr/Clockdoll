@@ -16,7 +16,7 @@ internal class ClockView : MonoBehaviour, IInitializable
     [Space]
     [SerializeField] private bool _isTableClock;
  
-    private GameProcess _gameProcess;
+    private GameSubStateMachine _gameSubStateMachine;
     private ProjectionController _projectionController;
 
     public event Action<bool> ButtomPressed;
@@ -24,18 +24,18 @@ internal class ClockView : MonoBehaviour, IInitializable
 
     public void Initialize()
     {
-        _gameProcess = ServiceLocator.Resolve<GameProcess>();
-        _gameProcess.TurnChanged += OnTurnChanged;
+        _gameSubStateMachine = ServiceLocator.Resolve<GameSubStateMachine>();
+        _gameSubStateMachine.SubStateChanged += OnTurnChanged;
 
         _projectionController = ServiceLocator.Resolve<ProjectionController>();
         ButtomPressed += _projectionController.OnClockClick;
 
-        OnTurnChanged(_gameProcess.ItsPedroTurn, _gameProcess.CurrentPlaceNumber);
+        OnTurnChanged(_gameSubStateMachine.CurrentState, _gameSubStateMachine.CurrentPlaceNumber);
     }
 
-    private void OnTurnChanged(bool is12, int hour)
+    private void OnTurnChanged(GameSubState state, ClockNum num)
     {
-        MoveArrow(hour, is12 ? 0 : 6);
+        MoveArrow(num, (int)state);
     }
 
     private void MoveArrow(float hour, float minutes)
@@ -51,6 +51,6 @@ internal class ClockView : MonoBehaviour, IInitializable
 
     private void OnDestroy()
     {
-        _gameProcess.TurnChanged -= OnTurnChanged;
+        _gameSubStateMachine.SubStateChanged -= OnTurnChanged;
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -9,19 +10,28 @@ internal class TableCameraRotation : MonoBehaviour, IInitializable
     [SerializeField] private BaseRotatableAxis[] _rotatableObjects;
     [SerializeField] private float _duration;
 
-    private InputHandler _inputHandler;
-    private DollPlacementController _placementController;
+    private Palette _palette;
+    private IInputHandler _inputHandler;
+    private IDollPlacementController _placementController;
 
     public void Initialize()
     {
-        Palette palette = ServiceLocator.Resolve<Palette>();
+        _palette = ServiceLocator.Resolve<Palette>();
         _placementController = ServiceLocator.Resolve<DollPlacementController>();
         _inputHandler = ServiceLocator.Resolve<InputHandler>();
+
         _inputHandler.ButtonPressed += OnButtonPressed;
-        _placementController.PlacementChanged += Initialize;
-        foreach (var obj in _rotatableObjects)
+
+        _placementController.PlacementChanged += InitiateAxes;
+
+        InitiateAxes();
+    }
+
+    private void InitiateAxes()
+    {
+        foreach (BaseRotatableAxis axis in _rotatableObjects)
         {
-            obj.Initiate(palette, _placementController, _duration);
+            axis.Initiate(_palette, _placementController, _duration);
         }
     }
 
@@ -37,11 +47,15 @@ internal class TableCameraRotation : MonoBehaviour, IInitializable
 
     public void Rotate(int direction)
     {
-        _placementController.RotateTable(direction);
+        foreach (var  axis in _rotatableObjects)
+        {
+            axis.QueueRotation(direction);
+        }
     }
 
     private void OnDestroy()
     {
         _inputHandler.ButtonPressed -= OnButtonPressed;
+        _placementController.PlacementChanged += Initialize;
     }
 }

@@ -12,7 +12,7 @@ public class SpotLight : MonoBehaviour, IInitializable
         transform.localEulerAngles = new(0, 0, _placementController.CurrentPlace * -30);
     }
 
-    private void OnRotate(int index)
+    private void OnRotate(ClockNum index)
     {
         transform.localEulerAngles = new(0, 0, index * -30);
 

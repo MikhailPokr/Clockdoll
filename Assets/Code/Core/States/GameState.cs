@@ -85,7 +85,7 @@ internal class GameState : IState
 
         _initializer.InitializeObjects();
 
-        _game.Start();
+        //_game.Start();
     }
     public void Update()
     {

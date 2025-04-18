@@ -21,10 +21,21 @@ internal class BootstrapState : IState
 
         if (_buildData.Platform == RuntimePlatform.WebGLPlayer)
         {
-            //сразу инициализировать часть сервисов, которые иначе должны быть инициализированны в меню
             InputHandler inputHandler = ServiceLocator.Register(new InputHandler());
+            Initializer initializer = ServiceLocator.Register(new Initializer());
+            ResourcesLoader resourcesLoader = ServiceLocator.Register(new ResourcesLoader());
+            Palette palette = ServiceLocator.Register((Palette)resourcesLoader.LoadPrefab("Palette"));
 
-            _stateMachine.ChangeState(new GameState());
+            _stateMachine.ChangeState(new GameState(
+                _coreTicker,
+                _stateMachine,
+                _buildData,
+                _sceneLoader,
+                inputHandler,
+                initializer,
+                resourcesLoader,
+                palette
+                ));
         }
         else
         {
