@@ -446,6 +446,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 141440422}
+  - component: {fileID: 141440424}
   - component: {fileID: 141440423}
   m_Layer: 0
   m_Name: Table
@@ -526,6 +527,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &141440424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141440421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f0b65f8cbdfbe94e88271697499b6d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteRenderer: {fileID: 2107355697}
 --- !u!1 &165911172
 GameObject:
   m_ObjectHideFlags: 0
@@ -2053,6 +2067,7 @@ MonoBehaviour:
   - {fileID: 1897458384}
   - {fileID: 1025500854}
   - {fileID: 794945042}
+  - {fileID: 141440424}
   _duration: 0.3
 --- !u!1 &555642987
 GameObject:
@@ -2401,8 +2416,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -937181537
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: -1820525419990397792, guid: 4811e0452511a944e9eed8c9794f075b, type: 3}
   m_Color: {r: 0.8867924, g: 0.8867924, b: 0.8867924, a: 1}

@@ -8,7 +8,7 @@ internal class MovableSprite : BaseRotatableObject
     private SpriteRenderer _leftCopy;
     private SpriteRenderer _rightCopy;
 
-    private Dictionary<ClockNum, float> _partCenters;
+    private Dictionary<int, float> _partCenters;
 
     private bool _isRotating;
     public override bool IsRotating => _isRotating;
@@ -25,7 +25,7 @@ internal class MovableSprite : BaseRotatableObject
         CreateSideCopies();
         CalculatePartCenters();
 
-        transform.position = new(_partCenters[_placementController.GetCurrentDollIndex()], transform.position.y);
+        _spriteRenderer.transform.position = new(_partCenters[_placementController.CurrentPlace], _spriteRenderer.transform.position.y);
     }
 
     private void CreateSideCopies()
@@ -58,18 +58,11 @@ internal class MovableSprite : BaseRotatableObject
 
         _partCenters = new();
 
-        for (int i = ClockNum.MinValue; i <= ClockNum.MaxValue; i++)
+        for (int i = ClockNum.MinValue - 1; i <= ClockNum.MaxValue + 1; i++)
         {
-            float centerX = bounds.min.x + (i * partWidth) + (partWidth / 2);
+            float centerX = bounds.max.x - (i * partWidth) - (partWidth / 2);
 
             _partCenters[i] = centerX;
-        }
-
-        for (int i = ClockNum.MinValue; i < ClockNum.MaxValue; i++)
-        {
-            GameObject a = new GameObject(i.ToString());
-            a.transform.position = new(_partCenters[i], transform.position.y);
-            a.transform.parent = _spriteRenderer.transform;
         }
     }
 
@@ -84,10 +77,11 @@ internal class MovableSprite : BaseRotatableObject
     private IEnumerator RotateCoroutine(bool clockwise)
     {
         float elapsedTime = 0f;
-        Vector2 startPos = transform.position;
+        Vector2 startPos = _spriteRenderer.transform.position;
 
-        ClockNum currentIndex = _placementController.GetCurrentDollIndex();
-        ClockNum nextIndex = clockwise ? currentIndex - 1 : currentIndex + 1;
+        int currentIndex = _placementController.CurrentPlace;
+        int nextIndex = clockwise ? currentIndex + 1 : currentIndex - 1;
+
         float targetX = _partCenters[nextIndex];
 
         Vector2 endPos = new Vector2(targetX, startPos.y);
@@ -96,11 +90,22 @@ internal class MovableSprite : BaseRotatableObject
         {
             elapsedTime += Time.deltaTime;
             float t = Mathf.Clamp01(elapsedTime / _duration);
-            transform.position = Vector2.Lerp(startPos, endPos, t);
+            _spriteRenderer.transform.position = Vector2.Lerp(startPos, endPos, t);
 
             yield return null;
         }
 
+        if (nextIndex == ClockNum.MinValue - 1)
+        {
+            _spriteRenderer.transform.position = new Vector2(_partCenters[ClockNum.MaxValue], startPos.y);
+
+        }
+        if (nextIndex == ClockNum.MaxValue + 1)
+        {
+            _spriteRenderer.transform.position = new Vector2(_partCenters[ClockNum.MinValue], startPos.y);
+        }
+
         _isRotating = false;
+
     }
 }
