@@ -25,6 +25,8 @@ internal interface IDollPlacementController : IService
     /// </summary>
     ClockNum GetTrueDollPlace(ClockNum index);
 
+    void Start();
+
     void Generate();
     void GenarateTruePositions();
     void GeneratePlaces();

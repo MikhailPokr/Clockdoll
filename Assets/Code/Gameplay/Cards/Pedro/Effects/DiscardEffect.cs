@@ -2,11 +2,11 @@
 
 internal class DiscardEffect : BaseEffect
 {
-    private DiscardManager _discardManager;
+    private IDiscardManager _discardManager;
 
     public DiscardEffect(Suit suit) : base(suit)
     {
-        _discardManager = ServiceLocator.Resolve<DiscardManager>();
+        _discardManager = ServiceLocator.Resolve<IDiscardManager>();
     }
 
     public override void PlayEffect()

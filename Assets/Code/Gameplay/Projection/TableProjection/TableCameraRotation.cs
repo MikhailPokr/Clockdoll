@@ -17,8 +17,8 @@ internal class TableCameraRotation : MonoBehaviour, IInitializable
     public void Initialize()
     {
         _palette = ServiceLocator.Resolve<Palette>();
-        _placementController = ServiceLocator.Resolve<DollPlacementController>();
-        _inputHandler = ServiceLocator.Resolve<InputHandler>();
+        _placementController = ServiceLocator.Resolve<IDollPlacementController>();
+        _inputHandler = ServiceLocator.Resolve<IInputHandler>();
 
         _inputHandler.ButtonPressed += OnButtonPressed;
         _placementController.PlacementChanged += InitiateAxes;
@@ -28,7 +28,7 @@ internal class TableCameraRotation : MonoBehaviour, IInitializable
 
     private void InitiateAxes()
     {
-        foreach (BaseRotatableAxis axis in _rotatableObjects)
+        foreach (BaseRotatableObject axis in _rotatableObjects)
         {
             axis.Initiate(_palette, _placementController, _duration);
         }
@@ -51,7 +51,7 @@ internal class TableCameraRotation : MonoBehaviour, IInitializable
         _isRotating = true;
         bool clockwise = direction > 0;
 
-        foreach (BaseRotatableAxis axis in _rotatableObjects)
+        foreach (BaseRotatableObject axis in _rotatableObjects)
         {
             axis.StartRotation(clockwise);
         }

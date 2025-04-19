@@ -2,13 +2,13 @@ using UnityEngine;
 
 internal abstract class AnokCard : BaseCard
 {
-    protected ReplaceManager _replaceManager;
+    protected IReplaceManager _replaceManager;
     protected Palette _palette;
 
     public AnokCard()
     {
         _palette = ServiceLocator.Resolve<Palette>();
-        _replaceManager = ServiceLocator.Resolve<ReplaceManager>();
+        _replaceManager = ServiceLocator.Resolve<IReplaceManager>();
         _color = Color.black;
     }
 

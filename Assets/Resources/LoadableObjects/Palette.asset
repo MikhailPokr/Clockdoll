@@ -50,6 +50,7 @@ MonoBehaviour:
     Symbol: {fileID: 230579077, guid: 1d3f66d04d677e84b8ffcd30ff435bd7, type: 3}
     Prefab: {fileID: 3140281212397763023, guid: 09bec421af826284da8c64544ed40b02, type: 3}
   Light: {fileID: 8154537325747379201, guid: 9bb4d98755001d9448217352f32a346b, type: 3}
+  Wall: {fileID: 6202853013078238857, guid: 91f86741293531a46bef988fabad9c40, type: 3}
   CardPrefab: {fileID: 7656108220431678180, guid: 910cf5b865602c043a6fa326bee05402, type: 3}
   DicePrefabs:
     D4: {fileID: -1438760499106956079, guid: 472c6e78550286c44b6d57352a82ecf5, type: 3}

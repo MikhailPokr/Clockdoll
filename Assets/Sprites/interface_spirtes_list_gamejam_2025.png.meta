@@ -678,7 +678,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: interface_spirtes_list_gamejam_2025_21
+      name: Re
       rect:
         serializedVersion: 2
         x: 544
@@ -700,7 +700,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: interface_spirtes_list_gamejam_2025_22
+      name: Next
       rect:
         serializedVersion: 2
         x: 670
@@ -722,7 +722,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: interface_spirtes_list_gamejam_2025_23
+      name: Close
       rect:
         serializedVersion: 2
         x: 848
@@ -744,7 +744,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: interface_spirtes_list_gamejam_2025_24
+      name: Slider
       rect:
         serializedVersion: 2
         x: 979
@@ -1000,14 +1000,18 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Card: -7200797342692199983
+      Close: -9118591073075793162
       Crosses: -5811324989801958716
       D: -1400150731
       Diamonds: -2721155104166945252
       Dice Tray: -5826382540916769489
       Hearts: -3963835453307888894
+      Next: -5352068311023150587
       O: -436543692
       Paper: -3581441594273788003
       Pin: 500977310
+      Re: 850186098290524446
+      Slider: 5267349004641682360
       Spades: 1893148381734069071
       Window: -2801435566579794820
       Window2: 4089101421588211750

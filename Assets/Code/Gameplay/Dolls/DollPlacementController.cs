@@ -27,6 +27,8 @@ internal class DollPlacementController : IDollPlacementController
         _currentPlace = ClockNum.MinValue;
     }
 
+    public void Start() => CurrentPlaceChanged?.Invoke(_currentPlace);
+
     public void SetCurrentDoll(ClockNum index)
     {
         _currentPlace = index;

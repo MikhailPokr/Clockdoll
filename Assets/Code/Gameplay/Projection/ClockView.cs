@@ -16,18 +16,18 @@ internal class ClockView : MonoBehaviour, IInitializable
     [Space]
     [SerializeField] private bool _isTableClock;
  
-    private GameSubStateMachine _gameSubStateMachine;
-    private ProjectionController _projectionController;
+    private IGameSubStateMachine _gameSubStateMachine;
+    private IProjectionController _projectionController;
 
     public event Action<bool> ButtomPressed;
 
 
     public void Initialize()
     {
-        _gameSubStateMachine = ServiceLocator.Resolve<GameSubStateMachine>();
+        _gameSubStateMachine = ServiceLocator.Resolve<IGameSubStateMachine>();
         _gameSubStateMachine.SubStateChanged += OnTurnChanged;
 
-        _projectionController = ServiceLocator.Resolve<ProjectionController>();
+        _projectionController = ServiceLocator.Resolve<IProjectionController>();
         ButtomPressed += _projectionController.OnClockClick;
 
         OnTurnChanged(_gameSubStateMachine.CurrentState, _gameSubStateMachine.CurrentPlaceNumber);

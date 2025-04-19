@@ -1,10 +1,10 @@
 ﻿internal class PrimeCondition : BaseCondition
 {
-    private DollPlacementController _placementController;
+    private IDollPlacementController _placementController;
 
     public PrimeCondition()
     {
-        _placementController = ServiceLocator.Resolve<DollPlacementController>();
+        _placementController = ServiceLocator.Resolve<IDollPlacementController>();
     }
 
     public override bool Check()

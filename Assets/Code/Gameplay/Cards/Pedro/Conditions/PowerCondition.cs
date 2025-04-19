@@ -2,12 +2,12 @@
 
 internal class PowerCondition : BaseCondition
 {
-    private DollPlacementController _placementController;
+    private IDollPlacementController _placementController;
     private bool _isPowerOfTwo;
 
     public PowerCondition()
     {
-        _placementController = ServiceLocator.Resolve<DollPlacementController>();
+        _placementController = ServiceLocator.Resolve<IDollPlacementController>();
         _isPowerOfTwo = Random.value > 0.5f;
     }
 

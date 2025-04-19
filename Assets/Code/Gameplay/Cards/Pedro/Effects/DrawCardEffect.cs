@@ -2,11 +2,11 @@
 
 internal class DrawCardEffect : BaseEffect
 {
-    private CardSystem _cardSystem;
+    private ICardSystem _cardSystem;
 
     public DrawCardEffect(Suit suit) : base(suit)
     {
-        _cardSystem = ServiceLocator.Resolve<CardSystem>();
+        _cardSystem = ServiceLocator.Resolve<ICardSystem>();
     }
 
     public override void PlayEffect()

@@ -6,10 +6,10 @@ public class CashIndicator : MonoBehaviour, IInitializable
 {
     [SerializeField] private TextMeshProUGUI _text;
 
-    private AnokCashData _cashData;
+    private IAnokCashData _cashData;
     public void Initialize()
     {
-        _cashData = ServiceLocator.Resolve<AnokCashData>();
+        _cashData = ServiceLocator.Resolve<IAnokCashData>();
         _cashData.CashChanged += OnCashChanged;
         OnCashChanged();
     }

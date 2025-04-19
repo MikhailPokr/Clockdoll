@@ -1,11 +1,12 @@
 ﻿internal class DrawCardCard : AnokCard
 {
-    private CardSystem _cardSystem;
-    private DiceController _diceManager;
+    private ICardSystem _cardSystem;
+    private IDiceController _diceManager;
 
     public DrawCardCard() : base()
     {
-        _cardSystem = ServiceLocator.Resolve<CardSystem>();
+        _cardSystem = ServiceLocator.Resolve<ICardSystem>();
+        _diceManager = ServiceLocator.Resolve<IDiceController>();
 
         _effect = "Draw D4 cards";
         _suit = _palette.Numbers[10];

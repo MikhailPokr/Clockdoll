@@ -2,8 +2,6 @@
 {
     public ReplaceCard() : base()
     {
-        _replaceManager = ServiceLocator.Resolve<ReplaceManager>();
-
         _effect = "Replace 2 dolls";
         _suit = _palette.Numbers[0];
     }

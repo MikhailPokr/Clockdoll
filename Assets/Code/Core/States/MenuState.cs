@@ -29,9 +29,9 @@ internal class MenuState : IState
 
     private void OnLoadCompleted()
     {
-        _inputHandler = ServiceLocator.Register(new InputHandler());
+        _inputHandler = ServiceLocator.Register<IInputHandler>(new InputHandler());
         _initializer = ServiceLocator.Register(new Initializer());
-        _dataLoader = ServiceLocator.Register(new ResourcesLoader());
+        _dataLoader = ServiceLocator.Register<IDataLoader>(new ResourcesLoader());
         _palette = ServiceLocator.Register((Palette)_dataLoader.LoadPrefab("Palette"));
         
         _initializer.InitializeObjects();

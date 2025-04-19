@@ -21,9 +21,9 @@ internal class BootstrapState : IState
 
         if (_buildData.Platform == RuntimePlatform.WebGLPlayer)
         {
-            InputHandler inputHandler = ServiceLocator.Register(new InputHandler());
+            IInputHandler inputHandler = ServiceLocator.Register<IInputHandler>(new InputHandler());
             Initializer initializer = ServiceLocator.Register(new Initializer());
-            ResourcesLoader resourcesLoader = ServiceLocator.Register(new ResourcesLoader());
+            IDataLoader resourcesLoader = ServiceLocator.Register<IDataLoader>(new ResourcesLoader());
             Palette palette = ServiceLocator.Register((Palette)resourcesLoader.LoadPrefab("Palette"));
 
             _stateMachine.ChangeState(new GameState(

@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 internal class NoteMarkerData : INoteMarkerData
 {
-    private Dictionary<ClockNum, Dictionary<ClockNum, int>> _data;
+    private Dictionary<ClockNum, Dictionary<ClockNum, (int MarkType, int Rotation)>> _data;
 
-    public event Action MarkChanged;
+    public event System.Action MarkChanged;
 
-    public Dictionary<ClockNum, int> GetDollMarkers(ClockNum dollIndex) => _data[dollIndex];
+    public Dictionary<ClockNum, (int, int)> GetDollMarkers(ClockNum dollIndex) => _data[dollIndex];
 
     public NoteMarkerData()
     {
@@ -17,21 +16,21 @@ internal class NoteMarkerData : INoteMarkerData
         for (int i = ClockNum.MinValue; i <= ClockNum.MaxValue; i++)
         {
             _data[i] = new();
-            for(int j = ClockNum.MinValue; j <= ClockNum.MaxValue; j++)
+            for (int j = ClockNum.MinValue; j <= ClockNum.MaxValue; j++)
             {
-                _data[i][j] = 0;
+                _data[i][j] = (0, 0);
             }
         }
     }
-
-
     public void SetMark(ClockNum num, ClockNum doll)
     {
-        if (_data[doll][num] == 3)
-            _data[doll][num] = 0;
+        int mode;
+        if (_data[doll][num].MarkType == 3)
+            mode = 0;
         else
-            _data[doll][num]++;
+            mode = _data[doll][num].MarkType + 1;
 
+        _data[doll][num] = (mode, Random.Range(0, 360));
         MarkChanged?.Invoke();
     }
 
@@ -40,6 +39,6 @@ internal class NoteMarkerData : INoteMarkerData
         None = 0,
         Cross = 1,
         Circle = 2,
-        Triangele = 3
+        Triangle = 3
     }
 }

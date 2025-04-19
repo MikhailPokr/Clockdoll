@@ -2,12 +2,12 @@
 
 internal class StepCondition : BaseCondition
 {
-    private DollPlacementController _placementController;
+    private IDollPlacementController _placementController;
     private int _step;
 
     public StepCondition()
     {
-        _placementController = ServiceLocator.Resolve<DollPlacementController>();
+        _placementController = ServiceLocator.Resolve<IDollPlacementController>();
         _step = Random.Range(1, 5); // от 1 до 4
     }
 

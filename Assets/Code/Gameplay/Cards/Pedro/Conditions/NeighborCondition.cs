@@ -2,12 +2,12 @@
 
 internal class NeighborCondition : BaseCondition
 {
-    private DollPlacementController _placementController;
+    private IDollPlacementController _placementController;
     private bool _checkLeftNeighbor;
 
     public NeighborCondition()
     {
-        _placementController = ServiceLocator.Resolve<DollPlacementController>();
+        _placementController = ServiceLocator.Resolve<IDollPlacementController>();
         _checkLeftNeighbor = Random.value > 0.5f;
     }
 

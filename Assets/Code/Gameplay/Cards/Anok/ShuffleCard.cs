@@ -2,11 +2,11 @@
 
 internal class ShuffleCard : AnokCard
 {
-    private DollPlacementController _placementController;
+    private IDollPlacementController _placementController;
 
     public ShuffleCard() : base()
     {
-        _placementController = ServiceLocator.Resolve<DollPlacementController>();
+        _placementController = ServiceLocator.Resolve<IDollPlacementController>();
 
         _suit = _palette.Numbers[5];
     }

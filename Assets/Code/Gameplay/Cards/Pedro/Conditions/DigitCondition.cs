@@ -1,10 +1,10 @@
 ﻿internal class DigitCondition : BaseCondition
 {
-    private DollPlacementController _placementController;
+    private IDollPlacementController _placementController;
 
     public DigitCondition()
     {
-        _placementController = ServiceLocator.Resolve<DollPlacementController>();
+        _placementController = ServiceLocator.Resolve<IDollPlacementController>();
     }
 
     public override bool Check()

@@ -36,7 +36,11 @@ internal class Game : IGame
         _fortuneSystem = fortuneSystem;
     }
 
-    public void Start() => _gameSubStateMachine.Start();
+    public void Start()
+    {
+        _gameSubStateMachine.Start();
+        _placementController.Start();
+    }
 
     
 

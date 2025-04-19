@@ -1,12 +1,12 @@
 ﻿internal class DamageEffect : BaseEffect
 {
-    private AnokCashData _anokCashData;
-    private DiceController _diceManager;
+    private IAnokCashData _anokCashData;
+    private IDiceController _diceManager;
 
     public DamageEffect(Suit suit) : base(suit)
     {
-        _anokCashData = ServiceLocator.Resolve<AnokCashData>();
-        _diceManager = ServiceLocator.Resolve<DiceController>();
+        _anokCashData = ServiceLocator.Resolve<IAnokCashData>();
+        _diceManager = ServiceLocator.Resolve<IDiceController>();
     }
 
     public override void PlayEffect()

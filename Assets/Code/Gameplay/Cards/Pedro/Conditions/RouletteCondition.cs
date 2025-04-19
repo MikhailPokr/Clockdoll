@@ -1,12 +1,12 @@
 ﻿internal class RouletteCondition : BaseCondition
 {
-    private DiceController _diceManager;
-    private DollPlacementController _placementController;
+    private IDollPlacementController _placementController;
+    private IDiceController _diceManager;
 
     public RouletteCondition()
     {
-        _diceManager = ServiceLocator.Resolve<DiceController>();
-        _placementController = ServiceLocator.Resolve<DollPlacementController>();
+        _placementController = ServiceLocator.Resolve<IDollPlacementController>();
+        _diceManager = ServiceLocator.Resolve<IDiceController>();
     }
 
     public override bool Check()

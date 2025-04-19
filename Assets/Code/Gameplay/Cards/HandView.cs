@@ -7,15 +7,13 @@ internal class HandView : MonoBehaviour, IInitializable
     [SerializeField] CardView _showedCard;
     [SerializeField] Animator _animator;
 
-    private CardSystem _cardSystem;
+    private ICardSystem _cardSystem;
     private CardView _cardPrefab;
-    private Game _game;
 
     public void Initialize()
     {
         _cardPrefab = ServiceLocator.Resolve<Palette>().CardPrefab;
-        _cardSystem = ServiceLocator.Resolve<CardSystem>();
-        _game = ServiceLocator.Resolve<Game>();
+        _cardSystem = ServiceLocator.Resolve<ICardSystem>();
         _cardSystem.HandUpdated += Animate;
         Animate();
     }

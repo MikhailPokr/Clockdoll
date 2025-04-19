@@ -2,11 +2,11 @@
 
 internal class CloserCondition : BaseCondition
 {
-    private DollPlacementController _placementController;
+    private IDollPlacementController _placementController;
     private bool _isClockwise;
     public CloserCondition()
     {
-        _placementController = ServiceLocator.Resolve<DollPlacementController>();
+        _placementController = ServiceLocator.Resolve<IDollPlacementController>();
         _isClockwise = Random.value > 0.5f;
     }
 

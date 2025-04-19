@@ -2,12 +2,12 @@
 
 internal class SideCondition : BaseCondition
 {
-    private DollPlacementController _placementController;
+    private IDollPlacementController _placementController;
     private bool _isRightSide;
 
     public SideCondition()
     {
-        _placementController = ServiceLocator.Resolve<DollPlacementController>();
+        _placementController = ServiceLocator.Resolve<IDollPlacementController>();
         _isRightSide = Random.value > 0.5f;
     }
 
