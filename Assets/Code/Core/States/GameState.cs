@@ -23,7 +23,10 @@ internal class GameState : IState
     private IDiscardManager _discardManager;
     private FortunePool _fortunePool;
     private IFortuneSystem _fortuneSystem;
+    private DialogueSystem _dialogueSystem;
     private IGame _game;
+    private IAnokPlayer _anokPlayer;
+    private IPedroPlayer _pedroPlayer;
 
     public GameState(
         CoreTicker coreTicker,
@@ -61,7 +64,9 @@ internal class GameState : IState
         _diceController = ServiceLocator.Register<IDiceController>(new DiceController(_palette)); 
         _anokCashData = ServiceLocator.Register<IAnokCashData>(new AnokCashData(100)); //можно вынести значение в SO 
 
-        _projectionController = ServiceLocator.Register<IProjectionController>(new ProjectionController(GameObject.FindAnyObjectByType<Canvas>().GetComponent<Animator>())); 
+        Canvas canvas = GameObject.FindAnyObjectByType<Canvas>();
+
+        _projectionController = ServiceLocator.Register<IProjectionController>(new ProjectionController(canvas.GetComponent<Animator>())); 
         _noteMarkerData =  ServiceLocator.Register<INoteMarkerData>(new NoteMarkerData()); 
         _replaceManager = ServiceLocator.Register<IReplaceManager>(new ReplaceManager(_placementController)); // проверить InsertDoll
 
@@ -70,6 +75,8 @@ internal class GameState : IState
 
         _fortunePool = ServiceLocator.Register((FortunePool)_dataLoader.LoadPrefab("FortunePool"));
         _fortuneSystem = ServiceLocator.Register<IFortuneSystem>(new FortuneSystem(_fortunePool, _cardSystem, _gameSubStateMachine, _anokCashData, _discardManager, 12)); //можно вынести значение в SO 
+
+        _dialogueSystem = ServiceLocator.Register<DialogueSystem>(new DialogueSystem(_dataLoader, _coreTicker, canvas, _palette));
 
         _game = ServiceLocator.Register<IGame>(new Game
         (
@@ -84,6 +91,9 @@ internal class GameState : IState
         ));
 
         _initializer.InitializeObjects();
+
+        _anokPlayer = ServiceLocator.Register(new AnokPlayer(_game, _gameSubStateMachine));
+        _pedroPlayer = ServiceLocator.Register(new PedroPlayer(_game, _gameSubStateMachine));
 
         _game.Start();
     }

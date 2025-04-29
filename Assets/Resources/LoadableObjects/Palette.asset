@@ -50,7 +50,6 @@ MonoBehaviour:
     Symbol: {fileID: 230579077, guid: 1d3f66d04d677e84b8ffcd30ff435bd7, type: 3}
     Prefab: {fileID: 3140281212397763023, guid: 09bec421af826284da8c64544ed40b02, type: 3}
   Light: {fileID: 8154537325747379201, guid: 9bb4d98755001d9448217352f32a346b, type: 3}
-  Wall: {fileID: 6202853013078238857, guid: 91f86741293531a46bef988fabad9c40, type: 3}
   CardPrefab: {fileID: 7656108220431678180, guid: 910cf5b865602c043a6fa326bee05402, type: 3}
   DicePrefabs:
     D4: {fileID: -1438760499106956079, guid: 472c6e78550286c44b6d57352a82ecf5, type: 3}
@@ -62,6 +61,7 @@ MonoBehaviour:
     D20: {fileID: -1438760499106956079, guid: 8a552d05b7a842a479eec6233d650b60, type: 3}
   NotePrefab: {fileID: 472943617646622243, guid: c4d76b1810eb0ca439e1e7d79f7ce7b7, type: 3}
   DollCardPrefab: {fileID: 328107935003554770, guid: fbd0517e43fdac64e8aa6bfabee76b04, type: 3}
+  DialogueBoxPrefab: {fileID: 8809432848400351394, guid: 30190bf4683df6b4bb10f162564c1094, type: 3}
   _diceNumbers:
   - {fileID: 5236770673159910730, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}
   - {fileID: -2981270999002693241, guid: d21e95a37f50dcd47a7d8f4a4b71348a, type: 3}

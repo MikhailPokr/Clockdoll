@@ -9,4 +9,5 @@ internal interface IGameSubStateMachine : IService
     event Action<GameSubState, ClockNum> SubStateChanged;
 
     void Start();
+    void GoToNextState();
 }

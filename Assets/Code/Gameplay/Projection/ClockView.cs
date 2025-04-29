@@ -38,9 +38,16 @@ internal class ClockView : MonoBehaviour, IInitializable
         MoveArrow(num, (int)state);
     }
 
-    private void MoveArrow(float hour, float minutes)
+    private void MoveArrow(ClockNum hour, ClockNum minutes)
     {
+        if (minutes == 12)
+            hour--; 
+        //выглядит как костыль
+        //но оно нужно, поскольку на момент начала хода педро кукла уже должна поменятся
+        //но на часах это все все еще прошлый ход
+
         _mArrow.transform.eulerAngles = new Vector3(0, 0, minutes * degrees);
+
         _hArrow.transform.eulerAngles = new Vector3(0, 0, hour * degrees + minutes * sub_degrees);
     }
 

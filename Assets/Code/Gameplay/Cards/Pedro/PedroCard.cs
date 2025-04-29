@@ -1,6 +1,6 @@
 using UnityEngine;
 
-internal partial class PedroCard : BaseCard
+internal class PedroCard : BaseCard
 {
     protected BaseCondition _logicCondition;
     protected BaseEffect _logicEffect;

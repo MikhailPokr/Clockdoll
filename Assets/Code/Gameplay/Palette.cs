@@ -14,6 +14,7 @@ internal class Palette : ScriptableObject, IService
     public Dices DicePrefabs;
     public NoteView NotePrefab;
     public DollCardView DollCardPrefab;
+    public DialogueBox DialogueBoxPrefab;
     [Header("Спрайты")]
     [SerializeField] private Sprite[] _diceNumbers;
     public Sprite[] DiceNumbers => _diceNumbers;

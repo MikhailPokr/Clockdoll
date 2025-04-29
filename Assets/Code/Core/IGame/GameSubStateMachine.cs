@@ -20,21 +20,19 @@ internal class GameSubStateMachine : IGameSubStateMachine
 
     public void Start() => SubStateChanged?.Invoke(_currentState, CurrentPlaceNumber);
 
-    private void GoToNextState()
+    public void GoToNextState()
     {
-        int stateIndex = (int)_currentState;
+        ClockNum stateIndex = (int)_currentState;
 
-        stateIndex = stateIndex == 12 ? 1 : stateIndex + 1;
+        stateIndex++;
 
-        _currentState = (GameSubState)stateIndex;
+        _currentState = (GameSubState)stateIndex.Value;
 
         if (_currentState == GameSubState.PedroStartTurn) //Педро вновь ходит, круг замкнулся
         {
-
+            _currentPlaceNumber++;
         }
 
-        _currentPlaceNumber++;
-
-        SubStateChanged?.Invoke(_currentState, stateIndex);
+        SubStateChanged?.Invoke(_currentState, _currentPlaceNumber);
     }
 }
