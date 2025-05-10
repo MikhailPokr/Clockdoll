@@ -22,32 +22,32 @@ internal  class PedroPlayer : IPedroPlayer
         {
             case GameSubState.PedroReaction:
                 {
-                    coreTicker.Invoke(() => TestTurn("Педро сбрасывает карты"), 1);
+                    coreTicker.Invoke(() => TestTurn("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ"), 1);
                     break;
                 }
             case GameSubState.PedroStartTurn:
                 {
-                    coreTicker.Invoke(() => TestTurn("Педро начинает ход"), 1);
+                    coreTicker.Invoke(() => TestTurn("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ"), 1);
                     break;
                 }
             case GameSubState.PedroRollDice:
                 {
-                    coreTicker.Invoke(() => TestTurn("Педро кидает кубы"), 1);
+                    coreTicker.Invoke(() => TestTurn("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ"), 1);
                     break;
                 }
             case GameSubState.PedroFortune:
                 {
-                    coreTicker.Invoke(() => TestTurn("Педро реагирует на награду"), 1);
+                    coreTicker.Invoke(() => TestTurn("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ"), 1);
                     break;
                 }
             case GameSubState.PedroCardChoice:
                 {
-                    coreTicker.Invoke(() => TestTurn("Педро выбирает карту"), 1);
+                    coreTicker.Invoke(() => TestTurn("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ"), 1);
                     break;
                 }
             case GameSubState.PedroCardPlay:
                 {
-                    coreTicker.Invoke(() => TestTurn("Педро играет карту"), 1);
+                    coreTicker.Invoke(() => TestTurn("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ"), 1);
                     break;
                 }
         }

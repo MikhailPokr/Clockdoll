@@ -8,8 +8,8 @@ internal class DialogueSystem : IService
 {
     private IDataLoader _dataLoader;
     private Palette _palette;
-
     private DialogueBox _dialogueBox;
+    private IDiceController _diceController;
     public Canvas _canvas;
     private CoreTicker _ticker;
     private int _page;
@@ -55,9 +55,12 @@ internal class DialogueSystem : IService
         OnPageTurned += OnPageTurn;
 
         _jsonData = _dataLoader.LoadJsonList<DialoguePageData>("json");
+
+        _diceController = ServiceLocator.Resolve<IDiceController>();
+        _diceController.DiceRolled += (List<(int sides, int value)> rolls) => CreateDialogueBoxByKey($"anok_game", rolls[0].value);
     }
 
-    public void CreateDialogueBoxByKey(string key) 
+    private void CreateDialogueBoxMultipageByKey(string key) 
     {
         CreateTextBox();
 
@@ -70,6 +73,21 @@ internal class DialogueSystem : IService
         _dialogueBox.button.onClick.AddListener(PageClick);
         
         _page = 0;
+        TypewritePrintText();
+    }
+
+    private void CreateDialogueBoxByKey(string keyWithPage, int page) {
+        CreateTextBox();
+
+        ResetVariables();
+
+        FillText(false);
+
+        _textboxJson = keyWithPage;
+        _page = page;
+
+        _dialogueBox.button.onClick.AddListener(DestroyTextBox);
+        
         TypewritePrintText();
     }
 

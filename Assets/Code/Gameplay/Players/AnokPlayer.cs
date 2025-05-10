@@ -23,32 +23,32 @@ internal class AnokPlayer : IAnokPlayer
         {
             case GameSubState.AnokReaction:
                 {
-                    coreTicker.Invoke(() => TestTurn("Анок сбрасывает карты"), 1);
+                    coreTicker.Invoke(() => TestTurn("пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ"), 1);
                     break;
                 }
             case GameSubState.AnokStartTurn:
                 {
-                    coreTicker.Invoke(() => TestTurn("Анок начинает ход"), 1);
+                    coreTicker.Invoke(() => TestTurn("пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ"), 1);
                     break;
                 }
             case GameSubState.AnokRollDice:
                 {
-                    coreTicker.Invoke(() => TestTurn("Анок кидает кубы"), 1);
+                    coreTicker.Invoke(() => TestTurn("пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ"), 1);
                     break;
                 }
             case GameSubState.AnokFortune:
                 {
-                    coreTicker.Invoke(() => TestTurn("Анок реагирует на награду"), 1);
+                    coreTicker.Invoke(() => TestTurn("пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ"), 1);
                     break;
                 }
             case GameSubState.AnokCardChoice:
                 {
-                    coreTicker.Invoke(() => TestTurn("Анок выбирает карту"), 1);
+                    coreTicker.Invoke(() => TestTurn("пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ"), 1);
                     break;
                 }
             case GameSubState.AnokCardPlay:
                 {
-                    coreTicker.Invoke(() => TestTurn("Анок играет карту"), 1);
+                    coreTicker.Invoke(() => TestTurn("пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ"), 1);
                     break;
                 }
         }
