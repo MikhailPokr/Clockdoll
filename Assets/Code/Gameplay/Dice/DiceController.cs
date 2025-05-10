@@ -21,7 +21,7 @@ internal class DiceController : IDiceController
         List<(int, int)> results = new();
         for (int i = 0; i < dice.Length; i++)
         {
-            results.Add((dice[i], UnityEngine.Random.Range(1, dice[i])));
+            results.Add((dice[i], UnityEngine.Random.Range(1, dice[i] + 1)));
         }
         _lastRoll = results;
         DiceRolled?.Invoke(results);
