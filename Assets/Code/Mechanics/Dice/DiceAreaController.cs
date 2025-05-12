@@ -9,16 +9,19 @@ internal class DiceAreaController : MonoBehaviour, IInitializable
     [SerializeField] private Vector2 _size;
     [SerializeField] private Vector2 _cell;
 
+    private IGame _game;
     private IDiceController _diceManager;
     public void Initialize()
     {
+        _game = ServiceLocator.Resolve<IGame>();
         _diceManager = ServiceLocator.Resolve<IDiceController>();
         _diceManager.DiceRolled += OnDiceRolled;
     }
 
     public void Click()
     {
-        int count = Random.Range(1, 5);
+        //код для отладки
+        /*int count = Random.Range(1, 5);
         List<int> list = new() { 4, 6, 8, 10, 12, 16, 20 };
         List<int> dice = new();
         for (int i = 0; i < count; i++)
@@ -26,7 +29,9 @@ internal class DiceAreaController : MonoBehaviour, IInitializable
             dice.Add(list[Random.Range(0, list.Count)]);
         }
 
-        _diceManager.RollDice(dice.ToArray());
+        _diceManager.RollDice(dice.ToArray());*/
+
+        _game.DiceTrayClick();
     }
     private void OnDiceRolled(List<(int sides, int value)> list)
     {
@@ -59,13 +64,13 @@ internal class DiceAreaController : MonoBehaviour, IInitializable
 
         for (int i = 0; i < list.Count; i++)
         {
-            DiceView dice = _diceManager.GetDice(list[i].sides, list[i].value);
-            dice.transform.SetParent(transform);
+            DiceView dice = Instantiate(_diceManager.GetDice(list[i].sides, list[i].value), transform);
             Vector2Int posInt = availableCells[i];
             dice.transform.localPosition = new Vector3(posInt.x * _cell.x, posInt.y * _cell.y, 0);
         }
     }
 
+#if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         Vector2 halfSize = _size * 0.5f;
@@ -102,4 +107,5 @@ internal class DiceAreaController : MonoBehaviour, IInitializable
             }
         }
     }
+#endif
 }

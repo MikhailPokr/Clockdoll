@@ -8,6 +8,8 @@ internal class GameSubStateMachine : IGameSubStateMachine
     private ClockNum _currentPlaceNumber;
     public ClockNum CurrentPlaceNumber => _currentPlaceNumber;
 
+    public bool IsPedroTurn => _currentState < GameSubState.AnokReaction || _currentState >= GameSubState.PedroReaction;
+
     public event Action CircleCompleted;
 
     public event Action<GameSubState, ClockNum> SubStateChanged;

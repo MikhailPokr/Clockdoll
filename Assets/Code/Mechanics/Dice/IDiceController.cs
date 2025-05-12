@@ -8,5 +8,4 @@ internal interface IDiceController : IService
     event Action<List<(int sides, int value)>> DiceRolled;
     DiceView GetDice(int sides, int value);
     List<(int sides, int value)> RollDice(params int[] dice);
-
 }

@@ -23,7 +23,7 @@ internal class GameState : IState
     private IDiscardManager _discardManager;
     private FortunePool _fortunePool;
     private IFortuneSystem _fortuneSystem;
-    private DialogueSystem _dialogueSystem;
+    private IDialogueSystem _dialogueSystem;
     private IGame _game;
     private IAnokPlayer _anokPlayer;
     private IPedroPlayer _pedroPlayer;
@@ -76,7 +76,10 @@ internal class GameState : IState
         _fortunePool = ServiceLocator.Register((FortunePool)_dataLoader.LoadPrefab("FortunePool"));
         _fortuneSystem = ServiceLocator.Register<IFortuneSystem>(new FortuneSystem(_fortunePool, _cardSystem, _gameSubStateMachine, _anokCashData, _discardManager, 12)); //можно вынести значение в SO 
 
-        _dialogueSystem = ServiceLocator.Register<DialogueSystem>(new DialogueSystem(_dataLoader, _coreTicker, canvas, _palette));
+        _dialogueSystem = ServiceLocator.Register<IDialogueSystem>(new DialogueSystem(_dataLoader, _coreTicker, canvas, _palette));
+
+        _anokPlayer = ServiceLocator.Register(new HumanAnokPlayer());
+        _pedroPlayer = ServiceLocator.Register(new BotPedroPlayer());
 
         _game = ServiceLocator.Register<IGame>(new Game
         (
@@ -87,13 +90,13 @@ internal class GameState : IState
         _anokCashData, 
         _cardSystem,
         _discardManager, 
-        _fortuneSystem
+        _fortuneSystem,
+        _dialogueSystem,
+        _anokPlayer,
+        _pedroPlayer
         ));
 
         _initializer.InitializeObjects();
-
-        _anokPlayer = ServiceLocator.Register(new AnokPlayer(_game, _gameSubStateMachine));
-        _pedroPlayer = ServiceLocator.Register(new PedroPlayer(_game, _gameSubStateMachine));
 
         _game.Start();
     }

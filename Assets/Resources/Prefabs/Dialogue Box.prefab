@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 6343431493782470912}
   - component: {fileID: 8809432848400351394}
   m_Layer: 0
-  m_Name: Dialogue Box Prefab
+  m_Name: Dialogue Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

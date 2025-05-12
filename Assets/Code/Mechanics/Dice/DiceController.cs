@@ -32,18 +32,17 @@ internal class DiceController : IDiceController
     {
         DiceView dice = sides switch
         {
-            4 => GameObject.Instantiate(_palette.DicePrefabs.D4),
-            6 => GameObject.Instantiate(_palette.DicePrefabs.D6),
-            8 => GameObject.Instantiate(_palette.DicePrefabs.D8),
-            10 => GameObject.Instantiate(_palette.DicePrefabs.D10),
-            12 => GameObject.Instantiate(_palette.DicePrefabs.D12),
-            16 => GameObject.Instantiate(_palette.DicePrefabs.D16),
-            20 => GameObject.Instantiate(_palette.DicePrefabs.D20),
+            4 => _palette.DicePrefabs.D4,
+            6 => _palette.DicePrefabs.D6,
+            8 => _palette.DicePrefabs.D8,
+            10 => _palette.DicePrefabs.D10,
+            12 => _palette.DicePrefabs.D12,
+            16 => _palette.DicePrefabs.D16,
+            20 => _palette.DicePrefabs.D20,
             _ => null,
         };
 
         dice.Initialize(_palette.DiceNumbers[value - 1]); //нумерация массива с 0, получать кубик удобнее по его реальному значению
         return dice;
     }
-
 }
