@@ -1,9 +1,19 @@
 using Assets.Code.Logic;
 using UnityEngine;
+using System.Collections.Generic;
 
 internal class HumanAnokPlayer : IAnokPlayer
 {
-    public HumanAnokPlayer() { }
+    private int _diceTrayRolledValue;
+    private IDialogueSystem _dialogueSystem;
+    public HumanAnokPlayer(IDialogueSystem dialogueSystem) {
+        _dialogueSystem = dialogueSystem;
+     }
+
+    public void SaveDice(List<(int sides, int value)> diceList) {
+        _diceTrayRolledValue = diceList[0].value;
+        _dialogueSystem.CreateDialogueBoxByKey($"anok_game", _diceTrayRolledValue);
+    }
 
     public void ReactionState()
     {
@@ -17,7 +27,7 @@ internal class HumanAnokPlayer : IAnokPlayer
 
     public void RollDiceState()
     {
-        //чекать нажатие на дайсдрей
+        
     }
 
     public void FortuneState()

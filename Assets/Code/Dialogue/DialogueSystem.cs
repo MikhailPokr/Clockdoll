@@ -55,9 +55,6 @@ internal class DialogueSystem : IDialogueSystem
         OnPageTurned += OnPageTurn;
 
         _jsonData = _dataLoader.LoadJsonList<DialoguePageData>("json");
-
-        _diceController = ServiceLocator.Resolve<IDiceController>();
-        _diceController.DiceRolled += (List<(int sides, int value)> rolls) => CreateDialogueBoxByKey($"anok_game", rolls[0].value);
     }
 
     private void CreateDialogueBoxMultipageByKey(string key) 
@@ -76,7 +73,7 @@ internal class DialogueSystem : IDialogueSystem
         TypewritePrintText();
     }
 
-    private void CreateDialogueBoxByKey(string keyWithPage, int page) {
+    public void CreateDialogueBoxByKey(string keyWithPage, int page) {
         CreateTextBox();
 
         ResetVariables();

@@ -1,8 +1,13 @@
 using UnityEngine;
+using System.Collections.Generic;
 internal  class BotPedroPlayer : IPedroPlayer
 {
     public BotPedroPlayer()
     {
+    }
+
+    public void SaveDice(List<(int sides, int value)> diceList) {
+
     }
 
     public void ReactionState()
@@ -18,6 +23,7 @@ internal  class BotPedroPlayer : IPedroPlayer
     public void RollDiceState()
     {
         //вызов ролла дайса
+        
     }
 
     public void FortuneState()

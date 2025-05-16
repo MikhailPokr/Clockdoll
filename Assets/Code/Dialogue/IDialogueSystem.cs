@@ -6,4 +6,5 @@ using System.Threading.Tasks;
 
 internal interface IDialogueSystem : IService
 {
+    void CreateDialogueBoxByKey(string keyWithPage, int page);
 }

@@ -1,5 +1,6 @@
 ﻿using Assets.Code.Logic;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 internal class Game : IGame
@@ -50,9 +51,15 @@ internal class Game : IGame
         _placementController.Start();
     }
 
-    public void DiceTrayClick()
+    public void DiceTrayClick(bool isPedro)
     {
-
+        if (isPedro != _gameSubStateMachine.IsPedroTurn) {return;}
+        IPlayer player = _gameSubStateMachine.IsPedroTurn ? _pedroPlayer : _anokPlayer; 
+        if (_gameSubStateMachine.CurrentState == GameSubState.AnokRollDice || _gameSubStateMachine.CurrentState == GameSubState.PedroRollDice)
+        {
+            List<(int sides, int value)> diceList = _diceManager.RollDice(20);
+            player.SaveDice(diceList);
+        }
     }
 
     public void CardClick(BaseCard card)
@@ -71,42 +78,42 @@ internal class Game : IGame
             case GameSubState.PedroReaction:
             case GameSubState.AnokReaction:
                 {
-                    coreTicker.Invoke(() => TestTurn($"Реакция {(_gameSubStateMachine.IsPedroTurn ? "Педро" : "Aнока")}"), 1);
+                    //coreTicker.Invoke(() => TestTurn($"Реакция {(_gameSubStateMachine.IsPedroTurn ? "Педро" : "Aнока")}"), 1);
                     player.ReactionState();
                     break;
                 }
             case GameSubState.PedroStartTurn:
             case GameSubState.AnokStartTurn:
                 {
-                    coreTicker.Invoke(() => TestTurn($"Начало хода {(_gameSubStateMachine.IsPedroTurn ? "Педро" : "Aнока")}"), 1);
+                    //coreTicker.Invoke(() => TestTurn($"Начало хода {(_gameSubStateMachine.IsPedroTurn ? "Педро" : "Aнока")}"), 1);
                     player.StartState();
                     break;
                 }
             case GameSubState.PedroRollDice:
             case GameSubState.AnokRollDice:
                 {
-                    coreTicker.Invoke(() => TestTurn($"{(_gameSubStateMachine.IsPedroTurn ? "Педро" : "Aнок")} роллит на фортуну"), 1);
+                    //coreTicker.Invoke(() => TestTurn($"{(_gameSubStateMachine.IsPedroTurn ? "Педро" : "Aнок")} роллит на фортуну"), 1);
                     player.RollDiceState();
                     break;
                 }
             case GameSubState.PedroFortune:
             case GameSubState.AnokFortune:
                 {
-                    coreTicker.Invoke(() => TestTurn($"{(_gameSubStateMachine.IsPedroTurn ? "Педро" : "Aнок")} получает приз"), 1);
+                    //coreTicker.Invoke(() => TestTurn($"{(_gameSubStateMachine.IsPedroTurn ? "Педро" : "Aнок")} получает приз"), 1);
                     player.FortuneState();
                     break;
                 }
             case GameSubState.PedroCardChoice:
             case GameSubState.AnokCardChoice:
                 {
-                    coreTicker.Invoke(() => TestTurn($"{(_gameSubStateMachine.IsPedroTurn ? "Педро" : "Aнок")} выбирает карту"), 1);
+                    //coreTicker.Invoke(() => TestTurn($"{(_gameSubStateMachine.IsPedroTurn ? "Педро" : "Aнок")} выбирает карту"), 1);
                     player.CardChoiceState();
                     break;
                 }
             case GameSubState.PedroCardPlay:
             case GameSubState.AnokCardPlay:
                 {
-                    coreTicker.Invoke(() => TestTurn($"{(_gameSubStateMachine.IsPedroTurn ? "Педро" : "Aнок")} играет карту"), 1);
+                    //coreTicker.Invoke(() => TestTurn($"{(_gameSubStateMachine.IsPedroTurn ? "Педро" : "Aнок")} играет карту"), 1);
                     player.CardPlayState();
                     break;
                 }

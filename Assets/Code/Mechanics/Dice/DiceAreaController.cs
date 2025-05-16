@@ -20,7 +20,7 @@ internal class DiceAreaController : MonoBehaviour, IInitializable
 
     public void Click()
     {
-        //код для отладки
+        //пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         /*int count = Random.Range(1, 5);
         List<int> list = new() { 4, 6, 8, 10, 12, 16, 20 };
         List<int> dice = new();
@@ -31,7 +31,7 @@ internal class DiceAreaController : MonoBehaviour, IInitializable
 
         _diceManager.RollDice(dice.ToArray());*/
 
-        _game.DiceTrayClick();
+        _game.DiceTrayClick(false);
     }
     private void OnDiceRolled(List<(int sides, int value)> list)
     {
