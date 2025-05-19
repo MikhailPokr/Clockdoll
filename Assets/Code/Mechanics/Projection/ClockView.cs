@@ -35,6 +35,7 @@ internal class ClockView : MonoBehaviour, IInitializable
 
     private void OnTurnChanged(GameSubState state, ClockNum num)
     {
+        Debug.Log($"вертим стрелки на состояние {state}");
         MoveArrow(num, (int)state);
     }
 

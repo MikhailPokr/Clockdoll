@@ -6,4 +6,5 @@ internal interface IGame : IService
 
     void CardClick(BaseCard card);
     void DiceTrayClick(bool isPedroTurn);
+    bool AlertClick();
 }

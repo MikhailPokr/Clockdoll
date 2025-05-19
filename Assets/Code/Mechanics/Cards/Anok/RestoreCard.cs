@@ -16,7 +16,7 @@ internal class RestoreCard : AnokCard
 
     public override void PlayEffect()
     {
-        var money = _diceManager.RollDice(16, 1);
+        var money = _diceManager.RollDice(16);
         _anokCashData.ChangeCash(money[0].value);
         
     }

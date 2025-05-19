@@ -18,10 +18,10 @@ internal class FortuneListView : MonoBehaviour, IInitializable
 
     private void OnListGenerated()
     {
-        List<string> list = _manager.CurrentList.Select(x => string.Format(x.Value.Description, x.Value.Value)).ToList();
+        List<string> list = _manager.CurrentList.Select(x => string.Format(x.Value.Description, MathF.Abs(x.Value.Value))).ToList();
 
         string text = "";
-        for (int i = 1; i < list.Count; i++)
+        for (int i = 0; i < list.Count; i++)
         {
             text += $"{i+1}\n{list[i]}\n";
         }

@@ -4,44 +4,87 @@ using System.Collections.Generic;
 
 internal class HumanAnokPlayer : IAnokPlayer
 {
-    private int _diceTrayRolledValue;
+    private IGameSubStateMachine _gameSubStateMachine;
+    private IDiceController _diceController;
+    private ICardSystem _cardSystem;
+    private IFortuneSystem _fortuneSystem;
     private IDialogueSystem _dialogueSystem;
-    public HumanAnokPlayer(IDialogueSystem dialogueSystem) {
+
+    private AnokCard _chosenCard;
+    private int _rolledValue;
+
+    public HumanAnokPlayer(
+        IGameSubStateMachine gameSubStateMachine,
+        IDiceController diceController,
+        ICardSystem cardSystem,
+        IFortuneSystem fortuneSystem,
+        IDialogueSystem dialogueSystem
+        )
+    {
+        _gameSubStateMachine = gameSubStateMachine;
+        _diceController = diceController;
+        _cardSystem = cardSystem;
+        _fortuneSystem = fortuneSystem;
         _dialogueSystem = dialogueSystem;
-     }
-
-    public void SaveDice(List<(int sides, int value)> diceList) {
-        _diceTrayRolledValue = diceList[0].value;
-        _dialogueSystem.CreateDialogueBoxByKey($"anok_game", _diceTrayRolledValue);
     }
 
-    public void ReactionState()
+    public bool OnTrayClick() 
     {
-        //чекать сброс карт
+        if (_gameSubStateMachine.CurrentState == GameSubState.AnokRollDice)
+        {
+            List<(int sides, int value)> diceList = _diceController.RollDice(12);
+            _rolledValue = diceList[0].value;
+            _dialogueSystem.CreateDialogueBoxByKey($"anok_game", _rolledValue);
+            return true;
+        }
+        return false;
     }
 
-    public void StartState()
+    public void OnGameBegin()
     {
-        //мб вызвать речь
+        _cardSystem.TakeCard(false, 5);
     }
 
-    public void RollDiceState()
+    public bool OnCardClick(BaseCard card)
+    {
+        if (_gameSubStateMachine.CurrentState == GameSubState.AnokCardChoice)
+        {
+            if (!card.CheckCondition())
+                return false;
+
+            _chosenCard = card as AnokCard;
+            return true;
+        }
+        return false;
+    }
+
+
+    public void EnterReactionState()
+    {
+        _gameSubStateMachine.GoToNextState();
+    }
+
+    public void EnterStartTurnState()
+    {
+    }
+
+    public void EnterRollDiceState()
     {
         
     }
 
-    public void FortuneState()
+    public void EnterFortuneState()
     {
-        //реакция на награду
+        _fortuneSystem.ApplyReward(_rolledValue);
     }
 
-    public void CardChoiceState()
+    public void EnterCardChoiceState()
     {
-        //чекать нажатие на карту
     }
 
-    public void CardPlayState()
+    public void EnterCardPlayState()
     {
-        //разыгровка карты
+        _cardSystem.PlayCard(_chosenCard);
     }
+
 }

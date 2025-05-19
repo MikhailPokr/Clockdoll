@@ -5,6 +5,7 @@ internal class Reward
 {
     //потом заменить на ключ
     public string Description;
+    public string AlertDescription;
     public RewardType Type;
     public int Count;
     [Header("Рандом записывать через ~")]
@@ -45,6 +46,7 @@ internal class Reward
         return new Reward
         {
             Description = Description,
+            AlertDescription = AlertDescription,
             Type = Type,
             Count = Count,
             _value = _value,

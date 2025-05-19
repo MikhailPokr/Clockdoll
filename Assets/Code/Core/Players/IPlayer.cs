@@ -2,11 +2,13 @@
 
 internal interface IPlayer : IService
 {
-    void ReactionState();
-    void StartState();
-    void RollDiceState();
-    void FortuneState();
-    void CardChoiceState();
-    void CardPlayState();
-    void SaveDice(List<(int sides, int value)> diceList);
+    void OnGameBegin();
+    void EnterReactionState();
+    void EnterStartTurnState();
+    void EnterRollDiceState();
+    void EnterFortuneState();
+    void EnterCardChoiceState();
+    void EnterCardPlayState();
+    bool OnTrayClick();
+    bool OnCardClick(BaseCard card);
 }

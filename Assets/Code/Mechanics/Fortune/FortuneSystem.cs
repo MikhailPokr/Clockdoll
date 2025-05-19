@@ -9,6 +9,7 @@ internal class FortuneSystem : IFortuneSystem
     public Dictionary<int, Reward> CurrentList => _currentList;
 
     public event System.Action ListGenerated;
+    public event System.Action<Reward> RewardReceived;
 
     private FortunePool _fortunePool;
     private ICardSystem _cardSystem;
@@ -60,35 +61,31 @@ internal class FortuneSystem : IFortuneSystem
 
     public void ApplyReward(int number)
     {
-        Debug.Log($"Выпало {number}");
-
         Reward reward = _currentList[number];
 
         switch (reward.Type)
         {
             case RewardType.SpadeCard:
-                Debug.Log($"Педро получил {reward.Value} пиковых карт.");
                 _cardSystem.TakeCard(true, reward.Value, true);
                 break;
             case RewardType.Card:
                 if (reward.Value > 0)
                 {
-                    Debug.Log($"{(_gameSubStateMachine.CurrentState == GameSubState.PedroStartTurn ? "Педро" : "Анок")} получил {reward.Value} карт.");
-                    _cardSystem.TakeCard(_gameSubStateMachine.CurrentState == GameSubState.PedroStartTurn, reward.Value);
+                    _cardSystem.TakeCard(_gameSubStateMachine.IsPedroTurn, reward.Value);
                 }
                 else
                 {
-                    Debug.Log($"{(_gameSubStateMachine.CurrentState == GameSubState.PedroStartTurn ? "Педро" : "Анок")} должен сбросить {reward.Value} карт.");
-                    _discardManager.AddDiscard(_gameSubStateMachine.CurrentState == GameSubState.PedroStartTurn, reward.Value);
+                    _discardManager.AddDiscard(_gameSubStateMachine.IsPedroTurn, reward.Value);
                 }
                 break;
             case RewardType.RegenerateAnok:
-                Debug.Log($"Анок получил {reward.Value} денег.");
                 _cashData.ChangeCash(reward.Value);
                 break;
             case RewardType.OrderTasties:
                 Debug.Log($"Мы заказали вкусностей. Поставим рядом с куклой на {_gameSubStateMachine.CurrentPlaceNumber} часах");
                 break;
         }
+
+        RewardReceived?.Invoke(reward);
     }
 }

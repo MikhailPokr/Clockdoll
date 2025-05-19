@@ -78,8 +78,8 @@ internal class GameState : IState
 
         _dialogueSystem = ServiceLocator.Register<IDialogueSystem>(new DialogueSystem(_dataLoader, _coreTicker, canvas, _palette));
 
-        _anokPlayer = ServiceLocator.Register(new HumanAnokPlayer(_dialogueSystem));
-        _pedroPlayer = ServiceLocator.Register(new BotPedroPlayer());
+        _anokPlayer = ServiceLocator.Register<IAnokPlayer>(new HumanAnokPlayer(_gameSubStateMachine, _diceController, _cardSystem, _fortuneSystem, _dialogueSystem));
+        _pedroPlayer = ServiceLocator.Register<IPedroPlayer>(new BotPedroPlayer(_coreTicker, _gameSubStateMachine, _diceController, _cardSystem, _fortuneSystem, _dialogueSystem));
 
         _game = ServiceLocator.Register<IGame>(new Game
         (
@@ -103,7 +103,6 @@ internal class GameState : IState
     public void Update()
     {
         _inputHandler.Update();
-        if (Input.GetKeyDown(KeyCode.Space)) { _gameSubStateMachine.GoToNextState(); }
     }
 
     public void Exit() { }

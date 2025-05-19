@@ -14,7 +14,7 @@
 
     public override void PlayEffect()
     {
-        var cardsToDraw = _diceManager.RollDice(4, 1);
+        var cardsToDraw = _diceManager.RollDice(4);
         _cardSystem.TakeCard(false, cardsToDraw[0].value);
     }
 }

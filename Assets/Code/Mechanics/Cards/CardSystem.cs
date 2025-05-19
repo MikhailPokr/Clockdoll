@@ -16,6 +16,7 @@ internal class CardSystem : ICardSystem
     private Palette _palette;
 
     public event System.Action HandUpdated;
+    public event System.Action<BaseCard> CardPlayed;
 
     public CardSystem(IDollPlacementController placementController, IGameSubStateMachine gameSubStateMachine, Palette palette)
     {
@@ -43,6 +44,14 @@ internal class CardSystem : ICardSystem
     {
         _showingPedroHand = !_showingPedroHand;
         HandUpdated?.Invoke();
+    }
+
+    public bool IsCardInHand(BaseCard card)
+    {
+        if (card is PedroCard)
+            return _pedroHand.Contains(card);
+        else
+            return _anokHand.Contains(card);
     }
 
     public List<BaseCard> GetHand(bool pedroHand)
@@ -74,10 +83,9 @@ internal class CardSystem : ICardSystem
             _anokHand.Add((AnokCard)card);
         HandUpdated?.Invoke();
     }
-    public bool TryPlayCard(BaseCard card)
+
+    public void PlayCard(BaseCard card)
     {
-        if (!card.CheckCondition())
-            return false;
         if (card is PedroCard)
         {
             _pedroHand.Remove((PedroCard)card);
@@ -89,8 +97,8 @@ internal class CardSystem : ICardSystem
             _anokPlayed.Add((AnokCard)card);
         }
         card.PlayEffect();
+        CardPlayed?.Invoke(card);
         HandUpdated?.Invoke();
-        return true;
     }
 
     public void DiscardCard(BaseCard card)
@@ -104,7 +112,6 @@ internal class CardSystem : ICardSystem
             _anokHand.Remove((AnokCard)card);
         }
     }
-
 
     private BaseCard GenerateCard(bool pedroCard, bool spades)
     {
