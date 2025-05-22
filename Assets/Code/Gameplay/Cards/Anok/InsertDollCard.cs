@@ -6,8 +6,8 @@ internal class InsertDollCard : AnokCard
 
     public InsertDollCard() : base()
     {
-        _effect = "Insert the doll in the chosen place";
-        _suit = _palette.Numbers[3];
+        _suitNumber = 3;
+        ApplySuitText();
     }
 
     public override void PlayEffect()

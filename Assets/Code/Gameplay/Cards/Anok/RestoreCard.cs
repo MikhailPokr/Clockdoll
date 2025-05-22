@@ -10,8 +10,8 @@ internal class RestoreCard : AnokCard
         _anokCashData = ServiceLocator.Resolve<IAnokCashData>();
         _diceManager = ServiceLocator.Resolve<IDiceController>();
 
-        _effect = "Get D16 money";
-        _suit = _palette.Numbers[9];
+        _suitNumber = 9;
+        ApplySuitText();
     }
 
     public override void PlayEffect()

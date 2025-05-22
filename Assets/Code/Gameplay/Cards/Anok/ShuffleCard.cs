@@ -8,7 +8,8 @@ internal class ShuffleCard : AnokCard
     {
         _placementController = ServiceLocator.Resolve<IDollPlacementController>();
 
-        _suit = _palette.Numbers[5];
+        _suitNumber = 5;
+        ApplySuitText();
     }
 
     public override void PlayEffect()

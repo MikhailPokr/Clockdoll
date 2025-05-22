@@ -7,11 +7,14 @@ using UnityEngine;
 public class JsonLoader : MonoBehaviour
 {
     [System.Serializable]
-    public class DialoguePageData {
+    public class DialoguePageData
+    {
         public string key;
         public string speaker;
         public string expression;
         public string content;
+
+        public string[] variations;
     }
 
     [Serializable]

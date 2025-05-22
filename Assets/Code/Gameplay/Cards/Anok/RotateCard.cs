@@ -9,7 +9,12 @@ internal class RotateCard : AnokCard
     {
         _isClockwise = Random.value > 0.5f;
 
-        _effect = $"Replace everyone {(_isClockwise ? "" : "counter")}clockwise";
+        //_effect = $"Replace everyone {(_isClockwise ? "" : "counter")}clockwise";
+
+        _suitNumber = 1;
+        _effect = _dialogueSystem.ReturnJsonData("cards_anok", _suitNumber).content
+        + _dialogueSystem.ReturnJsonData("cards_anok", _suitNumber).variations
+        [_isClockwise ? 1 : 0];
         _suit = _palette.Numbers[1];
     }
 

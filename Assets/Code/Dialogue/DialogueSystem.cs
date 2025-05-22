@@ -15,22 +15,30 @@ internal class DialogueSystem : IService
     private int _page;
     private string _textboxJson;
     private string _displayText;
+    private string _localizationKey;
 
     public List<DialoguePageData> _jsonData;
     private string _contentText {
         get {
-            return DataSearch($"{_textboxJson}_{_page}").content;
+            return DataSearch($"{_textboxJson}_{_localizationKey}_{_page}").content;
         }
     }
     private string _speakerText {
         get {
-            return DataSearch($"{_textboxJson}_{_page}").speaker;
+            return DataSearch($"{_textboxJson}_{_localizationKey}_{_page}").speaker;
         }
     }
-    private int _dialogueLinesCount {
+    private string[] _variations {
         get {
+            return DataSearch($"{_textboxJson}_{_localizationKey}_{_page}").variations;
+        }
+    }
+    private int _dialogueLinesCount
+    {
+        get
+        {
             return _jsonData.Count(data => data.key.Contains(_textboxJson));
-}
+        }
     }
     private float delay {
         get {
@@ -45,13 +53,12 @@ internal class DialogueSystem : IService
 
     public event Action OnPageTurned;
 
-    public DialogueSystem(IDataLoader dataLoader, CoreTicker coreTicker, Canvas canvas, Palette palette)
+    public DialogueSystem(IDataLoader dataLoader, CoreTicker coreTicker, Palette palette)
     {
         _dataLoader = dataLoader;
         _ticker = coreTicker;
-        _canvas = canvas;
         _palette = palette;
-        
+
         OnPageTurned += OnPageTurn;
 
         _jsonData = _dataLoader.LoadJsonList<DialoguePageData>("json");
@@ -60,7 +67,8 @@ internal class DialogueSystem : IService
         _diceController.DiceRolled += (List<(int sides, int value)> rolls) => CreateDialogueBoxByKey($"anok_game", rolls[0].value);
     }
 
-    private void CreateDialogueBoxMultipageByKey(string key) 
+
+    private void CreateDialogueBoxMultipageByKey(string key)
     {
         CreateTextBox();
 
@@ -71,12 +79,29 @@ internal class DialogueSystem : IService
         _textboxJson = key;
 
         _dialogueBox.button.onClick.AddListener(PageClick);
-        
+
         _page = 0;
         TypewritePrintText();
     }
 
+<<<<<<< Updated upstream
     private void CreateDialogueBoxByKey(string keyWithPage, int page) {
+=======
+    public void ChangeLocalizationKey(string key)
+    {
+        _localizationKey = key;
+    }
+
+    public DialoguePageData ReturnJsonData(string jsonData, int page)
+    {
+        _textboxJson = jsonData;
+        _page = page;
+        return DataSearch($"{_textboxJson}_{_localizationKey}_{_page}");
+    }
+
+    public void CreateDialogueBoxByKey(string keyWithPage, int page)
+    {
+>>>>>>> Stashed changes
         CreateTextBox();
 
         ResetVariables();
@@ -87,7 +112,7 @@ internal class DialogueSystem : IService
         _page = page;
 
         _dialogueBox.button.onClick.AddListener(DestroyTextBox);
-        
+
         TypewritePrintText();
     }
 

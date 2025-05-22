@@ -34,7 +34,7 @@ internal class GameState : IState
         BuildData buildData,
         SceneLoader sceneLoader,
         IInputHandler inputHandler,
-        Initializer initializer, 
+        Initializer initializer,
         IDataLoader dataLoader,
         Palette palette
         )
@@ -76,7 +76,14 @@ internal class GameState : IState
         _fortunePool = ServiceLocator.Register((FortunePool)_dataLoader.LoadPrefab("FortunePool"));
         _fortuneSystem = ServiceLocator.Register<IFortuneSystem>(new FortuneSystem(_fortunePool, _cardSystem, _gameSubStateMachine, _anokCashData, _discardManager, 12)); //можно вынести значение в SO 
 
+<<<<<<< Updated upstream
         _dialogueSystem = ServiceLocator.Register<DialogueSystem>(new DialogueSystem(_dataLoader, _coreTicker, canvas, _palette));
+=======
+        //_dialogueSystem = ServiceLocator.Register<IDialogueSystem>(new DialogueSystem(_dataLoader, _coreTicker, _palette));
+
+        _anokPlayer = ServiceLocator.Register<IAnokPlayer>(new HumanAnokPlayer(_gameSubStateMachine, _diceController, _cardSystem, _fortuneSystem, _dialogueSystem));
+        _pedroPlayer = ServiceLocator.Register<IPedroPlayer>(new BotPedroPlayer(_coreTicker, _gameSubStateMachine, _diceController, _cardSystem, _fortuneSystem, _dialogueSystem));
+>>>>>>> Stashed changes
 
         _game = ServiceLocator.Register<IGame>(new Game
         (
@@ -87,7 +94,13 @@ internal class GameState : IState
         _anokCashData, 
         _cardSystem,
         _discardManager, 
+<<<<<<< Updated upstream
         _fortuneSystem
+=======
+        _fortuneSystem,
+        _anokPlayer,
+        _pedroPlayer
+>>>>>>> Stashed changes
         ));
 
         _initializer.InitializeObjects();
