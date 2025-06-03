@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using UnityEngine;
 
 internal class MenuState : IState
@@ -12,6 +12,8 @@ internal class MenuState : IState
     private Initializer _initializer;
     private IDataLoader _dataLoader;
     private Palette _palette;
+    private IMainMenuController _mainMenuController;
+    private IDialogueSystem _dialogueSystem;
 
 
     public MenuState(CoreTicker coreTicker, StateMachine stateMachine, BuildData buildData, SceneLoader sceneLoader)
@@ -33,8 +35,16 @@ internal class MenuState : IState
         _initializer = ServiceLocator.Register(new Initializer());
         _dataLoader = ServiceLocator.Register<IDataLoader>(new ResourcesLoader());
         _palette = ServiceLocator.Register((Palette)_dataLoader.LoadPrefab("Palette"));
-        
+        _dialogueSystem = ServiceLocator.Register<IDialogueSystem>(new DialogueSystem(_dataLoader, _coreTicker, _palette));
+        _mainMenuController = ServiceLocator.Register<IMainMenuController>(new MainMenuController(_dialogueSystem));
+
+        _mainMenuController.OnGameStart += ChangeStateToGame;
+
         _initializer.InitializeObjects();
+    }
+
+    private void ChangeStateToGame()
+    {
         _stateMachine.ChangeState(new GameState(
             _coreTicker,
             _stateMachine,

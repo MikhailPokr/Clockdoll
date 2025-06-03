@@ -9,28 +9,35 @@ internal class DialogueSystem : IDialogueSystem
     private IDataLoader _dataLoader;
     private Palette _palette;
     private DialogueBox _dialogueBox;
-    private IDiceController _diceController;
     public Canvas _canvas;
     private CoreTicker _ticker;
     private int _page;
     private string _textboxJson;
     private string _displayText;
+    private string _localizationKey;
 
     public List<DialoguePageData> _jsonData;
     private string _contentText {
         get {
-            return DataSearch($"{_textboxJson}_{_page}").content;
+            return DataSearch($"{_textboxJson}_{_localizationKey}_{_page}").content;
         }
     }
     private string _speakerText {
         get {
-            return DataSearch($"{_textboxJson}_{_page}").speaker;
+            return DataSearch($"{_textboxJson}_{_localizationKey}_{_page}").speaker;
         }
     }
-    private int _dialogueLinesCount {
+    private string[] _variations {
         get {
+            return DataSearch($"{_textboxJson}_{_localizationKey}_{_page}").variations;
+        }
+    }
+    private int _dialogueLinesCount
+    {
+        get
+        {
             return _jsonData.Count(data => data.key.Contains(_textboxJson));
-}
+        }
     }
     private float delay {
         get {
@@ -45,19 +52,19 @@ internal class DialogueSystem : IDialogueSystem
 
     public event Action OnPageTurned;
 
-    public DialogueSystem(IDataLoader dataLoader, CoreTicker coreTicker, Canvas canvas, Palette palette)
+    public DialogueSystem(IDataLoader dataLoader, CoreTicker coreTicker, Palette palette)
     {
         _dataLoader = dataLoader;
         _ticker = coreTicker;
-        _canvas = canvas;
         _palette = palette;
-        
+
         OnPageTurned += OnPageTurn;
 
         _jsonData = _dataLoader.LoadJsonList<DialoguePageData>("json");
     }
 
-    private void CreateDialogueBoxMultipageByKey(string key) 
+
+    private void CreateDialogueBoxMultipageByKey(string key)
     {
         CreateTextBox();
 
@@ -68,12 +75,25 @@ internal class DialogueSystem : IDialogueSystem
         _textboxJson = key;
 
         _dialogueBox.button.onClick.AddListener(PageClick);
-        
+
         _page = 0;
         TypewritePrintText();
     }
 
-    public void CreateDialogueBoxByKey(string keyWithPage, int page) {
+    public void ChangeLocalizationKey(string key)
+    {
+        _localizationKey = key;
+    }
+
+    public DialoguePageData ReturnJsonData(string jsonData, int page)
+    {
+        _textboxJson = jsonData;
+        _page = page;
+        return DataSearch($"{_textboxJson}_{_localizationKey}_{_page}");
+    }
+
+    public void CreateDialogueBoxByKey(string keyWithPage, int page)
+    {
         CreateTextBox();
 
         ResetVariables();
@@ -84,7 +104,7 @@ internal class DialogueSystem : IDialogueSystem
         _page = page;
 
         _dialogueBox.button.onClick.AddListener(DestroyTextBox);
-        
+
         TypewritePrintText();
     }
 

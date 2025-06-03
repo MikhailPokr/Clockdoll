@@ -5,4 +5,6 @@ internal class DialoguePageData
     public string speaker;
     public string expression;
     public string content;
+
+    public string[] variations;
 }

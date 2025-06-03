@@ -2,8 +2,7 @@
 {
     public ReplaceCard() : base()
     {
-        _effect = "Replace 2 dolls";
-        _suit = _palette.Numbers[0];
+        ApplyEffectText(0);
     }
 
     public override void PlayEffect()

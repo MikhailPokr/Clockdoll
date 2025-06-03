@@ -7,4 +7,6 @@ using System.Threading.Tasks;
 internal interface IDialogueSystem : IService
 {
     void CreateDialogueBoxByKey(string keyWithPage, int page);
+    DialoguePageData ReturnJsonData(string jsonData, int page);
+    void ChangeLocalizationKey(string key);
 }

@@ -19,6 +19,6 @@ internal class ServiceLocator
         if (_services.ContainsKey(typeof(T)))
             return (T)_services[typeof(T)];
         else
-            throw new Exception("Сервис не найден.");
+            throw new Exception($"Сервис {typeof(T)} не найден.");
     }
 }

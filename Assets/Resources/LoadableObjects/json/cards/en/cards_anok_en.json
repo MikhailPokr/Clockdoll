@@ -1,0 +1,29 @@
+{
+    "data": [
+        {
+            "key": "cards_anok_en_0",
+            "content": "Replace two dolls"
+        },
+        {
+            "key": "cards_anok_en_1",
+            "content": "Move all dalls ",
+            "variations": ["clockwise", "counterclockwise"]
+        },
+        {
+            "key": "cards_anok_en_3",
+            "content": "Replace doll in chosen place"
+        },
+        {
+            "key": "cards_anok_en_5",
+            "content": "meow"
+        },
+        {
+            "key": "cards_anok_en_9",
+            "content": "Claim D16 денег"
+        },
+        {
+            "key": "cards_anok_en_10",
+            "content": "Draw D4 cards"
+        }
+    ]
+}

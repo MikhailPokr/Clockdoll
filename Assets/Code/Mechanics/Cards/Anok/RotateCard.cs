@@ -9,8 +9,11 @@ internal class RotateCard : AnokCard
     {
         _isClockwise = Random.value > 0.5f;
 
-        _effect = $"Replace everyone {(_isClockwise ? "" : "counter")}clockwise";
-        _suit = _palette.Numbers[1];
+        suitNumber = 1;
+        _effect = _dialogueSystem.ReturnJsonData("cards_anok", suitNumber).content
+        + _dialogueSystem.ReturnJsonData("cards_anok", suitNumber).variations
+        [_isClockwise ? 1 : 0];
+        _suit = _palette.Numbers[suitNumber];
     }
 
     public override void PlayEffect()

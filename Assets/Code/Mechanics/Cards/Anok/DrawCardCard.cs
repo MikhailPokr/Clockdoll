@@ -8,8 +8,7 @@
         _cardSystem = ServiceLocator.Resolve<ICardSystem>();
         _diceManager = ServiceLocator.Resolve<IDiceController>();
 
-        _effect = "Draw D4 cards";
-        _suit = _palette.Numbers[10];
+        ApplyEffectText(10);
     }
 
     public override void PlayEffect()
