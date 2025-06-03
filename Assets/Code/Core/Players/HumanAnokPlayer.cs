@@ -8,7 +8,7 @@ internal class HumanAnokPlayer : IAnokPlayer
     private IDiceController _diceController;
     private ICardSystem _cardSystem;
     private IFortuneSystem _fortuneSystem;
-    private IDialogueSystem _dialogueSystem;
+    private ITextHandler _textHandler;
 
     private AnokCard _chosenCard;
     private int _rolledValue;

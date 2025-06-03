@@ -3,7 +3,7 @@ using UnityEngine;
 internal abstract class AnokCard : BaseCard
 {
     protected IReplaceManager _replaceManager;
-    protected IDialogueSystem _dialogueSystem;
+    protected ITextHandler _textHandler;
     protected Palette _palette;
     protected int suitNumber;
 
@@ -11,14 +11,14 @@ internal abstract class AnokCard : BaseCard
     {
         _palette = ServiceLocator.Resolve<Palette>();
         _replaceManager = ServiceLocator.Resolve<IReplaceManager>();
-        _dialogueSystem = ServiceLocator.Resolve<IDialogueSystem>();
+        _textHandler = ServiceLocator.Resolve<ITextHandler>();
 
         _color = Color.black;
     }
 
     protected void ApplyEffectText(int suitNumber)
     {
-        _effect = _dialogueSystem.ReturnJsonData("cards_anok", suitNumber).content;
+        _effect = _textHandler.ReturnJsonData("cards_anok", suitNumber).content;
         _suit = _palette.Numbers[suitNumber];
     }
 

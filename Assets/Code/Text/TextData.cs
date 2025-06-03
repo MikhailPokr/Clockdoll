@@ -1,5 +1,5 @@
 ﻿[System.Serializable]
-internal class DialoguePageData
+internal class TextData
 {
     public string key;
     public string speaker;

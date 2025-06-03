@@ -1,68 +1,65 @@
+using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
-internal class DialogueSystem : IDialogueSystem
+internal class DialogueBoxController : IDialogueBoxController
 {
     private IDataLoader _dataLoader;
-    private Palette _palette;
+    private LocalizationHandler _localizationHandler;
+    private ITextHandler _textHandler;
     private DialogueBox _dialogueBox;
     public Canvas _canvas;
-    private CoreTicker _ticker;
-    private int _page;
-    private string _textboxJson;
+    private Palette _palette;
+    private int _index;
+    private string _textUniqueKey;
+    private float _delay;
+    private CoreTicker _coreticker;
+    private Coroutine _currentCoroutine;
+    private bool _isCurrentlyPrinting;
+    private int _currentCharIndex;
     private string _displayText;
-    private string _localizationKey;
+    public event Action OnPageTurned;
+    public List<TextData> _jsonData;
 
-    public List<DialoguePageData> _jsonData;
+    public DialogueBoxController(
+        IDataLoader dataLoader,
+        LocalizationHandler localizationHandler,
+        ITextHandler textHandler,
+        CoreTicker coreTicker,
+        Palette palette,
+        Canvas canvas)
+    {
+        _dataLoader = dataLoader;
+        _localizationHandler = localizationHandler;
+        _textHandler = textHandler;
+        _coreticker = coreTicker;
+        _palette = palette;
+        _canvas = canvas;
+
+        OnPageTurned += OnPageTurn;
+
+        _jsonData = _dataLoader.LoadJsonList<TextData>("json");
+
+        _delay = 0.035f;
+    }
+
     private string _contentText {
         get {
-            return DataSearch($"{_textboxJson}_{_localizationKey}_{_page}").content;
+            return _textHandler.DataSearch($"{_textUniqueKey}_{_localizationHandler.localizationKey}_{_index}").content;
         }
     }
     private string _speakerText {
         get {
-            return DataSearch($"{_textboxJson}_{_localizationKey}_{_page}").speaker;
+            return _textHandler.DataSearch($"{_textUniqueKey}_{_localizationHandler.localizationKey}_{_index}").speaker;
         }
     }
-    private string[] _variations {
+    private int _dialoguePagesCount {
         get {
-            return DataSearch($"{_textboxJson}_{_localizationKey}_{_page}").variations;
+            return _jsonData.Count(data => data.key.Contains(_textUniqueKey));
         }
     }
-    private int _dialogueLinesCount
-    {
-        get
-        {
-            return _jsonData.Count(data => data.key.Contains(_textboxJson));
-        }
-    }
-    private float delay {
-        get {
-            return 0.035f;
-        }
-    }
-
-
-    private Coroutine _currentCoroutine;
-    private bool _isCurrentlyPrinting;
-    private int _currentCharIndex = 0;
-
-    public event Action OnPageTurned;
-
-    public DialogueSystem(IDataLoader dataLoader, CoreTicker coreTicker, Palette palette)
-    {
-        _dataLoader = dataLoader;
-        _ticker = coreTicker;
-        _palette = palette;
-
-        OnPageTurned += OnPageTurn;
-
-        _jsonData = _dataLoader.LoadJsonList<DialoguePageData>("json");
-    }
-
 
     private void CreateDialogueBoxMultipageByKey(string key)
     {
@@ -72,24 +69,12 @@ internal class DialogueSystem : IDialogueSystem
 
         FillText(false);
 
-        _textboxJson = key;
+        _textUniqueKey = key;
 
         _dialogueBox.button.onClick.AddListener(PageClick);
 
-        _page = 0;
+        _index = 0;
         TypewritePrintText();
-    }
-
-    public void ChangeLocalizationKey(string key)
-    {
-        _localizationKey = key;
-    }
-
-    public DialoguePageData ReturnJsonData(string jsonData, int page)
-    {
-        _textboxJson = jsonData;
-        _page = page;
-        return DataSearch($"{_textboxJson}_{_localizationKey}_{_page}");
     }
 
     public void CreateDialogueBoxByKey(string keyWithPage, int page)
@@ -100,30 +85,32 @@ internal class DialogueSystem : IDialogueSystem
 
         FillText(false);
 
-        _textboxJson = keyWithPage;
-        _page = page;
+        _textUniqueKey = keyWithPage;
+        _index = page;
 
         _dialogueBox.button.onClick.AddListener(DestroyTextBox);
 
         TypewritePrintText();
     }
 
-    private void PageClick() 
+    private void PageClick()
     {
-        if (_isCurrentlyPrinting) { 
+        if (_isCurrentlyPrinting)
+        {
             FillText(true);
-            _ticker.StopCoroutine(_currentCoroutine); 
+            _coreticker.StopCoroutine(_currentCoroutine);
             _isCurrentlyPrinting = false;
             return;
         }
 
-        if (_page + 1 >= _dialogueLinesCount) { 
-            DestroyTextBox(); 
+        if (_index + 1 >= _dialoguePagesCount)
+        {
+            DestroyTextBox();
             return;
         }
 
         ResetVariables();
-        _page++;
+        _index++;
         OnPageTurned?.Invoke();
     }
 
@@ -138,23 +125,24 @@ internal class DialogueSystem : IDialogueSystem
         FillText(false);
     }
 
-    private void TypewritePrintText() 
+    private void TypewritePrintText()
     {
-        _currentCoroutine = _ticker.StartCoroutine(TextDelay(delay));
+        _currentCoroutine = _coreticker.StartCoroutine(TextDelay(_delay));
     }
 
     IEnumerator TextDelay(float secondsToWait)
     {
         int charsToAdd = _currentCharIndex != ' ' ? 1 : 2;
 
-        while (_currentCharIndex < _contentText.Length) {
+        while (_currentCharIndex < _contentText.Length)
+        {
             _isCurrentlyPrinting = true;
 
-            TextTypingRepeat(charsToAdd);  
+            TextTypingRepeat(charsToAdd);
 
             _dialogueBox.textSpeaker.text = _speakerText;
             _dialogueBox.textContent.text = _displayText;
-        
+
 
             yield return new Delay(secondsToWait);
         }
@@ -163,13 +151,15 @@ internal class DialogueSystem : IDialogueSystem
 
     private void TextTypingRepeat(int charsToAdd)
     {
-        if (charsToAdd == 0) {
+        if (charsToAdd == 0)
+        {
             FillText(true);
             _currentCharIndex = _contentText.Length;
             return;
         }
 
-        for (int i = 0; i < charsToAdd; i++) {
+        for (int i = 0; i < charsToAdd; i++)
+        {
             _displayText += _contentText[_currentCharIndex];
             _currentCharIndex++;
         }
@@ -177,40 +167,28 @@ internal class DialogueSystem : IDialogueSystem
 
     private void FillText(bool toBlankOrFull)
     {
-        if (toBlankOrFull) { 
+        if (toBlankOrFull)
+        {
             _displayText = _contentText;
             _dialogueBox.textContent.text = _contentText;
-        } else { 
+        }
+        else
+        {
             _displayText = "";
             _dialogueBox.textContent.text = ""; 
         }
     }
 
-    private void CreateTextBox() 
+    private void CreateTextBox()
     {
         _dialogueBox = GameObject.Instantiate(_palette.DialogueBoxPrefab, _canvas.transform);
     }
 
-    private void DestroyTextBox() 
+    private void DestroyTextBox()
     {
         GameObject.Destroy(_dialogueBox.gameObject);
     }
-
-
-    private DialoguePageData DataSearch(string searchedKey)
-    {
-        DialoguePageData searchedData;
-        foreach (DialoguePageData data in _jsonData)
-        {
-            if (data.key == searchedKey)
-            {
-                searchedData = data;
-                return searchedData;
-            }
-        }
-        return null;
-    }
-
+    
     private class Delay : CustomYieldInstruction
     {
         private float timer;

@@ -13,7 +13,7 @@ internal class Game : IGame
     private ICardSystem _cardSystem;
     private IDiscardManager _discardManager;
     private IFortuneSystem _fortuneSystem;
-    private IDialogueSystem _dialogueSystem;
+    private ITextHandler _textHandler;
     private IAnokPlayer _anokPlayer;
     private IPedroPlayer _pedroPlayer;
 

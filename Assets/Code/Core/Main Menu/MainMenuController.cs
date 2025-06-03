@@ -5,11 +5,11 @@ using System;
 internal class MainMenuController : IMainMenuController
 {
     public event Action OnGameStart;
-    private IDialogueSystem _dialogueSystem;
+    private LocalizationHandler _localizationHandler;
 
-    public MainMenuController(IDialogueSystem dialogueSystem)
+    public MainMenuController(LocalizationHandler localizationHandler)
     {
-        _dialogueSystem = dialogueSystem;
+        _localizationHandler = localizationHandler;
     }
 
     public void OnPlayButtonClick()
@@ -18,6 +18,6 @@ internal class MainMenuController : IMainMenuController
     }
     public void OnLocalizationButtonClick(string localizationKey)
     {
-        _dialogueSystem.ChangeLocalizationKey(localizationKey);
+        _localizationHandler.ChangeLocalizationKey(localizationKey);
     }
 }

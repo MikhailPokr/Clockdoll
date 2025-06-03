@@ -7,7 +7,7 @@ using UnityEngine;
 public class JsonLoader : MonoBehaviour
 {
     [System.Serializable]
-    public class DialoguePageData
+    public class TextData
     {
         public string key;
         public string speaker;
@@ -18,9 +18,9 @@ public class JsonLoader : MonoBehaviour
     }
 
     [Serializable]
-    public class DialoguePageDataList
+    public class TextDataDataList
     {
-        public DialoguePageData[] data;
+        public TextData[] data;
     }
 
     public static JsonLoader Instance { get; private set; }
@@ -35,7 +35,7 @@ public class JsonLoader : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public List<DialoguePageData> fullData = new List<DialoguePageData>();
+    public List<TextData> fullData = new List<TextData>();
     public int GetDialogueLinesCount(string searchedKey) => fullData.Count(data => data.key.Contains(searchedKey));
     public void LoadJson() {
         string path = Path.Combine(Application.dataPath, "json");
@@ -53,7 +53,7 @@ public class JsonLoader : MonoBehaviour
             Debug.Log($"{filePath.Replace(Application.dataPath, "")} loaded successfully!");
             #endif
 
-            DialoguePageData[] dataList = JsonUtility.FromJson<DialoguePageData[]>(json);
+            TextData[] dataList = JsonUtility.FromJson<TextData[]>(json);
             fullData.AddRange(dataList); 
         }
     }
@@ -64,15 +64,15 @@ public class JsonLoader : MonoBehaviour
 
         foreach (TextAsset file in loadedAssets)
         {
-            DialoguePageDataList dataList = JsonUtility.FromJson<DialoguePageDataList>(file.text);
+            TextDataDataList dataList = JsonUtility.FromJson<TextDataDataList>(file.text);
             fullData.AddRange(dataList.data);
         }
     }
 
 
-    public DialoguePageData DataSearch(string searchedKey) {
-        DialoguePageData searchedData;
-        foreach (DialoguePageData data in fullData) {
+    public TextData DataSearch(string searchedKey) {
+        TextData searchedData;
+        foreach (TextData data in fullData) {
             if (data.key == searchedKey) {
                 searchedData = data;
                 return searchedData;
