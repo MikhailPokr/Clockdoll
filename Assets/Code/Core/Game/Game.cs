@@ -13,7 +13,7 @@ internal class Game : IGame
     private ICardSystem _cardSystem;
     private IDiscardManager _discardManager;
     private IFortuneSystem _fortuneSystem;
-    private IDialogueSystem _dialogueSystem;
+    private ITextHandler _textHandler;
     private IAnokPlayer _anokPlayer;
     private IPedroPlayer _pedroPlayer;
 
@@ -26,7 +26,6 @@ internal class Game : IGame
         ICardSystem cardSystem,
         IDiscardManager discardManager,
         IFortuneSystem fortuneSystem,
-        IDialogueSystem dialogueSystem,
         IAnokPlayer anokPlayer,
         IPedroPlayer pedroPlayer)
     {
@@ -38,7 +37,6 @@ internal class Game : IGame
         _cardSystem = cardSystem;
         _discardManager = discardManager;
         _fortuneSystem = fortuneSystem;
-        _dialogueSystem = dialogueSystem;
         _anokPlayer = anokPlayer;
         _pedroPlayer = pedroPlayer;
 

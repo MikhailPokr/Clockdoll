@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using UnityEngine;
 
 internal class MenuState : IState
@@ -11,8 +11,12 @@ internal class MenuState : IState
     private IInputHandler _inputHandler;
     private Initializer _initializer;
     private IDataLoader _dataLoader;
+    private LocalizationHandler _localizationHandler;
+    private ITextHandler _textHandler;
+    private IDialogueBoxController _dialogueBoxController; 
     private Palette _palette;
-
+    private Canvas _canvas;
+    private IMainMenuController _mainMenuController;
 
     public MenuState(CoreTicker coreTicker, StateMachine stateMachine, BuildData buildData, SceneLoader sceneLoader)
     {
@@ -30,11 +34,24 @@ internal class MenuState : IState
     private void OnLoadCompleted()
     {
         _inputHandler = ServiceLocator.Register<IInputHandler>(new InputHandler());
-        _initializer = ServiceLocator.Register(new Initializer());
+        _initializer = ServiceLocator.Register(new Initializer());   
         _dataLoader = ServiceLocator.Register<IDataLoader>(new ResourcesLoader());
         _palette = ServiceLocator.Register((Palette)_dataLoader.LoadPrefab("Palette"));
-        
+        _localizationHandler = ServiceLocator.Register(new LocalizationHandler());
+        _textHandler = ServiceLocator.Register<ITextHandler>(new TextHandler(_dataLoader, _localizationHandler, _coreTicker, _palette));
+
+        _canvas = GameObject.FindAnyObjectByType<Canvas>();
+
+        _dialogueBoxController = ServiceLocator.Register<IDialogueBoxController>(new DialogueBoxController(_dataLoader, _localizationHandler, _textHandler, _coreTicker, _palette, _canvas));
+        _mainMenuController = ServiceLocator.Register<IMainMenuController>(new MainMenuController(_localizationHandler));
+
+        _mainMenuController.OnGameStart += ChangeStateToGame;
+
         _initializer.InitializeObjects();
+    }
+
+    private void ChangeStateToGame()
+    {
         _stateMachine.ChangeState(new GameState(
             _coreTicker,
             _stateMachine,

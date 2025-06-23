@@ -8,7 +8,7 @@ internal class HumanAnokPlayer : IAnokPlayer
     private IDiceController _diceController;
     private ICardSystem _cardSystem;
     private IFortuneSystem _fortuneSystem;
-    private IDialogueSystem _dialogueSystem;
+    private ITextHandler _textHandler;
 
     private AnokCard _chosenCard;
     private int _rolledValue;
@@ -17,15 +17,13 @@ internal class HumanAnokPlayer : IAnokPlayer
         IGameSubStateMachine gameSubStateMachine,
         IDiceController diceController,
         ICardSystem cardSystem,
-        IFortuneSystem fortuneSystem,
-        IDialogueSystem dialogueSystem
+        IFortuneSystem fortuneSystem
         )
     {
         _gameSubStateMachine = gameSubStateMachine;
         _diceController = diceController;
         _cardSystem = cardSystem;
         _fortuneSystem = fortuneSystem;
-        _dialogueSystem = dialogueSystem;
     }
 
     public bool OnTrayClick() 
@@ -34,7 +32,6 @@ internal class HumanAnokPlayer : IAnokPlayer
         {
             List<(int sides, int value)> diceList = _diceController.RollDice(12);
             _rolledValue = diceList[0].value;
-            _dialogueSystem.CreateDialogueBoxByKey($"anok_game", _rolledValue);
             return true;
         }
         return false;

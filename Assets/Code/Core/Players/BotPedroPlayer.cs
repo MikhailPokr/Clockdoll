@@ -9,7 +9,6 @@ internal  class BotPedroPlayer : IPedroPlayer, IBotPlayer
     private IDiceController _diceController;
     private ICardSystem _cardSystem;
     private IFortuneSystem _fortuneSystem;
-    private IDialogueSystem _dialogueSystem;
 
     private PedroCard _chosenCard;
     private int _rolledValue;
@@ -22,8 +21,7 @@ internal  class BotPedroPlayer : IPedroPlayer, IBotPlayer
         IGameSubStateMachine gameSubStateMachine,
         IDiceController diceController,
         ICardSystem cardSystem,
-        IFortuneSystem fortuneSystem,
-        IDialogueSystem dialogueSystem
+        IFortuneSystem fortuneSystem
         )
     {
         _coreTicker = coreTicker;
@@ -31,7 +29,6 @@ internal  class BotPedroPlayer : IPedroPlayer, IBotPlayer
         _diceController = diceController;
         _cardSystem = cardSystem;
         _fortuneSystem = fortuneSystem;
-        _dialogueSystem = dialogueSystem;
     }
     public bool OnTrayClick()
     {
