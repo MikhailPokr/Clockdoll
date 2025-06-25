@@ -75,8 +75,8 @@ internal class GameState : IState
         _fortunePool = ServiceLocator.Register((FortunePool)_dataLoader.LoadPrefab("FortunePool"));
         _fortuneSystem = ServiceLocator.Register<IFortuneSystem>(new FortuneSystem(_fortunePool, _cardSystem, _gameSubStateMachine, _anokCashData, _discardManager, 12)); //можно вынести значение в SO 
 
-        _anokPlayer = ServiceLocator.Register<IAnokPlayer>(new HumanAnokPlayer(_coreTicker, _gameSubStateMachine, _diceController, _cardSystem, _fortuneSystem));
-        _pedroPlayer = ServiceLocator.Register<IPedroPlayer>(new BotPedroPlayer(_coreTicker, _gameSubStateMachine, _diceController, _cardSystem, _fortuneSystem));
+        _anokPlayer = ServiceLocator.Register<IAnokPlayer>(new HumanAnokPlayer(_gameSubStateMachine, _diceController, _cardSystem, _fortuneSystem));
+        _pedroPlayer = ServiceLocator.Register<IPedroPlayer>(new BotPedroPlayer(_gameSubStateMachine, _diceController, _cardSystem, _fortuneSystem));
 
         _game = ServiceLocator.Register<IGame>(new Game
         (

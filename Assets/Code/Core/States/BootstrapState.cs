@@ -9,9 +9,9 @@ internal class BootstrapState : IState
     private BuildData _buildData;
     private SceneLoader _sceneLoader;
 
-    public BootstrapState(CoreTicker coroutineDispatcher, StateMachine stateMachine)
+    public BootstrapState(CoreTicker coreTicker, StateMachine stateMachine)
     {
-        _coreTicker = coroutineDispatcher;
+        _coreTicker = coreTicker;
         _stateMachine = stateMachine;
     }
 

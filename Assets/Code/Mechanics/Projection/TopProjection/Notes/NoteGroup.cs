@@ -1,25 +1,21 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using static Palette;
 
 public class NoteGroup : MonoBehaviour, IInitializable
 {
     [SerializeField] private int _notesCount;
     [SerializeField] private Transform _flyAwayPoint;
-    [SerializeField] private float _animationDuration = 0.5f; // Установите разумное значение по умолчанию
+    [SerializeField] private float _animationDuration = 0.5f;
     [SerializeField] private float _maxRotationAngle;
-    [SerializeField] private float _flyAwayHeight;
 
     private NoteView[] _notes;
     private IDollPlacementController _placementController;
     private Palette _palette;
     private INoteMarkerData _markerData;
-
-    private int _currentTopNoteIndex = 0;
-    private bool _isAnimating = false;
-    private Coroutine _animationCoroutine;
+    private int _currentTopNoteIndex;
+    private Sequence _animationSequence;
 
     public void Initialize()
     {
@@ -30,95 +26,94 @@ public class NoteGroup : MonoBehaviour, IInitializable
         _palette = ServiceLocator.Resolve<Palette>();
         _markerData = ServiceLocator.Resolve<INoteMarkerData>();
 
-        _notes = new NoteView[_notesCount];
-
-        for (int i = 0; i < _notes.Length; i++)
-        {
-            NoteView model = Instantiate(_palette.NotePrefab, transform);
-            model.Initialize(_palette.MarkerSprites, this);
-            model.transform.position = transform.position;
-            model.transform.SetAsFirstSibling(); 
-            ClockNum doll = _placementController.GetCurrentDollIndex();
-            model.UpdateMark(_markerData.GetDollMarkers(doll), _palette.DollsData.First(x => x.Index == doll).Symbol);
-            _notes[i] = model;
-        }
-
-        _currentTopNoteIndex = _notes.Length-1; 
-        _isAnimating = false;
-
+        InitializeNotes();
         _markerData.MarkChanged += OnMarkChanged;
     }
 
-    public void Click(int num)
+    private void InitializeNotes()
     {
-        _markerData.SetMark(num, _placementController.GetCurrentDollIndex());
+        _notes = new NoteView[_notesCount];
+        _currentTopNoteIndex = _notes.Length - 1;
+
+        for (int i = 0; i < _notes.Length; i++)
+        {
+            _notes[i] = Instantiate(_palette.NotePrefab, transform);
+            _notes[i].Initialize(_palette.MarkerSprites, this);
+            _notes[i].transform.SetAsFirstSibling();
+            UpdateNoteData(_notes[i]);
+        }
     }
 
-    public void OnMarkChanged()
+    private void UpdateNoteData(NoteView note)
     {
         ClockNum doll = _placementController.GetCurrentDollIndex();
-        _notes[_currentTopNoteIndex].UpdateMark(_markerData.GetDollMarkers(doll), _palette.DollsData.First(x => x.Index == doll).Symbol);
+        Doll dollData = _palette.DollsData.First(x => x.Index == doll);
+        note.UpdateMark(_markerData.GetDollMarkers(doll), dollData.Symbol);
     }
+
+    public void Click(int num) => _markerData.SetMark(num, _placementController.GetCurrentDollIndex());
+
+    public void OnMarkChanged() => UpdateNoteData(_notes[_currentTopNoteIndex]);
 
     private void OnDataChanged(ClockNum _)
     {
-        if (_isAnimating) return; 
-
-        if (_animationCoroutine != null)
+        if (_animationSequence != null)
         {
-            StopCoroutine(_animationCoroutine);
+            if (_animationSequence.IsActive())
+            {
+                _animationSequence.Kill(true);
+            }
+            ResetNotePosition();
         }
-        _animationCoroutine = StartCoroutine(AnimateNoteMovement());
+        AnimateNoteMovement();
     }
 
-    private IEnumerator AnimateNoteMovement()
+    private void ResetNotePosition()
     {
-        _isAnimating = true;
+        _notes[_currentTopNoteIndex].transform.position = transform.position;
+    }
+
+    private void AnimateNoteMovement()
+    {
+        // Создаем новую последовательность
+        _animationSequence = DOTween.Sequence();
 
         NoteView topNote = _notes[_currentTopNoteIndex];
-        Vector3 parentCenter = transform.position;
-
         int nextTopIndex = (_currentTopNoteIndex + 1) % _notes.Length;
-        ClockNum doll = _placementController.GetCurrentDollIndex();
-        _notes[nextTopIndex].UpdateMark(_markerData.GetDollMarkers(doll), _palette.DollsData.First(x => x.Index == doll).Symbol);
+        UpdateNoteData(_notes[nextTopIndex]);
 
-        float elapsedTime = 0f;
-        while (elapsedTime < _animationDuration / 2)
-        {
-            float t = elapsedTime / (_animationDuration / 2);
-            topNote.transform.position = Vector3.Lerp(
-                parentCenter,
-                _flyAwayPoint.position,
-                t * t);
+        // Настройка анимации
+        _animationSequence.Append(
+            topNote.transform.DOMove(_flyAwayPoint.position, _animationDuration / 2)
+                .SetEase(Ease.OutQuad)
+        );
 
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
+        _animationSequence.AppendCallback(() => topNote.transform.SetAsFirstSibling());
 
-        topNote.transform.SetAsFirstSibling();
-        Quaternion newRotation = Quaternion.Euler(0, 0, Random.Range(-_maxRotationAngle, _maxRotationAngle));
+        Vector3 randomRotation = new Vector3(0, 0, Random.Range(-_maxRotationAngle, _maxRotationAngle));
+        _animationSequence.Append(
+            topNote.transform.DOMove(transform.position, _animationDuration / 2)
+                .SetEase(Ease.InQuad)
+        );
+        _animationSequence.Join(
+            topNote.transform.DORotate(randomRotation, _animationDuration / 2)
+        );
 
-        elapsedTime = 0f;
-        while (elapsedTime < _animationDuration / 2)
-        {
-            float t = elapsedTime / (_animationDuration / 2);
-            topNote.transform.position = Vector3.Lerp(
-                _flyAwayPoint.position,
-                parentCenter,
-                t * t); 
-            topNote.transform.rotation = Quaternion.Lerp(
-                topNote.transform.rotation,
-                newRotation,
-                t);
+        _animationSequence.OnComplete(() => {
+            _currentTopNoteIndex = nextTopIndex;
+            _animationSequence = null; 
+        });
 
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
+        _animationSequence.SetLink(gameObject);
+    }
 
-        topNote.transform.position = parentCenter;
-        topNote.transform.rotation = newRotation;
+    private void OnDestroy()
+    {
+        _placementController.CurrentPlaceChanged -= OnDataChanged;
+        _placementController.PlacementChanged -= () => OnDataChanged(0);
+        _markerData.MarkChanged -= OnMarkChanged;
 
-        _currentTopNoteIndex = (_currentTopNoteIndex + 1) % _notes.Length;
-        _isAnimating = false;
+        if (_animationSequence != null)
+            _animationSequence.Kill();
     }
 }

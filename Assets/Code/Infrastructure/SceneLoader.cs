@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 internal class SceneLoader : IService
 {
@@ -14,17 +14,13 @@ internal class SceneLoader : IService
 
     public void Load(string sceneName, Action onLoad = null)
     {
-        _coreTicker.StartCoroutine(LoadScene(sceneName, onLoad));
+        LoadScene(sceneName, onLoad).Forget();
     }
 
-    private IEnumerator LoadScene(string sceneName, Action onLoad)
+    private async UniTask LoadScene(string sceneName, Action onLoad)
     {
         AsyncOperation loadingScene = SceneManager.LoadSceneAsync(sceneName);
-
-        while (!loadingScene.isDone)
-            yield return null;
-
+        await loadingScene;
         onLoad?.Invoke();
     }
-
 }

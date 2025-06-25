@@ -2,9 +2,9 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.XR;
+using DG.Tweening;
 internal  class BotPedroPlayer : IPedroPlayer, IBotPlayer
 {
-    private CoreTicker _coreTicker;
     private IGameSubStateMachine _gameSubStateMachine;
     private IDiceController _diceController;
     private ICardSystem _cardSystem;
@@ -17,14 +17,12 @@ internal  class BotPedroPlayer : IPedroPlayer, IBotPlayer
     public event System.Action<BaseCard> OnCardClickRequested;
 
     public BotPedroPlayer(
-        CoreTicker coreTicker,
         IGameSubStateMachine gameSubStateMachine,
         IDiceController diceController,
         ICardSystem cardSystem,
         IFortuneSystem fortuneSystem
         )
     {
-        _coreTicker = coreTicker;
         _gameSubStateMachine = gameSubStateMachine;
         _diceController = diceController;
         _cardSystem = cardSystem;
@@ -57,7 +55,7 @@ internal  class BotPedroPlayer : IPedroPlayer, IBotPlayer
 
     public void EnterReactionState()
     {
-        _coreTicker.Invoke(() => _gameSubStateMachine.GoToNextState(), 1);
+        DOVirtual.DelayedCall(1, () => _gameSubStateMachine.GoToNextState());
     }
 
     public void EnterStartTurnState()
@@ -66,12 +64,12 @@ internal  class BotPedroPlayer : IPedroPlayer, IBotPlayer
 
     public void EnterRollDiceState()
     {
-        _coreTicker.Invoke(() => OnDiceTrayClickRequested?.Invoke(true), 1);
+        DOVirtual.DelayedCall(1, () => OnDiceTrayClickRequested?.Invoke(true));
     }
 
     public void EnterFortuneState()
     {
-        _coreTicker.Invoke(() => _fortuneSystem.ApplyReward(_rolledValue), 1);
+        DOVirtual.DelayedCall(1, () => _fortuneSystem.ApplyReward(_rolledValue));
         
     }
 
@@ -80,10 +78,10 @@ internal  class BotPedroPlayer : IPedroPlayer, IBotPlayer
         List<BaseCard> hand = _cardSystem.GetHand(true).Where(x => x.CheckCondition()).ToList();
         if (hand.Count ==0)
         {
-            _coreTicker.Invoke(() => OnCardClickRequested.Invoke(null), 1);
+            DOVirtual.DelayedCall(1, () => OnCardClickRequested.Invoke(null));
             return;
         }
-        _coreTicker.Invoke(() => OnCardClickRequested?.Invoke(hand[Random.Range(0, hand.Count)]), 1);
+        DOVirtual.DelayedCall(1, () => OnCardClickRequested?.Invoke(hand[Random.Range(0, hand.Count)]));
     }
 
     public void EnterCardPlayState()

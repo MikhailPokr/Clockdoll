@@ -1,6 +1,8 @@
-﻿// BaseRotatableAxis.cs
+﻿using System;
 using System.Collections;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+using DG.Tweening;
 
 internal abstract class BaseRotatableAxis : BaseRotatableObject
 {
@@ -8,7 +10,6 @@ internal abstract class BaseRotatableAxis : BaseRotatableObject
     [SerializeField] protected GameObject[] _places;
 
     protected GameObject[] _objects = new GameObject[5];
-    protected Coroutine _rotationCoroutine;
     protected bool _isRotating = false;
     public override bool IsRotating => _isRotating;
     protected ClockNum _currentPlace;
@@ -25,13 +26,13 @@ internal abstract class BaseRotatableAxis : BaseRotatableObject
         _duration = duration;
         InitializeObjects();
     }
+
     public override void StartRotation(bool clockwise)
     {
         if (_isRotating) return;
         _isRotating = true;
-        _rotationCoroutine = StartCoroutine(RotationCoroutine(clockwise));
+        Rotate(clockwise);
     }
-
 
     private void InitializeObjects()
     {
@@ -46,54 +47,33 @@ internal abstract class BaseRotatableAxis : BaseRotatableObject
         for (int i = -2; i <= 2; i++)
         {
             ClockNum tablePlace = _currentPlace + i;
-            SetNewObject(tablePlace, i + 2); // +2 для преобразования диапазона -2..2 в 0..4
+            SetNewObject(tablePlace, i + 2);
         }
     }
 
-    private IEnumerator RotationCoroutine(bool clockwise)
+    private void Rotate(bool clockwise)
     {
-        var startTransforms = new (Vector3 pos, Quaternion rot, Vector3 scale)[_objects.Length];
-        var targetTransforms = new (Vector3 pos, Quaternion rot, Vector3 scale)[_objects.Length];
         int direction = clockwise ? -1 : 1;
         int excessIndex = clockwise ? 0 : _objects.Length - 1;
+
+        Sequence sequence = DOTween.Sequence();
 
         for (int i = 0; i < _objects.Length; i++)
         {
             if (i == excessIndex) continue;
 
-            startTransforms[i] = (
-                _objects[i].transform.position,
-                _objects[i].transform.rotation,
-                _objects[i].transform.localScale
-            );
-
             int targetIndex = i + direction;
             Transform target = _places[targetIndex].transform;
-            targetTransforms[i] = (target.position, target.rotation, target.localScale);
+
+            sequence.Join(_objects[i].transform.DOMove(target.position, _duration).SetEase(Ease.Linear));
+            sequence.Join(_objects[i].transform.DORotateQuaternion(target.rotation, _duration).SetEase(Ease.Linear));
+            sequence.Join(_objects[i].transform.DOScale(target.localScale, _duration).SetEase(Ease.Linear));
         }
 
-        float elapsed = 0f;
-        while (elapsed < _duration)
-        {
-            elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / _duration);
-
-            for (int i = 0; i < _objects.Length; i++)
-            {
-                if (i == excessIndex) continue;
-
-                _objects[i].transform.position = Vector3.Lerp(
-                    startTransforms[i].pos, targetTransforms[i].pos, t);
-                _objects[i].transform.rotation = Quaternion.Lerp(
-                    startTransforms[i].rot, targetTransforms[i].rot, t);
-                _objects[i].transform.localScale = Vector3.Lerp(
-                    startTransforms[i].scale, targetTransforms[i].scale, t);
-            }
-            yield return null;
-        }
-
-        CompleteRotationStep(clockwise);
-        _isRotating = false;
+        sequence.OnComplete(() => {
+            CompleteRotationStep(clockwise);
+            _isRotating = false;
+        });
     }
 
     private void CompleteRotationStep(bool clockwise)

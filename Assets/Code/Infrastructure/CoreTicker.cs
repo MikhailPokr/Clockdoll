@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 internal class CoreTicker : MonoBehaviour, IService
 {
@@ -8,20 +8,7 @@ internal class CoreTicker : MonoBehaviour, IService
     public void Initialize(StateMachine stateMachine)
     {
         _stateMachine = stateMachine;
-
         DontDestroyOnLoad(this);
-    }
-
-    public void Invoke(Action action, float delay)
-    {
-        if (action == null) return;
-        StartCoroutine(ExecuteAfterDelay(action, delay));
-    }
-
-    private IEnumerator ExecuteAfterDelay(Action action, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        action.Invoke();
     }
 
     private void Update()

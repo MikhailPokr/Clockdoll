@@ -1,6 +1,7 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
-using UnityEngine;
+using DG.Tweening;
 
 internal class MovableSprite : BaseRotatableObject
 {
@@ -15,7 +16,6 @@ internal class MovableSprite : BaseRotatableObject
 
     private IDollPlacementController _placementController;
     private float _duration;
-
 
     public override void Initiate(Palette palette, IDollPlacementController placementController, float duration)
     {
@@ -69,43 +69,22 @@ internal class MovableSprite : BaseRotatableObject
     public override void StartRotation(bool clockwise)
     {
         if (_isRotating) return;
-
         _isRotating = true;
-        StartCoroutine(RotateCoroutine(clockwise));
-    }
-
-    private IEnumerator RotateCoroutine(bool clockwise)
-    {
-        float elapsedTime = 0f;
-        Vector2 startPos = _spriteRenderer.transform.position;
 
         int currentIndex = _placementController.CurrentPlace;
         int nextIndex = clockwise ? currentIndex + 1 : currentIndex - 1;
-
         float targetX = _partCenters[nextIndex];
 
-        Vector2 endPos = new Vector2(targetX, startPos.y);
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(_spriteRenderer.transform.DOMoveX(targetX, _duration).SetEase(Ease.Linear));
 
-        while (elapsedTime < _duration)
-        {
-            elapsedTime += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsedTime / _duration);
-            _spriteRenderer.transform.position = Vector2.Lerp(startPos, endPos, t);
+        sequence.OnComplete(() => {
+            if (nextIndex == ClockNum.MinValue - 1)
+                _spriteRenderer.transform.position = new Vector2(_partCenters[ClockNum.MaxValue], _spriteRenderer.transform.position.y);
+            else if (nextIndex == ClockNum.MaxValue + 1)
+                _spriteRenderer.transform.position = new Vector2(_partCenters[ClockNum.MinValue], _spriteRenderer.transform.position.y);
 
-            yield return null;
-        }
-
-        if (nextIndex == ClockNum.MinValue - 1)
-        {
-            _spriteRenderer.transform.position = new Vector2(_partCenters[ClockNum.MaxValue], startPos.y);
-
-        }
-        if (nextIndex == ClockNum.MaxValue + 1)
-        {
-            _spriteRenderer.transform.position = new Vector2(_partCenters[ClockNum.MinValue], startPos.y);
-        }
-
-        _isRotating = false;
-
+            _isRotating = false;
+        });
     }
 }

@@ -1,8 +1,7 @@
-// TableCameraRotation.cs
 using System;
-using System.Collections;
 using System.Linq;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 internal class TableCameraRotation : MonoBehaviour, IInitializable
 {
@@ -39,14 +38,12 @@ internal class TableCameraRotation : MonoBehaviour, IInitializable
         if (_isRotating) return;
 
         if (keyCode == KeyCode.LeftArrow && state == 1)
-            StartCoroutine(RotateTable(-1));
+            RotateTable(-1).Forget();
         else if (keyCode == KeyCode.RightArrow && state == 1)
-            StartCoroutine(RotateTable(1));
-
-
+            RotateTable(1).Forget();
     }
 
-    private IEnumerator RotateTable(int direction)
+    private async UniTask RotateTable(int direction)
     {
         _isRotating = true;
         bool clockwise = direction > 0;
@@ -56,7 +53,8 @@ internal class TableCameraRotation : MonoBehaviour, IInitializable
             axis.StartRotation(clockwise);
         }
 
-        yield return new WaitWhile(() => _rotatableObjects.All(x => x.IsRotating));
+        await UniTask.WaitUntil(() => _rotatableObjects.All(x => !x.IsRotating));
+
         ClockNum newPlace = _placementController.CurrentPlace + direction;
         _placementController.SetCurrentDoll(newPlace);
 

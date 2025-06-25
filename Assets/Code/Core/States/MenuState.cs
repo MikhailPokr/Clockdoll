@@ -44,7 +44,7 @@ internal class MenuState : IState
 
         _localizationHandler.ChangeLocalizationKey("ru");
 
-        _dialogueBoxController = ServiceLocator.Register<IDialogueBoxController>(new DialogueBoxController(_dataLoader, _localizationHandler, _textHandler, _coreTicker, _palette, _canvas));
+        _dialogueBoxController = ServiceLocator.Register<IDialogueBoxController>(new DialogueBoxController(_dataLoader, _localizationHandler, _textHandler, _palette, _canvas));
         _mainMenuController = ServiceLocator.Register<IMainMenuController>(new MainMenuController(_localizationHandler));
 
         _mainMenuController.OnGameStart += ChangeStateToGame;

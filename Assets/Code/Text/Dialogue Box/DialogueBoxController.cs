@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 
 internal class DialogueBoxController : IDialogueBoxController
 {
@@ -15,8 +16,6 @@ internal class DialogueBoxController : IDialogueBoxController
     private int _index;
     private string _textUniqueKey;
     private float _delay;
-    private CoreTicker _coreticker;
-    private Coroutine _currentCoroutine;
     private bool _isCurrentlyPrinting;
     private int _currentCharIndex;
     private string _displayText;
@@ -27,14 +26,12 @@ internal class DialogueBoxController : IDialogueBoxController
         IDataLoader dataLoader,
         LocalizationHandler localizationHandler,
         ITextHandler textHandler,
-        CoreTicker coreTicker,
         Palette palette,
         Canvas canvas)
     {
         _dataLoader = dataLoader;
         _localizationHandler = localizationHandler;
         _textHandler = textHandler;
-        _coreticker = coreTicker;
         _palette = palette;
         _canvas = canvas;
 
@@ -98,7 +95,6 @@ internal class DialogueBoxController : IDialogueBoxController
         if (_isCurrentlyPrinting)
         {
             FillText(true);
-            _coreticker.StopCoroutine(_currentCoroutine);
             _isCurrentlyPrinting = false;
             return;
         }
@@ -127,10 +123,10 @@ internal class DialogueBoxController : IDialogueBoxController
 
     private void TypewritePrintText()
     {
-        _currentCoroutine = _coreticker.StartCoroutine(TextDelay(_delay));
+        TextDelay(_delay).Forget();
     }
 
-    IEnumerator TextDelay(float secondsToWait)
+    private async UniTask TextDelay(float secondsToWait)
     {
         int charsToAdd = _currentCharIndex != ' ' ? 1 : 2;
 
@@ -143,8 +139,7 @@ internal class DialogueBoxController : IDialogueBoxController
             _dialogueBox.textSpeaker.text = _speakerText;
             _dialogueBox.textContent.text = _displayText;
 
-
-            yield return new Delay(secondsToWait);
+            await UniTask.Delay(TimeSpan.FromSeconds(secondsToWait));
         }
         _isCurrentlyPrinting = false;
     }
