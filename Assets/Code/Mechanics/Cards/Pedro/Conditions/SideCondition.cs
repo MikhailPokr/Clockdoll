@@ -5,6 +5,8 @@ internal class SideCondition : BaseCondition
     private IDollPlacementController _placementController;
     private bool _isRightSide;
 
+    public override string StringKey => "card_pedro_condition_{0}_side_" + (_isRightSide ? 0 : 1);
+
     public SideCondition()
     {
         _placementController = ServiceLocator.Resolve<IDollPlacementController>();

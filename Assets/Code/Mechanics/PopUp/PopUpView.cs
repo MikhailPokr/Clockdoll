@@ -29,7 +29,17 @@ internal class PopUpView : MonoBehaviour, IInitializable
     {
         _image.gameObject.SetActive(true);
 
-        _text.text = "Сыграли карту ";
+        if (_subStateMachine.IsPedroTurn)
+        {
+            if (card == null)
+            {
+                _text.text = $"Педро ничего не сыграл";
+                return;
+            }
+            PedroCard pedroCard  = card as PedroCard;
+            var description = card.GetDescription();
+            _text.text = $"{description.condition} / {description.effect}";
+        }
     }
 
     private void OnRewardReceived(Reward reward)

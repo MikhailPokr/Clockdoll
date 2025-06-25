@@ -1,29 +1,32 @@
 {
-    "data": [
-        {
-            "key": "cards_anok_ru_0",
-            "content": "Пересадить две куклы"
-        },
-        {
-            "key": "cards_anok_ru_1",
-            "content": "Подвинуть все куклы ",
-            "variations": ["по часовой стрелке", "против часовой стрелки"]
-        },
-        {
-            "key": "cards_anok_ru_3",
-            "content": "Вставить куклу в указанное место"
-        },
-        {
-            "key": "cards_anok_ru_5",
-            "content": "не указано"
-        },
-        {
-            "key": "cards_anok_ru_9",
-            "content": "Получить D16 денег"
-        },
-        {
-            "key": "cards_anok_ru_10",
-            "content": "Вытяни D4 карт"
-        }
-    ]
+  "data": [
+    {
+      "key": "cards_anok_ru_0",
+      "content": "Пересадить две куклы"
+    },
+    {
+      "key": "cards_anok_ru_1_0",
+      "content": "Подвинуть все куклы против часовой стрелки"
+    },
+    {
+      "key": "cards_anok_ru_1_1",
+      "content": "Подвинуть все куклы по часовой стрелке"
+    },
+    {
+      "key": "cards_anok_ru_3",
+      "content": "Вставить куклу в указанное место"
+    },
+    {
+      "key": "cards_anok_ru_5",
+      "content": "не указано"
+    },
+    {
+      "key": "cards_anok_ru_9",
+      "content": "Получить D16 денег"
+    },
+    {
+      "key": "cards_anok_ru_10",
+      "content": "Вытяни D4 карт"
+    }
+  ]
 }

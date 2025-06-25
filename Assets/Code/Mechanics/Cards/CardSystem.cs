@@ -13,12 +13,17 @@ internal class CardSystem : ICardSystem
     private bool _showingPedroHand;
     private IDollPlacementController _placementController;
     private IGameSubStateMachine _gameSubStateMachine;
+    private IProjectionController _projectionController;
     private Palette _palette;
 
     public event System.Action HandUpdated;
     public event System.Action<BaseCard> CardPlayed;
 
-    public CardSystem(IDollPlacementController placementController, IGameSubStateMachine gameSubStateMachine, Palette palette)
+    public CardSystem(
+        IDollPlacementController placementController,
+        IGameSubStateMachine gameSubStateMachine,
+        IProjectionController projectionController,
+        Palette palette)
     {
         _anokPlayed = new List<AnokCard>();
         _pedroPlayed = new Dictionary<ClockNum, List<PedroCard>>();
@@ -35,9 +40,13 @@ internal class CardSystem : ICardSystem
 
         _gameSubStateMachine = gameSubStateMachine;
 
+        _projectionController = projectionController;
+        _projectionController.ViewModeChanged += (_) => SwitchHand();
+
         _palette = palette;
 
-        _showingPedroHand = false;
+        _showingPedroHand = true;
+        _projectionController = projectionController;
     }
 
     public void SwitchHand()
@@ -86,6 +95,11 @@ internal class CardSystem : ICardSystem
 
     public void PlayCard(BaseCard card)
     {
+        if (card == null)
+        {
+            CardPlayed?.Invoke(card);
+            return;
+        }
         if (card is PedroCard)
         {
             _pedroHand.Remove((PedroCard)card);

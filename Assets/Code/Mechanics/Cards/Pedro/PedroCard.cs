@@ -8,6 +8,9 @@ internal class PedroCard : BaseCard
     {
         _logicCondition = condition;
         _logicEffect = effect;
+
+        _condition = _textHandler.ReturnJsonData(condition.StringKey).content;
+        _effect = _textHandler.ReturnJsonData(effect.StringKey).content;
     }
 
     public override bool CheckCondition() => _logicCondition.Check();

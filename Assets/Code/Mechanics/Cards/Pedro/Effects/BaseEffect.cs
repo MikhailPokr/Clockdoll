@@ -2,6 +2,8 @@
 {
     protected Suit _suit;
 
+    public abstract string StringKey { get; }
+
     protected BaseEffect(Suit suit)
     {
         _suit = suit;

@@ -3,7 +3,9 @@
 internal class PowerCondition : BaseCondition
 {
     private IDollPlacementController _placementController;
-    private bool _isPowerOfTwo;
+    private bool _isPowerOfTwo; //иначе степень 3
+
+    public override string StringKey => "card_pedro_condition_{0}_power_" + (_isPowerOfTwo ? 0 : 1);
 
     public PowerCondition()
     {

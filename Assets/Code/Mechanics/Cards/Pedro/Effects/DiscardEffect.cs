@@ -4,6 +4,7 @@ internal class DiscardEffect : BaseEffect
 {
     private IDiscardManager _discardManager;
 
+    public override string StringKey => "card_pedro_effect_{0}_discard";
     public DiscardEffect(Suit suit) : base(suit)
     {
         _discardManager = ServiceLocator.Resolve<IDiscardManager>();

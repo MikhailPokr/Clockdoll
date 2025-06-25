@@ -2,14 +2,15 @@
 {
     private ICardSystem _cardSystem;
     private IDiceController _diceManager;
+    public override int Number => 10;
+    public override string StringKey => "cards_anok_{0}_"+Number;
 
     public DrawCardCard() : base()
     {
         _cardSystem = ServiceLocator.Resolve<ICardSystem>();
         _diceManager = ServiceLocator.Resolve<IDiceController>();
-
-        ApplyEffectText(10);
     }
+
 
     public override void PlayEffect()
     {

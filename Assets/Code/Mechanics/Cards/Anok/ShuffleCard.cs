@@ -4,11 +4,12 @@ internal class ShuffleCard : AnokCard
 {
     private IDollPlacementController _placementController;
 
+    public override int Number => 5;
+    public override string StringKey => "cards_anok_{0}_" + Number;
+
     public ShuffleCard() : base()
     {
         _placementController = ServiceLocator.Resolve<IDollPlacementController>();
-
-        ApplyEffectText(5);
     }
 
     public override void PlayEffect()

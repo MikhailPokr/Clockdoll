@@ -5,12 +5,13 @@ internal class RestoreCard : AnokCard
     private IAnokCashData _anokCashData;
     private IDiceController _diceManager;
 
+    public override int Number => 9;
+    public override string StringKey => "cards_anok_{0}_" + Number;
+
     public RestoreCard() : base()
     {
         _anokCashData = ServiceLocator.Resolve<IAnokCashData>();
         _diceManager = ServiceLocator.Resolve<IDiceController>();
-
-        ApplyEffectText(9);
     }
 
     public override void PlayEffect()

@@ -3,6 +3,8 @@
     private IAnokCashData _anokCashData;
     private IDiceController _diceManager;
 
+    public override string StringKey => "card_pedro_effect_{0}_damage";
+
     public DamageEffect(Suit suit) : base(suit)
     {
         _anokCashData = ServiceLocator.Resolve<IAnokCashData>();

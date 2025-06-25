@@ -5,6 +5,8 @@ internal class NeighborCondition : BaseCondition
     private IDollPlacementController _placementController;
     private bool _checkLeftNeighbor;
 
+    public override string StringKey => "card_pedro_condition_{0}_neighbor_" + (_checkLeftNeighbor ? 0 : 1);
+
     public NeighborCondition()
     {
         _placementController = ServiceLocator.Resolve<IDollPlacementController>();

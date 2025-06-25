@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 internal class HumanAnokPlayer : IAnokPlayer
 {
+    private CoreTicker _coreTicker;
+
     private IGameSubStateMachine _gameSubStateMachine;
     private IDiceController _diceController;
     private ICardSystem _cardSystem;
@@ -14,12 +16,14 @@ internal class HumanAnokPlayer : IAnokPlayer
     private int _rolledValue;
 
     public HumanAnokPlayer(
+        CoreTicker coreTicker,
         IGameSubStateMachine gameSubStateMachine,
         IDiceController diceController,
         ICardSystem cardSystem,
         IFortuneSystem fortuneSystem
         )
     {
+        _coreTicker = coreTicker;
         _gameSubStateMachine = gameSubStateMachine;
         _diceController = diceController;
         _cardSystem = cardSystem;
@@ -58,7 +62,7 @@ internal class HumanAnokPlayer : IAnokPlayer
 
     public void EnterReactionState()
     {
-        _gameSubStateMachine.GoToNextState();
+        _coreTicker.Invoke(() => _gameSubStateMachine.GoToNextState(), 1);
     }
 
     public void EnterStartTurnState()

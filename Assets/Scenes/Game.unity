@@ -1443,7 +1443,6 @@ GameObject:
   m_Component:
   - component: {fileID: 392204309}
   - component: {fileID: 392204310}
-  - component: {fileID: 392204311}
   m_Layer: 5
   m_Name: Cards
   m_TagString: Untagged
@@ -1483,29 +1482,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _showedCard: {fileID: 793659656}
-  _animator: {fileID: 392204311}
---- !u!95 &392204311
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 392204308}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9e626ee9a29de5c4c97e106f34c5619a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  _rectTransform: {fileID: 392204309}
+  _animationDuration: 0.5
+  _startPosition: {x: -853, y: -612}
+  _midPositionX: {x: -903, y: -689}
+  _maxRotation: {x: 0, y: 0, z: -85.934}
+  _rotationOutEase: 3
+  _rotationInEase: 2
 --- !u!1 &398554627
 GameObject:
   m_ObjectHideFlags: 0

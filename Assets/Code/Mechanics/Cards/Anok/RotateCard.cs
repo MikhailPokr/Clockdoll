@@ -5,15 +5,12 @@ internal class RotateCard : AnokCard
 {
     private bool _isClockwise;
 
+    public override int Number => 1;
+    public override string StringKey => "cards_anok_{0}_" + Number + $"_{(_isClockwise ? 0 : 1)}";
+
     public RotateCard() : base()
     {
         _isClockwise = Random.value > 0.5f;
-
-        suitNumber = 1;
-        _effect = _textHandler.ReturnJsonData("cards_anok", suitNumber).content
-        + _textHandler.ReturnJsonData("cards_anok", suitNumber).variations
-        [_isClockwise ? 1 : 0];
-        _suit = _palette.Numbers[suitNumber];
     }
 
     public override void PlayEffect()

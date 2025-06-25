@@ -38,9 +38,11 @@ internal class MenuState : IState
         _dataLoader = ServiceLocator.Register<IDataLoader>(new ResourcesLoader());
         _palette = ServiceLocator.Register((Palette)_dataLoader.LoadPrefab("Palette"));
         _localizationHandler = ServiceLocator.Register(new LocalizationHandler());
-        _textHandler = ServiceLocator.Register<ITextHandler>(new TextHandler(_dataLoader, _localizationHandler, _coreTicker, _palette));
+        _textHandler = ServiceLocator.Register<ITextHandler>(new TextHandler(_dataLoader, _localizationHandler));
 
         _canvas = GameObject.FindAnyObjectByType<Canvas>();
+
+        _localizationHandler.ChangeLocalizationKey("ru");
 
         _dialogueBoxController = ServiceLocator.Register<IDialogueBoxController>(new DialogueBoxController(_dataLoader, _localizationHandler, _textHandler, _coreTicker, _palette, _canvas));
         _mainMenuController = ServiceLocator.Register<IMainMenuController>(new MainMenuController(_localizationHandler));

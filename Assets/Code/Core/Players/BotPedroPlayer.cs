@@ -88,8 +88,6 @@ internal  class BotPedroPlayer : IPedroPlayer, IBotPlayer
 
     public void EnterCardPlayState()
     {
-        if (_chosenCard != null)
-            _cardSystem.PlayCard(_chosenCard);
-        _coreTicker.Invoke(() => _gameSubStateMachine.GoToNextState(), 1);
+        _cardSystem.PlayCard(_chosenCard);
     }
 }

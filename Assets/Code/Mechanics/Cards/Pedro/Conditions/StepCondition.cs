@@ -5,6 +5,8 @@ internal class StepCondition : BaseCondition
     private IDollPlacementController _placementController;
     private int _step;
 
+    public override string StringKey => $"[value: {_step}]" + "card_pedro_condition_{0}_step";
+
     public StepCondition()
     {
         _placementController = ServiceLocator.Resolve<IDollPlacementController>();

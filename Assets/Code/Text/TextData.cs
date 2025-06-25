@@ -5,6 +5,4 @@ internal class TextData
     public string speaker;
     public string expression;
     public string content;
-
-    public string[] variations;
 }

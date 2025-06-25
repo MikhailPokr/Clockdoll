@@ -2,6 +2,8 @@
 {
     private IDollPlacementController _placementController;
 
+    public override string StringKey => "card_pedro_condition_{0}_prime";
+
     public PrimeCondition()
     {
         _placementController = ServiceLocator.Resolve<IDollPlacementController>();

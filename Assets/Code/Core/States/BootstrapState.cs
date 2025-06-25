@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 
 internal class BootstrapState : IState
 {
@@ -18,6 +19,7 @@ internal class BootstrapState : IState
     {
         _buildData = ServiceLocator.Register(new BuildData());
         _sceneLoader = ServiceLocator.Register(new SceneLoader(_coreTicker));
+        DOTween.Init();
 
         if (_buildData.Platform == RuntimePlatform.WebGLPlayer)
         {

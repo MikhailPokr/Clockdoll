@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using static JsonLoader;
 using UnityObject = UnityEngine.Object;
 
 internal class ResourcesLoader : IDataLoader

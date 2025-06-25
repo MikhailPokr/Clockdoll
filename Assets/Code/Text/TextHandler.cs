@@ -1,24 +1,16 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
+using Unity.VisualScripting;
 
 internal class TextHandler : ITextHandler
 {
     private IDataLoader _dataLoader;
     private LocalizationHandler _localizationHandler;
-    private Palette _palette;
-    private CoreTicker _coreticker;
-    private int _index;
-    private string _textUniqueKey;
     public List<TextData> _jsonData;
 
-    public TextHandler(IDataLoader dataLoader, LocalizationHandler localizationController, CoreTicker coreTicker, Palette palette)
+    public TextHandler(IDataLoader dataLoader, LocalizationHandler localizationController)
     {
         _dataLoader = dataLoader;
-        _palette = palette;
-        _coreticker = coreTicker;
         _localizationHandler = localizationController;
 
         _jsonData = _dataLoader.LoadJsonList<TextData>("json");
@@ -26,9 +18,31 @@ internal class TextHandler : ITextHandler
 
     public TextData ReturnJsonData(string jsonData, int page)
     {
-        _textUniqueKey = jsonData;
-        _index = page;
-        return DataSearch($"{_textUniqueKey}_{_localizationHandler.localizationKey}_{_index}");
+        return DataSearch($"{jsonData}_{_localizationHandler.localizationKey}_{page}");
+    }
+
+    public TextData ReturnJsonData(string jsonData)
+    {
+        bool param = jsonData.Contains("]");
+        string value = "";
+        if (param)
+        {
+            int endBracketIndex = jsonData.IndexOf(']');
+            string key = jsonData.Substring(endBracketIndex + 1);
+            string inner = jsonData.Substring(1, endBracketIndex - 1);
+            value = inner.Split(':').Last();
+            jsonData = key;
+        }
+        TextData data = DataSearch(string.Format(jsonData, _localizationHandler.localizationKey));
+        
+        if (data == null)
+        {
+            data = new TextData() { content = string.Format(jsonData, _localizationHandler.localizationKey)};
+            data.content = $"[rawKey{(param? "({0})" : "")}]" + data.content;
+        }
+        if (param)
+            data.content = string.Format(data.content, value);
+        return data;
     }
 
     public TextData DataSearch(string searchedKey)

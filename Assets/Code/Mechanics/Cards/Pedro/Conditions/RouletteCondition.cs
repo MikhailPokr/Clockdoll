@@ -3,6 +3,8 @@
     private IDollPlacementController _placementController;
     private IDiceController _diceManager;
 
+    public override string StringKey => "card_pedro_condition_{0}_roulette";
+
     public RouletteCondition()
     {
         _placementController = ServiceLocator.Resolve<IDollPlacementController>();
