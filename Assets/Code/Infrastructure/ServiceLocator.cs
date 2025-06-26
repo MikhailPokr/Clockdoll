@@ -8,7 +8,10 @@ internal class ServiceLocator
     public static T Register<T>(T service) where T : IService
     {
         if (_services.ContainsKey(typeof(T)))
+        {
+            _services[typeof(T)].Dispose();
             _services[typeof(T)] = service;
+        }
         else
             _services.Add(typeof(T), service);
         return service;

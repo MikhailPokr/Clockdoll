@@ -8,9 +8,6 @@ internal class AnokCashData : IAnokCashData
     private int _cashAmount;
     public float CashAmount => _cashAmount;
 
-    public event Action CashChanged;
-    public event Action CashOver;
-
     public AnokCashData(int maxCash)
     {
         _maxCash = maxCash;
@@ -21,8 +18,8 @@ internal class AnokCashData : IAnokCashData
     {
         _cashAmount += value;
         if (_cashAmount <= 0)
-            CashOver?.Invoke();
+            SignalBus.Publish(new CashOverSignal());
         _cashAmount = Math.Clamp(_cashAmount, 0, _maxCash);
-        CashChanged?.Invoke();
+        SignalBus.Publish(new CashChangedSignal());
     }
 }

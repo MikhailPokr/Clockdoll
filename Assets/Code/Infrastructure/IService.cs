@@ -1,1 +1,7 @@
-﻿internal interface IService { }
+﻿internal interface IService 
+{
+    void Dispose()
+    {
+        SignalBus.UnsubscribeAll(this);
+    }
+}

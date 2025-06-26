@@ -21,7 +21,7 @@ internal class ReplaceManager : IReplaceManager
         _places.Add(place);
     }
 
-    public void Replace()
+    public void StartReplace()
     {
         Dictionary<ClockNum, ClockNum> result = new Dictionary<ClockNum, ClockNum>(_placementController.DollsCurrentPlace);
 

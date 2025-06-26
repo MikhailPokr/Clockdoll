@@ -12,8 +12,7 @@ internal class FortuneListView : MonoBehaviour, IInitializable
     public void Initialize()
     {
         _manager = ServiceLocator.Resolve<IFortuneSystem>();
-
-        _manager.ListGenerated += OnListGenerated;
+        SignalBus.Subscribe<ListGeneratedSignal>(this, OnListGenerated);
     }
 
     private void OnListGenerated()

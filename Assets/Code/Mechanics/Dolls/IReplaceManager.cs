@@ -2,6 +2,6 @@
 {
     void AddPlace(int place);
     void InsertDoll();
-    void Replace();
+    void StartReplace();
     void RotateAll(bool clockwise);
 }

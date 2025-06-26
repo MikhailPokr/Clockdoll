@@ -6,8 +6,6 @@ internal class NoteMarkerData : INoteMarkerData
 {
     private Dictionary<ClockNum, Dictionary<ClockNum, (int MarkType, int Rotation)>> _data;
 
-    public event System.Action MarkChanged;
-
     public Dictionary<ClockNum, (int, int)> GetDollMarkers(ClockNum dollIndex) => _data[dollIndex];
 
     public NoteMarkerData()
@@ -31,7 +29,7 @@ internal class NoteMarkerData : INoteMarkerData
             mode = _data[doll][num].MarkType + 1;
 
         _data[doll][num] = (mode, Random.Range(0, 360));
-        MarkChanged?.Invoke();
+        SignalBus.Publish(new MarkChangedSignal());
     }
 
     public enum Mode

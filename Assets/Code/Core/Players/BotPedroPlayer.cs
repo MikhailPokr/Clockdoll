@@ -13,9 +13,6 @@ internal  class BotPedroPlayer : IPedroPlayer, IBotPlayer
     private PedroCard _chosenCard;
     private int _rolledValue;
 
-    public event System.Action<bool> OnDiceTrayClickRequested;
-    public event System.Action<BaseCard> OnCardClickRequested;
-
     public BotPedroPlayer(
         IGameSubStateMachine gameSubStateMachine,
         IDiceController diceController,
@@ -64,7 +61,7 @@ internal  class BotPedroPlayer : IPedroPlayer, IBotPlayer
 
     public void EnterRollDiceState()
     {
-        DOVirtual.DelayedCall(1, () => OnDiceTrayClickRequested?.Invoke(true));
+        DOVirtual.DelayedCall(1, () => SignalBus.Publish(new DiceTrayClickRequestedSignal(true)));
     }
 
     public void EnterFortuneState()
@@ -78,10 +75,10 @@ internal  class BotPedroPlayer : IPedroPlayer, IBotPlayer
         List<BaseCard> hand = _cardSystem.GetHand(true).Where(x => x.CheckCondition()).ToList();
         if (hand.Count ==0)
         {
-            DOVirtual.DelayedCall(1, () => OnCardClickRequested.Invoke(null));
+            DOVirtual.DelayedCall(1, () => SignalBus.Publish(new CardClickRequestedSignal(true, null)));
             return;
         }
-        DOVirtual.DelayedCall(1, () => OnCardClickRequested?.Invoke(hand[Random.Range(0, hand.Count)]));
+        DOVirtual.DelayedCall(1, () => SignalBus.Publish(new CardClickRequestedSignal(true, hand[Random.Range(0, hand.Count)])));
     }
 
     public void EnterCardPlayState()

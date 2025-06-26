@@ -1,23 +1,17 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 internal class ProjectionController : IProjectionController
 {
     private bool _isTopView;
     private Animator _animator;
 
-    public event Action<bool> ViewModeChanged;
-
 
     public ProjectionController(Animator animator)
     {
         _isTopView = false;
         _animator = animator;
-    }
 
-    public void OnClockClick(bool isTableClock)
-    {
-        ChangeView(isTableClock);
+        SignalBus.Subscribe<ClockPressedSignal>(this, signal => ChangeView(signal.ItsTableClock));
     }
 
     public void ChangeView(bool isTableClock)
@@ -28,7 +22,7 @@ internal class ProjectionController : IProjectionController
         _isTopView = !isTableClock;
         _animator.SetTrigger("Click");
         _animator.SetBool("TableClick", isTableClock);
-        ViewModeChanged?.Invoke(_isTopView);
+        SignalBus.Publish(new ViewModeChangedSignal(_isTopView));
     }
 
 }

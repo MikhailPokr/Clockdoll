@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 
 internal class PopUpView : MonoBehaviour, IInitializable
 {
@@ -20,24 +19,24 @@ internal class PopUpView : MonoBehaviour, IInitializable
         _fortuneSystem = ServiceLocator.Resolve<IFortuneSystem>();
         _cardSystem = ServiceLocator.Resolve<ICardSystem>();
 
-        _subStateMachine.SubStateChanged += OnStateChanged;
-        _fortuneSystem.RewardReceived += OnRewardReceived;
-        _cardSystem.CardPlayed += OnCardPlayed;
+        SignalBus.Subscribe<SubStateChangedSignal>(this, OnStateChanged);
+        SignalBus.Subscribe<RewardReceivedSignal>(this, signal => OnRewardReceived(signal.Reward));
+        SignalBus.Subscribe<CardPlayedSignal>(this, OnCardPlayed);
     }
 
-    private void OnCardPlayed(BaseCard card)
+    private void OnCardPlayed(CardPlayedSignal signal)
     {
         _image.gameObject.SetActive(true);
 
         if (_subStateMachine.IsPedroTurn)
         {
-            if (card == null)
+            if (signal.Card == null)
             {
                 _text.text = $"Педро ничего не сыграл";
                 return;
             }
-            PedroCard pedroCard  = card as PedroCard;
-            var description = card.GetDescription();
+            PedroCard pedroCard  = signal.Card as PedroCard;
+            var description = signal.Card.GetDescription();
             _text.text = $"{description.condition} / {description.effect}";
         }
     }
@@ -61,12 +60,12 @@ internal class PopUpView : MonoBehaviour, IInitializable
         }
     }
 
-    private void OnStateChanged(GameSubState state, ClockNum place)
+    private void OnStateChanged(SubStateChangedSignal signal)
     {
-        if (state.ToString().EndsWith("StartTurn"))
+        if (signal.GameSubState.ToString().EndsWith("StartTurn"))
         {
             _image.gameObject.SetActive(true);
-            _text.text = state.ToString();
+            _text.text = signal.GameSubState.ToString();
         }
     }
 

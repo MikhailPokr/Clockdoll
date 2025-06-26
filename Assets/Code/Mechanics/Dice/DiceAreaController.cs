@@ -15,7 +15,7 @@ internal class DiceAreaController : MonoBehaviour, IInitializable
     {
         _game = ServiceLocator.Resolve<IGame>();
         _diceManager = ServiceLocator.Resolve<IDiceController>();
-        _diceManager.DiceRolled += OnDiceRolled;
+        SignalBus.Subscribe<DiceRolledSignal>(this, signal => OnDiceRolled(signal.Results));
     }
 
     public void Click()

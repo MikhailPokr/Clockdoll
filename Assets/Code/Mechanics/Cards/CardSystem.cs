@@ -16,9 +16,6 @@ internal class CardSystem : ICardSystem
     private IProjectionController _projectionController;
     private Palette _palette;
 
-    public event System.Action HandUpdated;
-    public event System.Action<BaseCard> CardPlayed;
-
     public CardSystem(
         IDollPlacementController placementController,
         IGameSubStateMachine gameSubStateMachine,
@@ -35,13 +32,15 @@ internal class CardSystem : ICardSystem
         _pedroHand = new List<PedroCard>();
 
         _placementController = placementController;
-        _placementController.CurrentPlaceChanged += (_) => HandUpdated?.Invoke();
-        _placementController.PlacementChanged += () => HandUpdated?.Invoke();
+
+        SignalBus.Subscribe<CurrentPlaceChangedSignal>(this, signal => SignalBus.Publish(new HandUpdatedSignal()));
+        SignalBus.Subscribe<PlacementChangedSignal>(this, signal => SignalBus.Publish(new HandUpdatedSignal()));
+
 
         _gameSubStateMachine = gameSubStateMachine;
 
         _projectionController = projectionController;
-        _projectionController.ViewModeChanged += (_) => SwitchHand();
+        SignalBus.Subscribe<ViewModeChangedSignal>(this, SwitchHand);
 
         _palette = palette;
 
@@ -52,7 +51,7 @@ internal class CardSystem : ICardSystem
     public void SwitchHand()
     {
         _showingPedroHand = !_showingPedroHand;
-        HandUpdated?.Invoke();
+        SignalBus.Publish(new HandUpdatedSignal());
     }
 
     public bool IsCardInHand(BaseCard card)
@@ -90,14 +89,14 @@ internal class CardSystem : ICardSystem
             _pedroHand.Add((PedroCard)card);
         else
             _anokHand.Add((AnokCard)card);
-        HandUpdated?.Invoke();
+        SignalBus.Publish(new HandUpdatedSignal());
     }
 
     public void PlayCard(BaseCard card)
     {
         if (card == null)
         {
-            CardPlayed?.Invoke(card);
+            SignalBus.Publish(new CardPlayedSignal(card));
             return;
         }
         if (card is PedroCard)
@@ -111,8 +110,8 @@ internal class CardSystem : ICardSystem
             _anokPlayed.Add((AnokCard)card);
         }
         card.PlayEffect();
-        CardPlayed?.Invoke(card);
-        HandUpdated?.Invoke();
+        SignalBus.Publish(new CardPlayedSignal(card));
+        SignalBus.Publish(new HandUpdatedSignal());
     }
 
     public void DiscardCard(BaseCard card)

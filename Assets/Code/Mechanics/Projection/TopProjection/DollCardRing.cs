@@ -14,8 +14,8 @@ internal class DollCardRing : MonoBehaviour, IInitializable
     {
         _palette = ServiceLocator.Resolve<Palette>();
         _placementController = ServiceLocator.Resolve<IDollPlacementController>();
-        _placementController.CurrentPlaceChanged += PushCard;
-        _placementController.PlacementChanged += ReGenerate;
+        SignalBus.Subscribe<PlacementChangedSignal>(this, ReGenerate);
+        SignalBus.Subscribe<CurrentPlaceChangedSignal>(this, signal => PushCard(signal.CurrentPlace));
         _dollCards = new();
 
         Generate();

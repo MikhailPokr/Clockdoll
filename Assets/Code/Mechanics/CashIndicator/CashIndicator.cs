@@ -10,7 +10,7 @@ public class CashIndicator : MonoBehaviour, IInitializable
     public void Initialize()
     {
         _cashData = ServiceLocator.Resolve<IAnokCashData>();
-        _cashData.CashChanged += OnCashChanged;
+        SignalBus.Subscribe<CashChangedSignal>(this, OnCashChanged);
         OnCashChanged();
     }
 

@@ -20,14 +20,14 @@ public class NoteGroup : MonoBehaviour, IInitializable
     public void Initialize()
     {
         _placementController = ServiceLocator.Resolve<IDollPlacementController>();
-        _placementController.CurrentPlaceChanged += OnDataChanged;
-        _placementController.PlacementChanged += () => OnDataChanged(0);
+        SignalBus.Subscribe<CurrentPlaceChangedSignal>(this, OnDataChanged);
+        SignalBus.Subscribe<PlacementChangedSignal>(this, OnDataChanged);
 
         _palette = ServiceLocator.Resolve<Palette>();
         _markerData = ServiceLocator.Resolve<INoteMarkerData>();
 
         InitializeNotes();
-        _markerData.MarkChanged += OnMarkChanged;
+        SignalBus.Subscribe<MarkChangedSignal>(this, OnMarkChanged);
     }
 
     private void InitializeNotes()
@@ -55,7 +55,7 @@ public class NoteGroup : MonoBehaviour, IInitializable
 
     public void OnMarkChanged() => UpdateNoteData(_notes[_currentTopNoteIndex]);
 
-    private void OnDataChanged(ClockNum _)
+    private void OnDataChanged()
     {
         if (_animationSequence != null)
         {
@@ -109,10 +109,6 @@ public class NoteGroup : MonoBehaviour, IInitializable
 
     private void OnDestroy()
     {
-        _placementController.CurrentPlaceChanged -= OnDataChanged;
-        _placementController.PlacementChanged -= () => OnDataChanged(0);
-        _markerData.MarkChanged -= OnMarkChanged;
-
         if (_animationSequence != null)
             _animationSequence.Kill();
     }

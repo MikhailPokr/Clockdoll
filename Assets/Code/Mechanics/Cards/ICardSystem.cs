@@ -2,8 +2,6 @@
 
 internal interface ICardSystem : IService
 {
-    event System.Action HandUpdated;
-    event System.Action<BaseCard> CardPlayed;
     void AddCard(BaseCard card);
     void DiscardCard(BaseCard card);
     List<BaseCard> GetCurrentHandForView();

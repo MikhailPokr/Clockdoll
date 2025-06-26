@@ -4,7 +4,6 @@ using System;
 
 internal class MainMenuController : IMainMenuController
 {
-    public event Action OnGameStart;
     private LocalizationHandler _localizationHandler;
 
     public MainMenuController(LocalizationHandler localizationHandler)
@@ -14,7 +13,7 @@ internal class MainMenuController : IMainMenuController
 
     public void OnPlayButtonClick()
     {
-        OnGameStart?.Invoke();
+        SignalBus.Publish(new GameStartSignal());
     }
     public void OnLocalizationButtonClick(string localizationKey)
     {

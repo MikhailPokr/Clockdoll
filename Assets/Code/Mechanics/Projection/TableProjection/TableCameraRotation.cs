@@ -19,8 +19,8 @@ internal class TableCameraRotation : MonoBehaviour, IInitializable
         _placementController = ServiceLocator.Resolve<IDollPlacementController>();
         _inputHandler = ServiceLocator.Resolve<IInputHandler>();
 
-        _inputHandler.ButtonPressed += OnButtonPressed;
-        _placementController.PlacementChanged += InitiateAxes;
+        SignalBus.Subscribe<InputSignal>(this, OnButtonPressed);
+        SignalBus.Subscribe<PlacementChangedSignal>(this, InitiateAxes);
 
         InitiateAxes();
     }
@@ -33,13 +33,13 @@ internal class TableCameraRotation : MonoBehaviour, IInitializable
         }
     }
 
-    public void OnButtonPressed(KeyCode keyCode, int state)
+    public void OnButtonPressed(InputSignal signal)
     {
         if (_isRotating) return;
 
-        if (keyCode == KeyCode.LeftArrow && state == 1)
+        if (signal.KeyCode == KeyCode.LeftArrow && signal.PressState == 1)
             RotateTable(-1).Forget();
-        else if (keyCode == KeyCode.RightArrow && state == 1)
+        else if (signal.KeyCode == KeyCode.RightArrow && signal.PressState == 1)
             RotateTable(1).Forget();
     }
 
@@ -59,11 +59,5 @@ internal class TableCameraRotation : MonoBehaviour, IInitializable
         _placementController.SetCurrentDoll(newPlace);
 
         _isRotating = false;
-    }
-
-    private void OnDestroy()
-    {
-        _inputHandler.ButtonPressed -= OnButtonPressed;
-        _placementController.PlacementChanged -= InitiateAxes;
     }
 }

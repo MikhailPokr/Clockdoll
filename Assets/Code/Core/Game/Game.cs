@@ -40,20 +40,9 @@ internal class Game : IGame
         _anokPlayer = anokPlayer;
         _pedroPlayer = pedroPlayer;
 
-        _gameSubStateMachine.SubStateChanged += OnStateChanged;
-
-        if (_pedroPlayer is IBotPlayer)
-        {
-            var bot = (IBotPlayer)_pedroPlayer;
-            bot.OnDiceTrayClickRequested += DiceTrayClick;
-            bot.OnCardClickRequested += CardClick;
-        }
-        if (_anokPlayer is IBotPlayer)
-        {
-            var bot = (IBotPlayer)_anokPlayer;
-            bot.OnDiceTrayClickRequested += DiceTrayClick;
-            bot.OnCardClickRequested += CardClick;
-        }
+        SignalBus.Subscribe<SubStateChangedSignal>(this, OnStateChanged);
+        SignalBus.Subscribe<CardClickRequestedSignal>(this, (signal) => CardClick(signal.ItsPedro, signal.Card));
+        SignalBus.Subscribe<DiceTrayClickRequestedSignal>(this, (signal) => DiceTrayClick(signal.ItsPedro));
     }
 
     public void Start()
@@ -78,8 +67,11 @@ internal class Game : IGame
         }
     }
 
-    public void CardClick(BaseCard card)
+    public void CardClick(bool isPedro, BaseCard card)
     {
+        if (isPedro != _gameSubStateMachine.IsPedroTurn)
+            return;
+
         if (!_cardSystem.IsCardInHand(card) && card != null)
             return;
 
@@ -97,14 +89,13 @@ internal class Game : IGame
         return true;
     }
 
-    public void OnStateChanged(GameSubState state, ClockNum place)
+    public void OnStateChanged(SubStateChangedSignal signal)
     {
-
         CoreTicker coreTicker = ServiceLocator.Resolve<CoreTicker>();
 
         IPlayer player = _gameSubStateMachine.IsPedroTurn ? _pedroPlayer : _anokPlayer; 
 
-        switch (state)
+        switch (signal.GameSubState)
         {
             case GameSubState.PedroReaction:
             case GameSubState.AnokReaction:

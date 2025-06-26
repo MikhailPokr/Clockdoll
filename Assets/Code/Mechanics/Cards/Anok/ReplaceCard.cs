@@ -8,6 +8,6 @@
 
     public override void PlayEffect()
     {
-        _replaceManager.Replace();
+        _replaceManager.StartReplace();
     }
 }

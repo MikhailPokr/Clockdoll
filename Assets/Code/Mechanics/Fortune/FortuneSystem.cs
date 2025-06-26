@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.Rendering.GPUSort;
 
 internal class FortuneSystem : IFortuneSystem
 {
     private Dictionary<int, Reward> _currentList;
     public Dictionary<int, Reward> CurrentList => _currentList;
-
-    public event System.Action ListGenerated;
-    public event System.Action<Reward> RewardReceived;
 
     private FortunePool _fortunePool;
     private ICardSystem _cardSystem;
@@ -56,7 +54,7 @@ internal class FortuneSystem : IFortuneSystem
             indexes.Remove(index);
         }
 
-        ListGenerated?.Invoke();
+        SignalBus.Publish(new ListGeneratedSignal());
     }
 
     public void ApplyReward(int number)
@@ -86,6 +84,6 @@ internal class FortuneSystem : IFortuneSystem
                 break;
         }
 
-        RewardReceived?.Invoke(reward);
+        SignalBus.Publish(new RewardReceivedSignal(reward));
     }
 }

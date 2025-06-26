@@ -19,7 +19,6 @@ internal class DialogueBoxController : IDialogueBoxController
     private bool _isCurrentlyPrinting;
     private int _currentCharIndex;
     private string _displayText;
-    public event Action OnPageTurned;
     public List<TextData> _jsonData;
 
     public DialogueBoxController(
@@ -34,8 +33,6 @@ internal class DialogueBoxController : IDialogueBoxController
         _textHandler = textHandler;
         _palette = palette;
         _canvas = canvas;
-
-        OnPageTurned += OnPageTurn;
 
         _jsonData = _dataLoader.LoadJsonList<TextData>("json");
 
@@ -107,7 +104,7 @@ internal class DialogueBoxController : IDialogueBoxController
 
         ResetVariables();
         _index++;
-        OnPageTurned?.Invoke();
+        OnPageTurn();
     }
 
     private void OnPageTurn()

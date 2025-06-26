@@ -10,17 +10,13 @@ internal class GameSubStateMachine : IGameSubStateMachine
 
     public bool IsPedroTurn => _currentState < GameSubState.AnokReaction || _currentState >= GameSubState.PedroReaction;
 
-    public event Action CircleCompleted;
-
-    public event Action<GameSubState, ClockNum> SubStateChanged;
-
     public GameSubStateMachine()
     {
         _currentState = GameSubState.PedroStartTurn;
         _currentPlaceNumber = ClockNum.MinValue;
     }
 
-    public void Start() => SubStateChanged?.Invoke(_currentState, CurrentPlaceNumber);
+    public void Start() => SignalBus.Publish(new SubStateChangedSignal(_currentState, _currentPlaceNumber));
 
     public void GoToNextState()
     {
@@ -33,8 +29,9 @@ internal class GameSubStateMachine : IGameSubStateMachine
         if (_currentState == GameSubState.PedroStartTurn) //Педро вновь ходит, круг замкнулся
         {
             _currentPlaceNumber++;
+            SignalBus.Publish(new CircleCompletedSignal());
         }
 
-        SubStateChanged?.Invoke(_currentState, _currentPlaceNumber);
+        SignalBus.Publish(new SubStateChangedSignal(_currentState, _currentPlaceNumber));
     }
 }

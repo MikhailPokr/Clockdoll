@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.GPUSort;
 
 internal class DiceController : IDiceController
 {
@@ -8,8 +9,6 @@ internal class DiceController : IDiceController
 
     private List<(int sides, int value)> _lastRoll;
     public List<(int sides, int value)> LastRoll => _lastRoll;
-
-    public event Action<List<(int sides, int value)>> DiceRolled;
 
     public DiceController(Palette palette)
     {
@@ -24,7 +23,7 @@ internal class DiceController : IDiceController
             results.Add((dice[i], UnityEngine.Random.Range(1, dice[i] + 1)));
         }
         _lastRoll = results;
-        DiceRolled?.Invoke(results);
+        SignalBus.Publish(new DiceRolledSignal(results));
         return results;
     }
 

@@ -30,15 +30,15 @@ internal class HandView : MonoBehaviour, IInitializable
         _cardSystem = ServiceLocator.Resolve<ICardSystem>();
 
         _cardPrefab = ServiceLocator.Resolve<Palette>().CardPrefab;
-        _cardSystem.HandUpdated += OnHandUpdated;
+        SignalBus.Subscribe<HandUpdatedSignal>(this, OnHandUpdated);
 
         OnHandUpdated();
     }
 
     private void OnHandUpdated()
     {
-        var cards = _cardSystem.GetCurrentHandForView();
-        if (_cards != cards)
+        List<BaseCard> cards = _cardSystem.GetCurrentHandForView();
+        if (_cards == null || !_cards.SequenceEqual(cards))
         {
             _cards = cards;
             Animate();
@@ -49,7 +49,7 @@ internal class HandView : MonoBehaviour, IInitializable
 
     public void ClickCard(BaseCard card)
     {
-        _game.CardClick(card);
+        _game.CardClick(false, card);
     }
 
     public void GenerateHand()

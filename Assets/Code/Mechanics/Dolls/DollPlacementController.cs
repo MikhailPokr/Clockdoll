@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.Rendering.GPUSort;
 
 internal class DollPlacementController : IDollPlacementController
 {
@@ -19,20 +20,17 @@ internal class DollPlacementController : IDollPlacementController
     private ClockNum _currentPlace;
     public ClockNum CurrentPlace => _currentPlace;
 
-    public event System.Action<ClockNum> CurrentPlaceChanged;
-    public event System.Action PlacementChanged;
-
     public DollPlacementController()
     {
         _currentPlace = ClockNum.MinValue;
     }
 
-    public void Start() => CurrentPlaceChanged?.Invoke(_currentPlace);
+    public void Start() => SignalBus.Publish(new CurrentPlaceChangedSignal(_currentPlace));
 
     public void SetCurrentDoll(ClockNum index)
     {
         _currentPlace = index;
-        CurrentPlaceChanged?.Invoke(index);
+        SignalBus.Publish(new CurrentPlaceChangedSignal(index));
     }
 
     public void Generate()
@@ -67,6 +65,6 @@ internal class DollPlacementController : IDollPlacementController
     public void SetNewPlacement(Dictionary<ClockNum, ClockNum> newPlacement)
     {
         _dollsCurrentPlace = newPlacement;
-        PlacementChanged?.Invoke();
+        SignalBus.Publish(new PlacementChangedSignal());
     }
 }

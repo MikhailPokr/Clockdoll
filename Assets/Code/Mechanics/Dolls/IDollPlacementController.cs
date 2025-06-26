@@ -33,7 +33,4 @@ internal interface IDollPlacementController : IService
 
     void SetCurrentDoll(ClockNum index);
     void SetNewPlacement(Dictionary<ClockNum, ClockNum> newPlacement);
-
-    event Action<ClockNum> CurrentPlaceChanged;
-    event Action PlacementChanged;
 }

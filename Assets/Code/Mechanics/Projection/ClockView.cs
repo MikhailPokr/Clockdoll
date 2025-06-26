@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using static UnityEngine.Rendering.GPUSort;
 
 internal class ClockView : MonoBehaviour, IInitializable
 {
@@ -15,28 +16,19 @@ internal class ClockView : MonoBehaviour, IInitializable
     [SerializeField] private GameObject _hArrow;
     [Space]
     [SerializeField] private bool _isTableClock;
- 
-    private IGameSubStateMachine _gameSubStateMachine;
-    private IProjectionController _projectionController;
-
-    public event Action<bool> ButtomPressed;
 
 
     public void Initialize()
     {
-        _gameSubStateMachine = ServiceLocator.Resolve<IGameSubStateMachine>();
-        _gameSubStateMachine.SubStateChanged += OnTurnChanged;
+        SignalBus.Subscribe<SubStateChangedSignal>(this, OnTurnChanged);
 
-        _projectionController = ServiceLocator.Resolve<IProjectionController>();
-        ButtomPressed += _projectionController.OnClockClick;
-
-        OnTurnChanged(_gameSubStateMachine.CurrentState, _gameSubStateMachine.CurrentPlaceNumber);
+        //OnTurnChanged(new(_gameSubStateMachine.CurrentState, _gameSubStateMachine.CurrentPlaceNumber));
     }
 
-    private void OnTurnChanged(GameSubState state, ClockNum num)
+    private void OnTurnChanged(SubStateChangedSignal signal)
     {
-        Debug.Log($"вертим стрелки на состояние {state}");
-        MoveArrow(num, (int)state);
+        Debug.Log($"вертим стрелки на состояние {signal.GameSubState}");
+        MoveArrow(signal.CurrentPlace, (int)signal.GameSubState);
     }
 
     private void MoveArrow(ClockNum hour, ClockNum minutes)
@@ -54,11 +46,6 @@ internal class ClockView : MonoBehaviour, IInitializable
 
     public void Click()
     {
-        ButtomPressed?.Invoke(_isTableClock);
-    }
-
-    private void OnDestroy()
-    {
-        _gameSubStateMachine.SubStateChanged -= OnTurnChanged;
+        SignalBus.Publish(new ClockPressedSignal(_isTableClock));
     }
 }
