@@ -6,5 +6,5 @@ internal class LightAxis : BaseRotatableAxis
     {
         GameObject light = Instantiate(_palette.Light, transform).gameObject;
         return light;
-    }    
+    }
 }

@@ -1,9 +1,8 @@
-using UnityEngine;
+using Cysharp.Threading.Tasks;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 internal class DialogueBoxController : IDialogueBoxController
 {
@@ -39,18 +38,24 @@ internal class DialogueBoxController : IDialogueBoxController
         _delay = 0.035f;
     }
 
-    private string _contentText {
-        get {
+    private string _contentText
+    {
+        get
+        {
             return _textHandler.DataSearch($"{_textUniqueKey}_{_localizationHandler.localizationKey}_{_index}").content;
         }
     }
-    private string _speakerText {
-        get {
+    private string _speakerText
+    {
+        get
+        {
             return _textHandler.DataSearch($"{_textUniqueKey}_{_localizationHandler.localizationKey}_{_index}").speaker;
         }
     }
-    private int _dialoguePagesCount {
-        get {
+    private int _dialoguePagesCount
+    {
+        get
+        {
             return _jsonData.Count(data => data.key.Contains(_textUniqueKey));
         }
     }
@@ -167,7 +172,7 @@ internal class DialogueBoxController : IDialogueBoxController
         else
         {
             _displayText = "";
-            _dialogueBox.textContent.text = ""; 
+            _dialogueBox.textContent.text = "";
         }
     }
 
@@ -180,19 +185,22 @@ internal class DialogueBoxController : IDialogueBoxController
     {
         GameObject.Destroy(_dialogueBox.gameObject);
     }
-    
+
     private class Delay : CustomYieldInstruction
     {
         private float timer;
         private float targetTime;
 
-        public Delay(float delay) {
+        public Delay(float delay)
+        {
             timer = 0f;
             targetTime = delay;
         }
 
-        public override bool keepWaiting {
-            get {
+        public override bool keepWaiting
+        {
+            get
+            {
                 timer += Time.deltaTime;
 
                 return timer < targetTime;

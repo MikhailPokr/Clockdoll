@@ -35,7 +35,7 @@ internal class PopUpView : MonoBehaviour, IInitializable
                 _text.text = $"Педро ничего не сыграл";
                 return;
             }
-            PedroCard pedroCard  = signal.Card as PedroCard;
+            PedroCard pedroCard = signal.Card as PedroCard;
             var description = signal.Card.GetDescription();
             _text.text = $"{description.condition} / {description.effect}";
         }

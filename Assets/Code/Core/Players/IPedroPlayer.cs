@@ -1,6 +1,4 @@
-﻿using System;
-
-internal interface IPedroPlayer : IPlayer
+﻿internal interface IPedroPlayer : IPlayer
 {
-    
+
 }

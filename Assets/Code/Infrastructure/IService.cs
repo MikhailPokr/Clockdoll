@@ -1,4 +1,4 @@
-﻿internal interface IService 
+﻿internal interface IService
 {
     void Dispose()
     {

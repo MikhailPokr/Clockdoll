@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using static UnityEngine.Rendering.GPUSort;
+﻿using UnityEngine;
 
 internal class ClockView : MonoBehaviour, IInitializable
 {
@@ -34,7 +28,7 @@ internal class ClockView : MonoBehaviour, IInitializable
     private void MoveArrow(ClockNum hour, ClockNum minutes)
     {
         if (minutes == 12)
-            hour--; 
+            hour--;
         //выглядит как костыль
         //но оно нужно, поскольку на момент начала хода педро кукла уже должна поменятся
         //но на часах это все все еще прошлый ход

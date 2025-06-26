@@ -1,6 +1,4 @@
-﻿using Assets.Code.Logic;
-
-internal class DrawCardEffect : BaseEffect
+﻿internal class DrawCardEffect : BaseEffect
 {
     private ICardSystem _cardSystem;
 
@@ -13,6 +11,6 @@ internal class DrawCardEffect : BaseEffect
 
     public override void PlayEffect()
     {
-        
+
     }
 }

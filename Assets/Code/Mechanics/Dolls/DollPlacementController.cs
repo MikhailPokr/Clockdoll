@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEngine.Rendering.GPUSort;
 
 internal class DollPlacementController : IDollPlacementController
 {
-   
+
     private Dictionary<ClockNum, ClockNum> _dollsTruePlace;
-    
+
     private Dictionary<ClockNum, ClockNum> _dollsCurrentPlace;
 
     public Dictionary<ClockNum, ClockNum> DollsTruePlace => _dollsTruePlace;
@@ -44,7 +43,7 @@ internal class DollPlacementController : IDollPlacementController
         List<int> places = Enumerable.Range(ClockNum.MinValue, ClockNum.MaxValue).ToList();
         for (int i = ClockNum.MinValue; i <= ClockNum.MaxValue; i++)
         {
-            int place = Random.Range(0, places.Count); 
+            int place = Random.Range(0, places.Count);
             _dollsTruePlace.Add(i, places[place]);
             places.Remove(places[place]);
         }

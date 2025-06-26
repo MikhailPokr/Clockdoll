@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -92,7 +91,7 @@ internal class DiceAreaController : MonoBehaviour, IInitializable
 
         if (_cell.x > 0 && _cell.y > 0)
         {
-            Gizmos.color = new Color(1, 1, 0, 0.3f); 
+            Gizmos.color = new Color(1, 1, 0, 0.3f);
             for (float x = -halfSize.x + _cell.x; x < halfSize.x; x += _cell.x)
             {
                 Vector3 start = transform.TransformPoint(new Vector2(x, -halfSize.y));

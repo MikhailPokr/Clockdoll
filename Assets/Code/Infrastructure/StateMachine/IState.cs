@@ -1,5 +1,3 @@
-using UnityEngine;
-
 internal interface IState
 {
     void Enter();

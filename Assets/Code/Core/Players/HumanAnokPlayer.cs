@@ -1,7 +1,5 @@
-using Assets.Code.Logic;
-using UnityEngine;
-using System.Collections.Generic;
 using DG.Tweening;
+using System.Collections.Generic;
 
 internal class HumanAnokPlayer : IAnokPlayer
 {
@@ -27,7 +25,7 @@ internal class HumanAnokPlayer : IAnokPlayer
         _fortuneSystem = fortuneSystem;
     }
 
-    public bool OnTrayClick() 
+    public bool OnTrayClick()
     {
         if (_gameSubStateMachine.CurrentState == GameSubState.AnokRollDice)
         {
@@ -68,7 +66,7 @@ internal class HumanAnokPlayer : IAnokPlayer
 
     public void EnterRollDiceState()
     {
-        
+
     }
 
     public void EnterFortuneState()

@@ -24,7 +24,7 @@ internal class Reward
                 int.TryParse(raw[0], out int min) &&
                 int.TryParse(raw[1], out int max))
             {
-                _newValue = false; 
+                _newValue = false;
                 _fixedValue = Random.Range(min, max + 1);
                 return _fixedValue;
             }

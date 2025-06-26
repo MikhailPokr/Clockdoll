@@ -3,7 +3,7 @@
     private ICardSystem _cardSystem;
     private IDiceController _diceManager;
     public override int Number => 10;
-    public override string StringKey => "cards_anok_{0}_"+Number;
+    public override string StringKey => "cards_anok_{0}_" + Number;
 
     public DrawCardCard() : base()
     {

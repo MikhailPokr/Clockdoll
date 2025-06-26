@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 internal class AnokCashData : IAnokCashData
 {

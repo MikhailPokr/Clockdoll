@@ -3,7 +3,7 @@ using UnityEngine;
 
 internal class DollAxis : BaseRotatableAxis
 {
-    
+
 
     protected override GameObject Generate(ClockNum place)
     {

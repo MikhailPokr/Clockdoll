@@ -1,7 +1,3 @@
-using UnityEngine;
-using System;
-
-
 internal class MainMenuController : IMainMenuController
 {
     private LocalizationHandler _localizationHandler;

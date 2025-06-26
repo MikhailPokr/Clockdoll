@@ -1,9 +1,8 @@
-using UnityEngine;
+using DG.Tweening;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine.XR;
-using DG.Tweening;
-internal  class BotPedroPlayer : IPedroPlayer, IBotPlayer
+using UnityEngine;
+internal class BotPedroPlayer : IPedroPlayer, IBotPlayer
 {
     private IGameSubStateMachine _gameSubStateMachine;
     private IDiceController _diceController;
@@ -67,13 +66,13 @@ internal  class BotPedroPlayer : IPedroPlayer, IBotPlayer
     public void EnterFortuneState()
     {
         DOVirtual.DelayedCall(1, () => _fortuneSystem.ApplyReward(_rolledValue));
-        
+
     }
 
     public void EnterCardChoiceState()
     {
         List<BaseCard> hand = _cardSystem.GetHand(true).Where(x => x.CheckCondition()).ToList();
-        if (hand.Count ==0)
+        if (hand.Count == 0)
         {
             DOVirtual.DelayedCall(1, () => SignalBus.Publish(new CardClickRequestedSignal(true, null)));
             return;

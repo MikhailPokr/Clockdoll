@@ -1,7 +1,6 @@
-﻿using UnityEngine;
-using Cysharp.Threading.Tasks;
+﻿using DG.Tweening;
 using System.Collections.Generic;
-using DG.Tweening;
+using UnityEngine;
 
 internal class MovableSprite : BaseRotatableObject
 {
@@ -78,7 +77,8 @@ internal class MovableSprite : BaseRotatableObject
         Sequence sequence = DOTween.Sequence();
         sequence.Append(_spriteRenderer.transform.DOMoveX(targetX, _duration).SetEase(Ease.Linear));
 
-        sequence.OnComplete(() => {
+        sequence.OnComplete(() =>
+        {
             if (nextIndex == ClockNum.MinValue - 1)
                 _spriteRenderer.transform.position = new Vector2(_partCenters[ClockNum.MaxValue], _spriteRenderer.transform.position.y);
             else if (nextIndex == ClockNum.MaxValue + 1)

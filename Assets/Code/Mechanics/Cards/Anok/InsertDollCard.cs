@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-internal class InsertDollCard : AnokCard
+﻿internal class InsertDollCard : AnokCard
 {
     private int _targetPlace;
 

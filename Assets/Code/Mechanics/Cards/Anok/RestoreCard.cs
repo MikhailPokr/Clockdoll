@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-internal class RestoreCard : AnokCard
+﻿internal class RestoreCard : AnokCard
 {
     private IAnokCashData _anokCashData;
     private IDiceController _diceManager;
@@ -18,6 +16,6 @@ internal class RestoreCard : AnokCard
     {
         var money = _diceManager.RollDice(16);
         _anokCashData.ChangeCash(money[0].value);
-        
+
     }
 }

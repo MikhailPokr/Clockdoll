@@ -1,6 +1,6 @@
-using UnityEngine;
-using System.Linq;
 using DG.Tweening;
+using System.Linq;
+using UnityEngine;
 using static Palette;
 
 public class NoteGroup : MonoBehaviour, IInitializable
@@ -99,9 +99,10 @@ public class NoteGroup : MonoBehaviour, IInitializable
             topNote.transform.DORotate(randomRotation, _animationDuration / 2)
         );
 
-        _animationSequence.OnComplete(() => {
+        _animationSequence.OnComplete(() =>
+        {
             _currentTopNoteIndex = nextTopIndex;
-            _animationSequence = null; 
+            _animationSequence = null;
         });
 
         _animationSequence.SetLink(gameObject);

@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using Cysharp.Threading.Tasks;
+﻿using UnityEngine;
 
 internal class CoreTicker : MonoBehaviour, IService
 {

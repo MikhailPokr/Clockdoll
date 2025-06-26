@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
-using static UnityEngine.Rendering.GPUSort;
+﻿using System.Collections.Generic;
 
 internal class DiceController : IDiceController
 {

@@ -66,13 +66,13 @@ internal class HandView : MonoBehaviour, IInitializable
             cards.Add(card);
         }
 
-        if (cards.Count == 0) 
+        if (cards.Count == 0)
             return;
         float degrees = -90 / _cards.Count;
         degrees = Mathf.Clamp(degrees, -30, 0);
         for (int i = 0; i < cards.Count; i++)
         {
-            cards[i].transform.localEulerAngles = new Vector3(0, 0, i * degrees); 
+            cards[i].transform.localEulerAngles = new Vector3(0, 0, i * degrees);
         }
     }
 

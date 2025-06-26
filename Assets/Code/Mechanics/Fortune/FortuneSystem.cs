@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEngine.Rendering.GPUSort;
 
 internal class FortuneSystem : IFortuneSystem
 {
@@ -30,7 +29,7 @@ internal class FortuneSystem : IFortuneSystem
     {
         _fortunePool = fortunePool;
         _cardSystem = cardSystem;
-        _gameSubStateMachine = gameSubStateMachine; 
+        _gameSubStateMachine = gameSubStateMachine;
         _cashData = anokCashData;
         _discardManager = discardManager;
         _diceEdges = diceSides;

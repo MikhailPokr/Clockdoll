@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-internal class ShuffleCard : AnokCard
+﻿internal class ShuffleCard : AnokCard
 {
     private IDollPlacementController _placementController;
 

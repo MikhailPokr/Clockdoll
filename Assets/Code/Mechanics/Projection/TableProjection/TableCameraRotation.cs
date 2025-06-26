@@ -1,7 +1,6 @@
-using System;
+using Cysharp.Threading.Tasks;
 using System.Linq;
 using UnityEngine;
-using Cysharp.Threading.Tasks;
 
 internal class TableCameraRotation : MonoBehaviour, IInitializable
 {

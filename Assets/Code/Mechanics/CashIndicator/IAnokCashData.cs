@@ -1,6 +1,4 @@
-﻿using System;
-
-internal interface IAnokCashData : IService
+﻿internal interface IAnokCashData : IService
 {
     float CashAmount { get; }
 

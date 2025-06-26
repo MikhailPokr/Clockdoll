@@ -1,11 +1,10 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 internal class InputHandler : IInputHandler
 {
     public void Update()
     {
-        
+
         if (Input.GetKey(KeyCode.LeftArrow))
             SignalBus.Publish(new InputSignal(KeyCode.LeftArrow, 1));
         if (Input.GetKey(KeyCode.RightArrow))

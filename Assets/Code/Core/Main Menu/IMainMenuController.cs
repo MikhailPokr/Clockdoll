@@ -1,6 +1,3 @@
-using UnityEngine;
-using System;
-
 internal interface IMainMenuController : IService
 {
     void OnPlayButtonClick();

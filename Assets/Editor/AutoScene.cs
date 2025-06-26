@@ -1,6 +1,5 @@
-using UnityEditor.SceneManagement;
 using UnityEditor;
-using UnityEngine;
+using UnityEditor.SceneManagement;
 
 public class AutoScene
 {

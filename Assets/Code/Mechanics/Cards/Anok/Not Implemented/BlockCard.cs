@@ -4,7 +4,7 @@
     public override int Number => throw new System.NotImplementedException();
     public BlockCard() : base()
     {
-        
+
     }
 
     public override void PlayEffect()

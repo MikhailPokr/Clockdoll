@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections;
+﻿using DG.Tweening;
 using UnityEngine;
-using Cysharp.Threading.Tasks;
-using DG.Tweening;
 
 internal abstract class BaseRotatableAxis : BaseRotatableObject
 {
@@ -70,7 +67,8 @@ internal abstract class BaseRotatableAxis : BaseRotatableObject
             sequence.Join(_objects[i].transform.DOScale(target.localScale, _duration).SetEase(Ease.Linear));
         }
 
-        sequence.OnComplete(() => {
+        sequence.OnComplete(() =>
+        {
             CompleteRotationStep(clockwise);
             _isRotating = false;
         });

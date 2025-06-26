@@ -1,7 +1,4 @@
 ﻿using Assets.Code.Logic;
-using System;
-using System.Collections.Generic;
-using UnityEngine;
 
 internal class Game : IGame
 {
@@ -56,12 +53,12 @@ internal class Game : IGame
 
     public void DiceTrayClick(bool isPedro)
     {
-        if (isPedro != _gameSubStateMachine.IsPedroTurn) 
+        if (isPedro != _gameSubStateMachine.IsPedroTurn)
             return;
 
         IPlayer player = _gameSubStateMachine.IsPedroTurn ? _pedroPlayer : _anokPlayer;
 
-        if  (player.OnTrayClick())
+        if (player.OnTrayClick())
         {
             _gameSubStateMachine.GoToNextState();
         }
@@ -93,7 +90,7 @@ internal class Game : IGame
     {
         CoreTicker coreTicker = ServiceLocator.Resolve<CoreTicker>();
 
-        IPlayer player = _gameSubStateMachine.IsPedroTurn ? _pedroPlayer : _anokPlayer; 
+        IPlayer player = _gameSubStateMachine.IsPedroTurn ? _pedroPlayer : _anokPlayer;
 
         switch (signal.GameSubState)
         {

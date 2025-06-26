@@ -1,5 +1,4 @@
-﻿﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 internal class MenuState : IState
 {
@@ -13,7 +12,7 @@ internal class MenuState : IState
     private IDataLoader _dataLoader;
     private LocalizationHandler _localizationHandler;
     private ITextHandler _textHandler;
-    private IDialogueBoxController _dialogueBoxController; 
+    private IDialogueBoxController _dialogueBoxController;
     private Palette _palette;
     private Canvas _canvas;
     private IMainMenuController _mainMenuController;
@@ -34,7 +33,7 @@ internal class MenuState : IState
     private void OnLoadCompleted()
     {
         _inputHandler = ServiceLocator.Register<IInputHandler>(new InputHandler());
-        _initializer = ServiceLocator.Register(new Initializer());   
+        _initializer = ServiceLocator.Register(new Initializer());
         _dataLoader = ServiceLocator.Register<IDataLoader>(new ResourcesLoader());
         _palette = ServiceLocator.Register((Palette)_dataLoader.LoadPrefab("Palette"));
         _localizationHandler = ServiceLocator.Register(new LocalizationHandler());

@@ -1,6 +1,4 @@
-﻿using System;
-
-internal class GameSubStateMachine : IGameSubStateMachine
+﻿internal class GameSubStateMachine : IGameSubStateMachine
 {
     public GameSubState _currentState;
     public GameSubState CurrentState => _currentState;

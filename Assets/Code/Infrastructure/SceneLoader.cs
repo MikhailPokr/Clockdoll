@@ -1,7 +1,7 @@
-﻿using System;
-using UnityEngine.SceneManagement;
+﻿using Cysharp.Threading.Tasks;
+using System;
 using UnityEngine;
-using Cysharp.Threading.Tasks;
+using UnityEngine.SceneManagement;
 
 internal class SceneLoader : IService
 {

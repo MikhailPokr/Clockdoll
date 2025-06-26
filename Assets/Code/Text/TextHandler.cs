@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 
 internal class TextHandler : ITextHandler
 {
@@ -34,11 +33,11 @@ internal class TextHandler : ITextHandler
             jsonData = key;
         }
         TextData data = DataSearch(string.Format(jsonData, _localizationHandler.localizationKey));
-        
+
         if (data == null)
         {
-            data = new TextData() { content = string.Format(jsonData, _localizationHandler.localizationKey)};
-            data.content = $"[rawKey{(param? "({0})" : "")}]" + data.content;
+            data = new TextData() { content = string.Format(jsonData, _localizationHandler.localizationKey) };
+            data.content = $"[rawKey{(param ? "({0})" : "")}]" + data.content;
         }
         if (param)
             data.content = string.Format(data.content, value);

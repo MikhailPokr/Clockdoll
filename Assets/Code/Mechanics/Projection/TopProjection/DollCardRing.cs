@@ -32,7 +32,7 @@ internal class DollCardRing : MonoBehaviour, IInitializable
         }
         Generate();
     }
-    private void  Generate()
+    private void Generate()
     {
         for (int i = ClockNum.MinValue; i <= ClockNum.MaxValue; i++)
         {

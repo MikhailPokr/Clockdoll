@@ -49,7 +49,7 @@ public class Music : MonoBehaviour
             _audioSource.loop = true;
             _audioSource.Play();
 
-            _isPlayingInitial = false;  
+            _isPlayingInitial = false;
         }
     }
 

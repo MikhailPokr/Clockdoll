@@ -1,4 +1,4 @@
 ﻿internal interface IAnokPlayer : IPlayer
 {
-    
+
 }

@@ -22,7 +22,7 @@ internal class FortuneListView : MonoBehaviour, IInitializable
         string text = "";
         for (int i = 0; i < list.Count; i++)
         {
-            text += $"{i+1}\n{list[i]}\n";
+            text += $"{i + 1}\n{list[i]}\n";
         }
         _text.text = text;
     }

@@ -1,6 +1,4 @@
-﻿using System;
-
-internal interface IGameSubStateMachine : IService
+﻿internal interface IGameSubStateMachine : IService
 {
     ClockNum CurrentPlaceNumber { get; }
     GameSubState CurrentState { get; }

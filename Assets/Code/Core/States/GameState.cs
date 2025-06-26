@@ -33,7 +33,7 @@ internal class GameState : IState
         BuildData buildData,
         SceneLoader sceneLoader,
         IInputHandler inputHandler,
-        Initializer initializer, 
+        Initializer initializer,
         IDataLoader dataLoader,
         Palette palette
         )
@@ -55,22 +55,22 @@ internal class GameState : IState
 
     private void OnLoadCompleted()
     {
-        _gameSubStateMachine = ServiceLocator.Register<IGameSubStateMachine>(new GameSubStateMachine()); 
+        _gameSubStateMachine = ServiceLocator.Register<IGameSubStateMachine>(new GameSubStateMachine());
 
-        _placementController = ServiceLocator.Register<IDollPlacementController>(new DollPlacementController()); 
+        _placementController = ServiceLocator.Register<IDollPlacementController>(new DollPlacementController());
         _placementController.Generate();
 
-        _diceController = ServiceLocator.Register<IDiceController>(new DiceController(_palette)); 
+        _diceController = ServiceLocator.Register<IDiceController>(new DiceController(_palette));
         _anokCashData = ServiceLocator.Register<IAnokCashData>(new AnokCashData(100)); //можно вынести значение в SO 
 
         Canvas canvas = GameObject.FindAnyObjectByType<Canvas>();
 
-        _projectionController = ServiceLocator.Register<IProjectionController>(new ProjectionController(canvas.GetComponent<Animator>())); 
-        _noteMarkerData =  ServiceLocator.Register<INoteMarkerData>(new NoteMarkerData()); 
+        _projectionController = ServiceLocator.Register<IProjectionController>(new ProjectionController(canvas.GetComponent<Animator>()));
+        _noteMarkerData = ServiceLocator.Register<INoteMarkerData>(new NoteMarkerData());
         _replaceManager = ServiceLocator.Register<IReplaceManager>(new ReplaceManager(_placementController)); // проверить InsertDoll
 
-        _cardSystem = ServiceLocator.Register<ICardSystem>(new CardSystem(_placementController, _gameSubStateMachine, _projectionController, _palette)); 
-        _discardManager = ServiceLocator.Register<IDiscardManager>(new DiscardManager(_cardSystem)); 
+        _cardSystem = ServiceLocator.Register<ICardSystem>(new CardSystem(_placementController, _gameSubStateMachine, _projectionController, _palette));
+        _discardManager = ServiceLocator.Register<IDiscardManager>(new DiscardManager(_cardSystem));
 
         _fortunePool = ServiceLocator.Register((FortunePool)_dataLoader.LoadPrefab("FortunePool"));
         _fortuneSystem = ServiceLocator.Register<IFortuneSystem>(new FortuneSystem(_fortunePool, _cardSystem, _gameSubStateMachine, _anokCashData, _discardManager, 12)); //можно вынести значение в SO 
@@ -84,9 +84,9 @@ internal class GameState : IState
         _gameSubStateMachine,
         _placementController,
         _diceController,
-        _anokCashData, 
+        _anokCashData,
         _cardSystem,
-        _discardManager, 
+        _discardManager,
         _fortuneSystem,
         _anokPlayer,
         _pedroPlayer

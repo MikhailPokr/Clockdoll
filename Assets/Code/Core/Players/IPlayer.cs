@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-internal interface IPlayer : IService
+﻿internal interface IPlayer : IService
 {
     void OnGameBegin();
     void EnterReactionState();

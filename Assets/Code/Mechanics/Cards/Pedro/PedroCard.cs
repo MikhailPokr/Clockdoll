@@ -1,5 +1,3 @@
-using UnityEngine;
-
 internal class PedroCard : BaseCard
 {
     protected BaseCondition _logicCondition;
