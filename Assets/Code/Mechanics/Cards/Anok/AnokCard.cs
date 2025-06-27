@@ -2,7 +2,6 @@ using UnityEngine;
 
 internal abstract class AnokCard : BaseCard
 {
-    protected IReplaceManager _replaceManager;
 
     public abstract string StringKey { get; }
     public abstract int Number { get; }
@@ -10,7 +9,6 @@ internal abstract class AnokCard : BaseCard
     public AnokCard() : base()
     {
         _palette = ServiceLocator.Resolve<Palette>();
-        _replaceManager = ServiceLocator.Resolve<IReplaceManager>();
         _textHandler = ServiceLocator.Resolve<ITextHandler>();
 
         _color = Color.black;
@@ -22,5 +20,5 @@ internal abstract class AnokCard : BaseCard
     public override bool CheckCondition()
     { return true; }
 
-    public abstract override void PlayEffect();
+    public abstract override void PlayEffect(out IRequireLock requireLock);
 }

@@ -9,6 +9,8 @@ internal class HumanAnokPlayer : IAnokPlayer
     private IFortuneSystem _fortuneSystem;
     private ITextHandler _textHandler;
 
+    private CardRequireLock _requireLock;
+
     private AnokCard _chosenCard;
     private int _rolledValue;
 
@@ -80,7 +82,7 @@ internal class HumanAnokPlayer : IAnokPlayer
 
     public void EnterCardPlayState()
     {
-        _cardSystem.PlayCard(_chosenCard);
+        _cardSystem.PlayCard(_chosenCard, out IRequireLock requireLock);
     }
 
 }

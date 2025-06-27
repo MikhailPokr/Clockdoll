@@ -12,8 +12,9 @@ internal class RotateCard : AnokCard
         _isClockwise = Random.value > 0.5f;
     }
 
-    public override void PlayEffect()
+    public override void PlayEffect(out IRequireLock requireLock)
     {
-        _replaceManager.RotateAll(_isClockwise);
+        requireLock = new DollRequireLock(false, 0, 
+            _isClockwise ? DollRequireLockType.RotateClockwise : DollRequireLockType.RotateCounterclockwise);
     }
 }

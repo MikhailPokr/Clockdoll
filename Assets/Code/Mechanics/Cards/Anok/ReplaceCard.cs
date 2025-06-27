@@ -6,8 +6,8 @@
     {
     }
 
-    public override void PlayEffect()
+    public override void PlayEffect(out IRequireLock requireLock)
     {
-        _replaceManager.StartReplace();
+        requireLock = new DollRequireLock(false, 2, DollRequireLockType.Replace);
     }
 }

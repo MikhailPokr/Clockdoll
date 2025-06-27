@@ -4,4 +4,5 @@
     void InsertDoll();
     void StartReplace();
     void RotateAll(bool clockwise);
+    void Shuffle();
 }

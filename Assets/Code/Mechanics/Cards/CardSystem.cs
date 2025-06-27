@@ -92,11 +92,12 @@ internal class CardSystem : ICardSystem
         SignalBus.Publish(new HandUpdatedSignal());
     }
 
-    public void PlayCard(BaseCard card)
+    public void PlayCard(BaseCard card, out IRequireLock requireLock)
     {
         if (card == null)
         {
             SignalBus.Publish(new CardPlayedSignal(card));
+            requireLock = null;
             return;
         }
         if (card is PedroCard)
@@ -109,7 +110,7 @@ internal class CardSystem : ICardSystem
             _anokHand.Remove((AnokCard)card);
             _anokPlayed.Add((AnokCard)card);
         }
-        card.PlayEffect();
+        card.PlayEffect(out requireLock);
         SignalBus.Publish(new CardPlayedSignal(card));
         SignalBus.Publish(new HandUpdatedSignal());
     }

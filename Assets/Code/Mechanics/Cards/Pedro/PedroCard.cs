@@ -13,5 +13,5 @@ internal class PedroCard : BaseCard
 
     public override bool CheckCondition() => _logicCondition.Check();
 
-    public override void PlayEffect() => _logicEffect.PlayEffect();
+    public override void PlayEffect(out IRequireLock requireLock) => _logicEffect.PlayEffect(out requireLock);
 }

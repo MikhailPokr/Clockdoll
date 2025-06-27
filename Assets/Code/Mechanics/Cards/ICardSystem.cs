@@ -9,5 +9,5 @@ internal interface ICardSystem : IService
     List<BaseCard> GetHand(bool pedroHand);
     void SwitchHand();
     void TakeCard(bool toPedro, int count, bool spadesGuaranteed = false);
-    void PlayCard(BaseCard card);
+    void PlayCard(BaseCard card, out IRequireLock requireLock);
 }

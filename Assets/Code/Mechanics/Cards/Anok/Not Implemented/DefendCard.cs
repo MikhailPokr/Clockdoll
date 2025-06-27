@@ -8,7 +8,8 @@
     {
     }
 
-    public override void PlayEffect()
+    public override void PlayEffect(out IRequireLock requireLock)
     {
+        throw new System.NotImplementedException();
     }
 }

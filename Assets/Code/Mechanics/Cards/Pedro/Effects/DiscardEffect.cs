@@ -2,24 +2,24 @@
 
 internal class DiscardEffect : BaseEffect
 {
-    private IDiscardManager _discardManager;
+    public override string StringKey => $"[value:{_value}]" + "card_pedro_effect_{0}_discard";
 
-    public override string StringKey => "card_pedro_effect_{0}_discard";
+    private int _value;
+
     public DiscardEffect(Suit suit) : base(suit)
     {
-        _discardManager = ServiceLocator.Resolve<IDiscardManager>();
-    }
-
-    public override void PlayEffect()
-    {
-        int count = _suit switch
+        _value = _suit switch
         {
             Suit.Diamonds => 3,
             Suit.Spades => 4,
-            Suit.Hearts => 2,
-            Suit.Crosses => 1,
+            Suit.Hearts => 1,
+            Suit.Crosses => 2,
             _ => 0
         };
-        _discardManager.AddDiscard(false, count);
+    }
+
+    public override void PlayEffect(out IRequireLock requireLock)
+    {
+        requireLock = new CardRequireLock(false, _value, CardRequireLockType.Discard);
     }
 }

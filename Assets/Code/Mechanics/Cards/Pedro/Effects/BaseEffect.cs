@@ -9,5 +9,5 @@
         _suit = suit;
     }
 
-    public abstract void PlayEffect();
+    public abstract void PlayEffect(out IRequireLock requireLock);
 }

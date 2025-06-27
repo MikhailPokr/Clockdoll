@@ -16,7 +16,7 @@ internal abstract class BaseCard
         _textHandler = ServiceLocator.Resolve<ITextHandler>();
     }
 
-    public abstract void PlayEffect();
+    public abstract void PlayEffect(out IRequireLock requireLock);
     public abstract bool CheckCondition();
 
     public (string condition, string effect) GetDescription() => (_condition, _effect);

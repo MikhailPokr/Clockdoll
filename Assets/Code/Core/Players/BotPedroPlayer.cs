@@ -82,6 +82,6 @@ internal class BotPedroPlayer : IPedroPlayer, IBotPlayer
 
     public void EnterCardPlayState()
     {
-        _cardSystem.PlayCard(_chosenCard);
+        _cardSystem.PlayCard(_chosenCard, out IRequireLock requireLock);
     }
 }

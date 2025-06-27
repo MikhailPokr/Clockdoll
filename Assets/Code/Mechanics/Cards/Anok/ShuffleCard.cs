@@ -10,8 +10,8 @@
         _placementController = ServiceLocator.Resolve<IDollPlacementController>();
     }
 
-    public override void PlayEffect()
+    public override void PlayEffect(out IRequireLock requireLock)
     {
-        _placementController.GeneratePlaces();
+        requireLock = new DollRequireLock(false, 0, DollRequireLockType.Shuffle);
     }
 }

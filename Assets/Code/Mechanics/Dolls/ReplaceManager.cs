@@ -65,4 +65,9 @@ internal class ReplaceManager : IReplaceManager
         newPlacement[_places[0]] = _places[1];
         _placementController.SetNewPlacement(newPlacement);
     }
+
+    public void Shuffle()
+    {
+        _placementController.GeneratePlaces();
+    }
 }

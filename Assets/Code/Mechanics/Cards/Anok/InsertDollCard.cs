@@ -1,7 +1,5 @@
 ﻿internal class InsertDollCard : AnokCard
 {
-    private int _targetPlace;
-
     public override int Number => 3;
     public override string StringKey => "cards_anok_{0}_" + Number;
 
@@ -9,8 +7,8 @@
     {
     }
 
-    public override void PlayEffect()
+    public override void PlayEffect(out IRequireLock requireLock)
     {
-        _replaceManager.InsertDoll();
+        requireLock = new DollRequireLock(false, 2, DollRequireLockType.Insert);
     }
 }
